@@ -1,0 +1,6 @@
+[submodule "frappe-ui"]
+	path = frappe-ui
+	url = https://github.com/frappe/frappe-ui
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/chid-aakash/sentra_frontend.git
