@@ -410,17 +410,21 @@ class CRMLead(Document):
 			}
 		)
 
-		if self.first_responded_on:
-			new_deal.update(
-				{
-					"sla_creation": self.sla_creation,
-					"response_by": self.response_by,
-					"sla_status": self.sla_status,
-					"communication_status": self.communication_status,
-					"first_response_time": self.first_response_time,
-					"first_responded_on": self.first_responded_on,
-				}
-			)
+		if hasattr(self, 'first_responded_on') and self.first_responded_on:
+			sla_data = {}
+			if hasattr(self, 'sla_creation') and self.sla_creation:
+				sla_data["sla_creation"] = self.sla_creation
+			if hasattr(self, 'sla_status') and self.sla_status:
+				sla_data["sla_status"] = self.sla_status
+			if hasattr(self, 'communication_status') and self.communication_status:
+				sla_data["communication_status"] = self.communication_status
+			if hasattr(self, 'first_response_time') and self.first_response_time:
+				sla_data["first_response_time"] = self.first_response_time
+			if hasattr(self, 'first_responded_on') and self.first_responded_on:
+				sla_data["first_responded_on"] = self.first_responded_on
+			
+			if sla_data:
+				new_deal.update(sla_data)
 
 		if deal:
 			new_deal.update(deal)
@@ -483,10 +487,6 @@ class CRMLead(Document):
 			"mobile_no",
 			"lead_owner",
 			"first_name",
-			"sla_status",
-			"response_by",
-			"first_response_time",
-			"first_responded_on",
 			"modified",
 			"_assign",
 			"image",
