@@ -126,19 +126,16 @@
   {
    "fieldname": "person_tab",
    "fieldtype": "Tab Break",
-   "hidden": 1,
    "label": "Person"
   },
   {
    "fieldname": "details",
    "fieldtype": "Tab Break",
-   "hidden": 1,
    "label": "Details"
   },
   {
    "fieldname": "log_tab",
    "fieldtype": "Tab Break",
-   "hidden": 1,
    "label": "Log",
    "read_only": 1
   },
@@ -165,7 +162,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-20 14:47:05.258580",
+ "modified": "2025-06-21 13:33:40.895315",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",
