@@ -8,43 +8,44 @@ class CustomContact(Contact):
 	def default_list_data():
 		columns = [
 			{
-				'label': 'Name',
-				'type': 'Data',
-				'key': 'full_name',
-				'width': '17rem',
+				"label": "Full Name",
+				"type": "Data",
+				"key": "full_name",
+				"width": "10rem",
 			},
 			{
-				'label': 'Email',
-				'type': 'Data',
-				'key': 'email_id',
-				'width': '12rem',
+				"label": "Primary Type",
+				"type": "Link",
+				"key": "primary_type",
+				"width": "8rem",
 			},
 			{
-				'label': 'Phone',
-				'type': 'Data',
-				'key': 'mobile_no',
-				'width': '12rem',
+				"label": "Secondary Type",
+				"type": "Link",
+				"key": "secondary_type",
+				"width": "8rem",
 			},
 			{
-				'label': 'Organization',
-				'type': 'Data',
-				'key': 'company_name',
-				'width': '12rem',
+				"label": "Email",
+				"type": "Data",
+				"key": "email_id",
+				"width": "10rem",
 			},
 			{
-				'label': 'Last Modified',
-				'type': 'Datetime',
-				'key': 'modified',
-				'width': '8rem',
+				"label": "Mobile",
+				"type": "Data",
+				"key": "mobile_no",
+				"width": "8rem",
 			},
 		]
 		rows = [
 			"name",
 			"full_name",
-			"company_name",
+			"primary_type",
+			"secondary_type",
 			"email_id",
 			"mobile_no",
-			"modified",
 			"image",
+			"modified",
 		]
-		return {'columns': columns, 'rows': rows}
+		return {"columns": columns, "rows": rows}
