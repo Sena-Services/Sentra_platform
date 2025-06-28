@@ -12,3 +12,4 @@ crm/www/crm.html
 build
 *.diff
 package-lock.json
+frontend/
