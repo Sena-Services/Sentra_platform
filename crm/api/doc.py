@@ -467,18 +467,24 @@ def get_data(
 
 			data.append({"column": kc, "fields": kanban_fields, "data": column_data})
 
-	fields = frappe.get_meta(doctype).fields
-	fields = [field for field in fields if field.fieldtype not in no_value_fields]
-	fields = [
-		{
-			"label": _(field.label),
-			"fieldtype": field.fieldtype,
-			"fieldname": field.fieldname,
-			"options": field.options,
-		}
-		for field in fields
-		if field.label and field.fieldname
-	]
+	# Get available fields for column selector
+	if hasattr(_list, "get_available_columns"):
+		# Use custom field list if controller defines it (for Contact)
+		fields = _list.get_available_columns()
+	else:
+		# Default behavior for other doctypes
+		fields = frappe.get_meta(doctype).fields
+		fields = [field for field in fields if field.fieldtype not in no_value_fields]
+		fields = [
+			{
+				"label": _(field.label),
+				"fieldtype": field.fieldtype,
+				"fieldname": field.fieldname,
+				"options": field.options,
+			}
+			for field in fields
+			if field.label and field.fieldname
+		]
 
 	std_fields = [
 		{"label": "Name", "fieldtype": "Data", "fieldname": "name"},
