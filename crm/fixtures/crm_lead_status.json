@@ -1,0 +1,56 @@
+[
+ {
+  "color": "gray",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "New",
+  "modified": "2025-06-21 09:40:29.599731",
+  "name": "New",
+  "position": 1
+ },
+ {
+  "color": "orange",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "Contacted",
+  "modified": "2025-06-21 09:40:29.600463",
+  "name": "Contacted",
+  "position": 2
+ },
+ {
+  "color": "blue",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "RFI",
+  "modified": "2025-06-21 09:40:29.601542",
+  "name": "RFI",
+  "position": 3
+ },
+ {
+  "color": "yellow",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "Negotiating",
+  "modified": "2025-06-30 14:15:19.161595",
+  "name": "Negotiating",
+  "position": 4
+ },
+ {
+  "color": "green",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "Converted",
+  "modified": "2025-06-30 14:15:00.009187",
+  "name": "Converted",
+  "position": 5
+ },
+ {
+  "color": "red",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "Lost",
+  "modified": "2025-06-30 14:14:54.078142",
+  "name": "Lost",
+  "position": 6
+ }
+]

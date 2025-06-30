@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:amenity",
+ "creation": "2025-06-18 11:49:11.623227",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "amenity",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "amenity",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Amenity",
+   "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Markdown Editor",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-18 11:54:29.225251",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Amenity List",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

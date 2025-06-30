@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-06-18 11:17:53.056611",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_ahio",
+  "title",
+  "naming_series",
+  "room_type",
+  "meal_plan",
+  "occupancy",
+  "room_amenities",
+  "currency",
+  "rate",
+  "extra_adult",
+  "extra_child"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "default": "ROOM-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "room_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Room Type",
+   "options": "Hotel Room Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "meal_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Meal Plan",
+   "options": "Meal Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "occupancy",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Occupancy",
+   "options": "Hotel Room Occupancy",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ahio",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "room_amenities",
+   "fieldtype": "Table MultiSelect",
+   "label": "Room Amenities",
+   "options": "Hotel Room Amenity Child Table"
+  },
+  {
+   "default": "INR",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "extra_adult",
+   "fieldtype": "Currency",
+   "label": "Extra Adult"
+  },
+  {
+   "fieldname": "extra_child",
+   "fieldtype": "Currency",
+   "label": "Extra Child"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-18 12:58:43.379472",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Room and Pricing",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

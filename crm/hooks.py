@@ -22,6 +22,13 @@ add_to_apps_screen = [
 	}
 ]
 
+
+fixtures = [
+    "CRM Lead Status",
+    "CRM Lead Source",
+]
+
+
 # Includes in <head>
 # ------------------
 
