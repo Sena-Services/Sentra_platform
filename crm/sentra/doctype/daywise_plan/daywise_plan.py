@@ -5,5 +5,8 @@
 from frappe.model.document import Document
 
 
-class ItineraryStatus(Document):
+class DaywisePlan(Document):
 	pass
+
+	
+

@@ -9,18 +9,23 @@
   "trip_details_section",
   "title",
   "lead",
+  "use_standard_package",
   "destination_city",
   "start_date",
   "end_date",
+  "flexible_days",
   "passenger_details",
   "pax",
+  "budget",
+  "standard_package",
   "section_break_dtee",
   "category",
   "no_of_rooms",
-  "budget",
   "naming_series",
   "activities_details_section",
-  "activity"
+  "activity",
+  "daywise_plan_section",
+  "daywise_plan"
  ],
  "fields": [
   {
@@ -28,7 +33,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Lead",
-   "options": "Lead",
+   "options": "CRM Lead",
    "reqd": 1,
    "search_index": 1,
    "set_only_once": 1
@@ -45,8 +50,7 @@
    "fieldtype": "Int",
    "label": "PAX",
    "non_negative": 1,
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "start_date",
@@ -62,7 +66,6 @@
    "reqd": 1
   },
   {
-   "description": "Budget for Hotel",
    "fieldname": "budget",
    "fieldtype": "Currency",
    "label": "Budget",
@@ -121,12 +124,42 @@
    "fieldtype": "Table MultiSelect",
    "label": "Activity",
    "options": "Activity Child Table"
+  },
+  {
+   "default": "0",
+   "fieldname": "flexible_days",
+   "fieldtype": "Check",
+   "label": "Flexible Days"
+  },
+  {
+   "fieldname": "daywise_plan_section",
+   "fieldtype": "Section Break",
+   "label": "Daywise Plan",
+   "options": "Daywise Plan"
+  },
+  {
+   "fieldname": "daywise_plan",
+   "fieldtype": "Table",
+   "label": "Daywise Plan",
+   "options": "Daywise Plan"
+  },
+  {
+   "default": "0",
+   "fieldname": "standard_package",
+   "fieldtype": "Check",
+   "label": "Make Standard Package"
+  },
+  {
+   "fieldname": "use_standard_package",
+   "fieldtype": "Link",
+   "label": "Use Standard Package",
+   "options": "Standard Package"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 14:01:02.765236",
+ "modified": "2025-07-01 14:09:04.268351",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",

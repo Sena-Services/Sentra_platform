@@ -9,6 +9,7 @@
  "field_order": [
   "section_break_ahio",
   "title",
+  "hotel",
   "naming_series",
   "room_type",
   "meal_plan",
@@ -17,7 +18,9 @@
   "currency",
   "rate",
   "extra_adult",
-  "extra_child"
+  "extra_child",
+  "validity_from",
+  "validity_to"
  ],
  "fields": [
   {
@@ -91,13 +94,29 @@
    "fieldname": "extra_child",
    "fieldtype": "Currency",
    "label": "Extra Child"
+  },
+  {
+   "fieldname": "hotel",
+   "fieldtype": "Link",
+   "label": "Hotel",
+   "options": "Hotel"
+  },
+  {
+   "fieldname": "validity_from",
+   "fieldtype": "Date",
+   "label": "Validity From"
+  },
+  {
+   "fieldname": "validity_to",
+   "fieldtype": "Date",
+   "label": "Validity To"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-18 12:58:43.379472",
+ "modified": "2025-07-01 15:26:31.667655",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Hotel Room and Pricing",
