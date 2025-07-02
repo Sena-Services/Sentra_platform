@@ -12,99 +12,99 @@ def before_install():
 
 
 def after_install(force=False):
-	add_default_lead_statuses()
-	add_default_deal_statuses()
+	# add_default_lead_statuses()
+	# add_default_deal_statuses()
 	add_default_communication_statuses()
 	add_default_fields_layout(force)
 	add_property_setter()
 	add_email_template_custom_fields()
 	add_default_industries()
-	add_default_lead_sources()
+	# add_default_lead_sources()
 	add_standard_dropdown_items()
 	add_default_scripts()
 	frappe.db.commit()
 
 
-def add_default_lead_statuses():
-	statuses = {
-		"New": {
-			"color": "gray",
-			"position": 1,
-		},
-		"Contacted": {
-			"color": "orange",
-			"position": 2,
-		},
-		"Nurture": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Qualified": {
-			"color": "green",
-			"position": 4,
-		},
-		"Unqualified": {
-			"color": "red",
-			"position": 5,
-		},
-		"Junk": {
-			"color": "purple",
-			"position": 6,
-		},
-	}
+# def add_default_lead_statuses():
+# 	statuses = {
+# 		"New": {
+# 			"color": "gray",
+# 			"position": 1,
+# 		},
+# 		"Contacted": {
+# 			"color": "orange",
+# 			"position": 2,
+# 		},
+# 		"Nurture": {
+# 			"color": "blue",
+# 			"position": 3,
+# 		},
+# 		"Qualified": {
+# 			"color": "green",
+# 			"position": 4,
+# 		},
+# 		"Unqualified": {
+# 			"color": "red",
+# 			"position": 5,
+# 		},
+# 		"Junk": {
+# 			"color": "purple",
+# 			"position": 6,
+# 		},
+# 	}
 
-	for status in statuses:
-		if frappe.db.exists("CRM Lead Status", status):
-			continue
+# 	for status in statuses:
+# 		if frappe.db.exists("CRM Lead Status", status):
+# 			continue
 
-		doc = frappe.new_doc("CRM Lead Status")
-		doc.lead_status = status
-		doc.color = statuses[status]["color"]
-		doc.position = statuses[status]["position"]
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Lead Status")
+# 		doc.lead_status = status
+# 		doc.color = statuses[status]["color"]
+# 		doc.position = statuses[status]["position"]
+# 		doc.insert()
 
 
-def add_default_deal_statuses():
-	statuses = {
-		"Qualification": {
-			"color": "gray",
-			"position": 1,
-		},
-		"Demo/Making": {
-			"color": "orange",
-			"position": 2,
-		},
-		"Proposal/Quotation": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Negotiation": {
-			"color": "yellow",
-			"position": 4,
-		},
-		"Ready to Close": {
-			"color": "purple",
-			"position": 5,
-		},
-		"Won": {
-			"color": "green",
-			"position": 6,
-		},
-		"Lost": {
-			"color": "red",
-			"position": 7,
-		},
-	}
+# def add_default_deal_statuses():
+# 	statuses = {
+# 		"Qualification": {
+# 			"color": "gray",
+# 			"position": 1,
+# 		},
+# 		"Demo/Making": {
+# 			"color": "orange",
+# 			"position": 2,
+# 		},
+# 		"Proposal/Quotation": {
+# 			"color": "blue",
+# 			"position": 3,
+# 		},
+# 		"Negotiation": {
+# 			"color": "yellow",
+# 			"position": 4,
+# 		},
+# 		"Ready to Close": {
+# 			"color": "purple",
+# 			"position": 5,
+# 		},
+# 		"Won": {
+# 			"color": "green",
+# 			"position": 6,
+# 		},
+# 		"Lost": {
+# 			"color": "red",
+# 			"position": 7,
+# 		},
+# 	}
 
-	for status in statuses:
-		if frappe.db.exists("CRM Deal Status", status):
-			continue
+# 	for status in statuses:
+# 		if frappe.db.exists("CRM Deal Status", status):
+# 			continue
 
-		doc = frappe.new_doc("CRM Deal Status")
-		doc.deal_status = status
-		doc.color = statuses[status]["color"]
-		doc.position = statuses[status]["position"]
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Deal Status")
+# 		doc.deal_status = status
+# 		doc.color = statuses[status]["color"]
+# 		doc.position = statuses[status]["position"]
+# 		doc.insert()
 
 
 def add_default_communication_statuses():
@@ -320,27 +320,27 @@ def add_default_industries():
 		doc.insert()
 
 
-def add_default_lead_sources():
-	lead_sources = [
-		"Existing Customer",
-		"Reference",
-		"Advertisement",
-		"Cold Calling",
-		"Exhibition",
-		"Supplier Reference",
-		"Mass Mailing",
-		"Customer's Vendor",
-		"Campaign",
-		"Walk In",
-	]
+# def add_default_lead_sources():
+# 	lead_sources = [
+# 		"Existing Customer",
+# 		"Reference",
+# 		"Advertisement",
+# 		"Cold Calling",
+# 		"Exhibition",
+# 		"Supplier Reference",
+# 		"Mass Mailing",
+# 		"Customer's Vendor",
+# 		"Campaign",
+# 		"Walk In",
+# 	]
 
-	for source in lead_sources:
-		if frappe.db.exists("CRM Lead Source", source):
-			continue
+# 	for source in lead_sources:
+# 		if frappe.db.exists("CRM Lead Source", source):
+# 			continue
 
-		doc = frappe.new_doc("CRM Lead Source")
-		doc.source_name = source
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Lead Source")
+# 		doc.source_name = source
+# 		doc.insert()
 
 
 def add_standard_dropdown_items():

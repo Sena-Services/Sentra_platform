@@ -1,4 +1,4 @@
-# Copyright (c) 2025, arvis and Contributors
+# Copyright (c) 2025, Frappe Technologies Pvt. Ltd. and Contributors
 # See license.txt
 
 # import frappe
@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestItineraryStatus(UnitTestCase):
+class UnitTestStandardPackage(UnitTestCase):
 	"""
-	Unit tests for ItineraryStatus.
+	Unit tests for StandardPackage.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestItineraryStatus(IntegrationTestCase):
+class IntegrationTestStandardPackage(IntegrationTestCase):
 	"""
-	Integration tests for ItineraryStatus.
+	Integration tests for StandardPackage.
 	Use this class for testing interactions between multiple components.
 	"""
 

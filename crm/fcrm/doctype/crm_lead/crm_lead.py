@@ -85,7 +85,7 @@ class CRMLead(Document):
 			
 			# Update instagram ID if changed (requires custom field in Contact)
 			if "instagram_id" in changed_fields and self.instagram_id:
-				frappe.logger().info(f"📷 Updating instagram_id: {getattr(contact_doc, 'instagram_id', 'N/A')} → {self.instagram_id}")
+				frappe.logger().info(f"📷 Updating instagram_id: {getattr(contact_doc, 'instagram', 'N/A')} → {self.instagram_id}")
 				contact_doc.instagram_id = self.instagram_id
 			
 			# Update email if changed
@@ -130,7 +130,7 @@ class CRMLead(Document):
 		
 		# Find by Instagram ID (if you add this to Contact later)
 		if self.instagram_id:
-			instagram_contact = frappe.db.get_value("Contact", {"instagram_id": self.instagram_id}, "name")
+			instagram_contact = frappe.db.get_value("Contact", {"instagram": self.instagram_id}, "name")
 			frappe.logger().info(f"📷 Instagram search result: {instagram_contact}")
 			if instagram_contact:
 				return instagram_contact

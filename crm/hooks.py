@@ -26,6 +26,7 @@ add_to_apps_screen = [
 fixtures = [
     "CRM Lead Status",
     "CRM Lead Source",
+	"Service Type"
 ]
 
 
@@ -148,6 +149,7 @@ override_doctype_class = {
 doc_events = {
 	"Contact": {
 		"validate": ["crm.api.contact.validate"],
+		"on_update": ["crm.api.contact.update_leads_from_contact"],
 	},
 	"ToDo": {
 		"after_insert": ["crm.api.todo.after_insert"],

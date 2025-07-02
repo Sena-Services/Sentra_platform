@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestItinerary(UnitTestCase):
+class UnitTestDaywisePlan(UnitTestCase):
 	"""
-	Unit tests for Itinerary.
+	Unit tests for DaywisePlan.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestItinerary(IntegrationTestCase):
+class IntegrationTestDaywisePlan(IntegrationTestCase):
 	"""
-	Integration tests for Itinerary.
+	Integration tests for DaywisePlan.
 	Use this class for testing interactions between multiple components.
 	"""
 
