@@ -62,7 +62,9 @@ def voice(**kwargs):
 @frappe.whitelist(allow_guest=True)
 def twilio_incoming_call_handler(**kwargs):
 	args = frappe._dict(kwargs)
+	print("args=",args)
 	call_details = TwilioCallDetails(args)
+	print("call_details=",call_details)
 	create_call_log(call_details)
 
 	resp = IncomingCall(args.From, args.To).process()
@@ -70,14 +72,16 @@ def twilio_incoming_call_handler(**kwargs):
 
 
 def create_call_log(call_details: TwilioCallDetails):
+	print("reached here")
 	details = call_details.to_dict()
+	print("Details=",details)
 
 	call_log = frappe.get_doc({**details, "doctype": "CRM Call Log", "telephony_medium": "Twilio"})
-
+	print("Call Log=",call_log)
 	# link call log with lead/deal
 	contact_number = details.get("from") if details.get("type") == "Incoming" else details.get("to")
 	link(contact_number, call_log)
-
+	print("BEfore save")
 	call_log.save(ignore_permissions=True)
 	frappe.db.commit()
 	return call_log

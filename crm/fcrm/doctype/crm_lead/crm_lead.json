@@ -26,7 +26,7 @@
   "phone",
   "gender",
   "email",
-  "instagram_id",
+  "instagram",
   "mobile_no",
   "log_tab",
   "status_change_log"
@@ -36,6 +36,7 @@
    "default": "CRM-LEAD-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "options": "CRM-LEAD-.YYYY.-"
   },
@@ -73,6 +74,7 @@
    "search_index": 1
   },
   {
+   "fetch_from": "link_to_contact.email_id",
    "fieldname": "email",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -150,14 +152,6 @@
    "options": "High\nMedium\nLow"
   },
   {
-   "fetch_from": "link_to_contact.instagram",
-   "fieldname": "instagram_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Instagram ID",
-   "read_only": 1
-  },
-  {
    "fieldname": "link_to_contact",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -169,15 +163,24 @@
    "fetch_from": "link_to_contact.phone",
    "fieldname": "phone",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Phone",
    "read_only": 1,
    "unique": 1
   },
   {
+   "fetch_from": "link_to_contact.mobile_no",
    "fieldname": "mobile_no",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Mobile No"
+  },
+  {
+   "fetch_from": "link_to_contact.instagram",
+   "fieldname": "instagram",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Instagram ID",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
@@ -189,7 +192,7 @@
    "link_fieldname": "lead"
   }
  ],
- "modified": "2025-07-01 12:29:13.569931",
+ "modified": "2025-07-02 21:18:07.593283",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

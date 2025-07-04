@@ -43,7 +43,7 @@ class CRMLead(Document):
 		frappe.logger().info(f"📋 sync_contact_on_lead_update() started for lead {self.name}")
 		
 		# Fields to monitor for changes
-		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram_id"]
+		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram"]
 		
 		# Check if any of the sync fields have changed
 		changed_fields = []
@@ -84,9 +84,9 @@ class CRMLead(Document):
 				contact_doc.gender = self.gender
 			
 			# Update instagram ID if changed (requires custom field in Contact)
-			if "instagram_id" in changed_fields and self.instagram_id:
-				frappe.logger().info(f"📷 Updating instagram_id: {getattr(contact_doc, 'instagram', 'N/A')} → {self.instagram_id}")
-				contact_doc.instagram_id = self.instagram_id
+			if "instagram" in changed_fields and self.instagram:
+				frappe.logger().info(f"📷 Updating instagram: {getattr(contact_doc, 'instagram', 'N/A')} → {self.instagram}")
+				contact_doc.instagram = self.instagram
 			
 			# Update email if changed
 			if "email" in changed_fields and self.email:
@@ -129,8 +129,8 @@ class CRMLead(Document):
 				return mobile_contact
 		
 		# Find by Instagram ID (if you add this to Contact later)
-		if self.instagram_id:
-			instagram_contact = frappe.db.get_value("Contact", {"instagram": self.instagram_id}, "name")
+		if self.instagram:
+			instagram_contact = frappe.db.get_value("Contact", {"instagram": self.instagram}, "name")
 			frappe.logger().info(f"📷 Instagram search result: {instagram_contact}")
 			if instagram_contact:
 				return instagram_contact
@@ -327,14 +327,14 @@ class CRMLead(Document):
 				"last_name": contact.last_name,
 				"email": contact.email_id,
 				"mobile_no": contact.mobile_no,
-				"instagram_id": contact.instagram_id,
+				"instagram": contact.instagram,
 			},
 		)
 
 	def contact_exists(self, throw=True):
 		email_exist = frappe.db.exists("Contact Email", {"email_id": self.email})
 		mobile_exist = frappe.db.exists("Contact Phone", {"phone": self.mobile_no})
-		# Add instagram_id
+		# Add instagram
 
 		doctype = "Contact Email" if email_exist else "Contact Phone"
 		name = email_exist or mobile_exist

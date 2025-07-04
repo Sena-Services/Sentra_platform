@@ -7,7 +7,7 @@ def sync_lead_to_contact(doc, method):
 	# Check if this is a relevant field change
 	if method == "on_update":
 		# For direct database updates, we need to check differently
-		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram_id"]
+		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram"]
 		
 		# Since we can't use has_value_changed() in global handlers,
 		# we'll always attempt sync and let the sync function handle it
@@ -52,9 +52,9 @@ def sync_lead_contact_direct(lead_doc):
 			update_contact_mobile_direct(contact_doc, lead_doc.mobile_no)
 		
 		# Update instagram (if field exists)
-		if hasattr(lead_doc, 'instagram_id') and lead_doc.instagram_id:
-			if hasattr(contact_doc, 'instagram_id'):
-				contact_doc.instagram_id = lead_doc.instagram_id
+		if hasattr(lead_doc, 'instagram') and lead_doc.instagram:
+			if hasattr(contact_doc, 'instagram'):
+				contact_doc.instagram = lead_doc.instagram
 		
 		# Save the contact
 		frappe.logger().info(f"💾 Saving contact {contact}")
@@ -84,8 +84,8 @@ def get_associated_contact_direct(lead_doc):
 			return mobile_contact
 	
 	# Find by Instagram
-	if hasattr(lead_doc, 'instagram_id') and lead_doc.instagram_id:
-		instagram_contact = frappe.db.get_value("Contact", {"instagram_id": lead_doc.instagram_id}, "name")
+	if hasattr(lead_doc, 'instagram') and lead_doc.instagram:
+		instagram_contact = frappe.db.get_value("Contact", {"instagram": lead_doc.instagram}, "name")
 		frappe.logger().info(f"📷 Instagram search result: {instagram_contact}")
 		if instagram_contact:
 			return instagram_contact
