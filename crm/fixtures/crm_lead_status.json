@@ -1,14 +1,5 @@
 [
  {
-  "color": "gray",
-  "docstatus": 0,
-  "doctype": "CRM Lead Status",
-  "lead_status": "New",
-  "modified": "2025-06-21 09:40:29.599731",
-  "name": "New",
-  "position": 1
- },
- {
   "color": "orange",
   "docstatus": 0,
   "doctype": "CRM Lead Status",
@@ -52,5 +43,14 @@
   "modified": "2025-06-30 14:14:54.078142",
   "name": "Lost",
   "position": 6
+ },
+ {
+  "color": "gray",
+  "docstatus": 0,
+  "doctype": "CRM Lead Status",
+  "lead_status": "New",
+  "modified": "2025-06-21 09:40:29.599731",
+  "name": "New",
+  "position": 1
  }
 ]
