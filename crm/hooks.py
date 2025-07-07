@@ -26,7 +26,10 @@ add_to_apps_screen = [
 fixtures = [
     "CRM Lead Status",
     "CRM Lead Source",
-	"Service Type"
+	"Service Type",
+	"Primary Type",
+	"Secondary Type",
+	"Communication Medium",
 ]
 
 
