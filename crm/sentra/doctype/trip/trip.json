@@ -11,6 +11,7 @@
   "lead",
   "use_standard_package",
   "destination_city",
+  "column_break_unbf",
   "start_date",
   "end_date",
   "flexible_days",
@@ -25,7 +26,8 @@
   "activities_details_section",
   "activity",
   "daywise_plan_section",
-  "daywise_plan"
+  "daywise_plan",
+  "notes"
  ],
  "fields": [
   {
@@ -42,8 +44,7 @@
    "fieldname": "destination_city",
    "fieldtype": "Table",
    "label": "Destinations",
-   "options": "Trip Destination",
-   "reqd": 1
+   "options": "Trip Destination"
   },
   {
    "fieldname": "pax",
@@ -56,14 +57,12 @@
    "fieldname": "start_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Start Date",
-   "reqd": 1
+   "label": "Start Date"
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "label": "End Date",
-   "reqd": 1
+   "label": "End Date"
   },
   {
    "fieldname": "budget",
@@ -75,8 +74,7 @@
    "fieldname": "title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Title",
-   "reqd": 1
+   "label": "Title"
   },
   {
    "fieldname": "category",
@@ -111,8 +109,7 @@
    "fieldname": "passenger_details",
    "fieldtype": "Table",
    "label": "Passenger Details",
-   "options": "Trip Passenger",
-   "reqd": 1
+   "options": "Trip Passenger"
   },
   {
    "fieldname": "activities_details_section",
@@ -154,12 +151,21 @@
    "fieldtype": "Link",
    "label": "Use Standard Package",
    "options": "Standard Package"
+  },
+  {
+   "fieldname": "column_break_unbf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "notes"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 14:09:04.268351",
+ "modified": "2025-07-08 20:11:10.243721",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",
