@@ -178,3 +178,97 @@ def get_contact(phone_number, country="IN", exact_match=False):
 				return lead
 
 	return {"mobile_no": phone_number}
+
+
+@frappe.whitelist()
+def get_whatsapp_messages(contact_id):
+	"""Get WhatsApp messages for a specific contact from Communication doctype."""
+	if not contact_id:
+		return []
+
+	try:
+		# Get the Communication record for this contact and WhatsApp medium
+		communications = frappe.get_all(
+			"Communication",
+			fields=["name", "content", "communication_date", "sender_full_name", "sent_or_received"],
+			filters={
+				"reference_doctype": "Contact",
+				"reference_name": contact_id,
+				"communication_medium": "WhatsApp",
+				"communication_type": "Communication"
+			},
+			order_by="communication_date desc",
+			limit=1
+		)
+		
+		if not communications:
+			return []
+			
+		communication = communications[0]
+		
+		if not communication.content:
+			return []
+			
+		# Parse the HTML content to extract individual messages
+		messages = []
+		
+		import re
+		from bs4 import BeautifulSoup
+		
+		soup = BeautifulSoup(communication.content, 'html.parser')
+		message_entries = soup.find_all('div', class_='message-entry')
+		
+		for entry in message_entries:
+			sender_element = entry.find('strong')
+			timestamp_element = entry.find('span')
+			content_element = entry.find('div', style=lambda value: value and 'margin-top' in value)
+			
+			if sender_element and content_element:
+				sender_name = sender_element.get_text(strip=True)
+				timestamp = timestamp_element.get_text(strip=True) if timestamp_element else ''
+				content = content_element.get_text(strip=True)
+				
+				# Determine if it's incoming or outgoing based on arrow direction and sender
+				entry_html = str(entry)
+				is_outgoing = '←' in entry_html or sender_name == 'You'
+				
+				# Convert timestamp to JavaScript Date format if possible
+				message_time = None
+				if timestamp:
+					try:
+						# Try to parse various timestamp formats
+						from dateutil import parser as date_parser
+						parsed_time = date_parser.parse(timestamp)
+						message_time = parsed_time.isoformat()
+					except:
+						# If parsing fails, try to extract time from common formats like "Jan 07, 2025 11:01 AM"
+						import re
+						time_match = re.search(r'(\d{1,2}:\d{2}\s*(AM|PM|am|pm))', timestamp)
+						if time_match:
+							try:
+								from datetime import datetime
+								time_str = time_match.group(1)
+								# Create a date object for today with the extracted time
+								today = datetime.now().date()
+								parsed_time = datetime.strptime(f"{today} {time_str}", "%Y-%m-%d %I:%M %p")
+								message_time = parsed_time.isoformat()
+							except:
+								pass
+				
+				if not message_time:
+					# Fallback to current time if no valid timestamp
+					from datetime import datetime
+					message_time = datetime.now().isoformat()
+				
+				messages.append({
+					'sender': 'user' if is_outgoing else 'contact',
+					'text': content,
+					'time': message_time,
+					'sender_name': sender_name,
+				})
+		
+		return messages
+		
+	except Exception as e:
+		frappe.log_error(f"Error fetching WhatsApp messages for contact {contact_id}: {str(e)}")
+		return []
