@@ -11,6 +11,7 @@
   "lead",
   "use_standard_package",
   "destination_city",
+  "departure",
   "column_break_unbf",
   "start_date",
   "end_date",
@@ -160,12 +161,17 @@
    "fieldname": "notes",
    "fieldtype": "Long Text",
    "label": "notes"
+  },
+  {
+   "fieldname": "departure",
+   "fieldtype": "Data",
+   "label": "Departure City"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-08 20:11:10.243721",
+ "modified": "2025-07-09 20:16:07.028778",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",

@@ -30,6 +30,7 @@ fixtures = [
 	"Primary Type",
 	"Secondary Type",
 	"Communication Medium",
+	{"dt": "Custom Field", "filters": [["module", "=", "CRM"]]},
 ]
 
 

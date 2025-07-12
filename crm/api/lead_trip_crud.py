@@ -1,6 +1,7 @@
 import frappe
 from frappe import _
 import json
+from frappe.desk.doctype.tag.tag import add_tag
 
 
 # =============================================================================
@@ -61,6 +62,9 @@ def create_lead(lead_data, trip_data=None):
 		if isinstance(trip_data, str):
 			trip_data = json.loads(trip_data)
 		
+		# Handle tags separately (don't include in the main lead data)
+		tags = lead_data.pop("tags", None) or lead_data.pop("_user_tags", None)
+		
 		# Create Lead
 		lead_doc = frappe.new_doc("CRM Lead")
 		lead_doc.update({
@@ -68,6 +72,17 @@ def create_lead(lead_data, trip_data=None):
 			**lead_data
 		})
 		lead_doc.insert(ignore_permissions=True)
+		
+		# Handle tags after document creation
+		if tags:
+			if isinstance(tags, list):
+				# If tags is a list, convert to comma-separated string
+				lead_doc._user_tags = ",".join(tags)
+				lead_doc.save(ignore_permissions=True)
+			elif isinstance(tags, str):
+				# If tags is already a string, use it directly
+				lead_doc._user_tags = tags
+				lead_doc.save(ignore_permissions=True)
 		
 		# Create Trip(s) if provided
 		trips = []
@@ -78,6 +93,13 @@ def create_lead(lead_data, trip_data=None):
 				trips.append(trip_doc.as_dict())
 		
 		result = lead_doc.as_dict()
+		
+		# Parse tags for frontend convenience 
+		if result.get("_user_tags"):
+			result["tags_parsed"] = [tag.strip() for tag in result["_user_tags"].split(",") if tag.strip()]
+		else:
+			result["tags_parsed"] = []
+		
 		result["trips"] = trips
 		return result
 		
@@ -101,6 +123,12 @@ def get_lead(lead_id, include_trips=True):
 	try:
 		lead_doc = frappe.get_doc("CRM Lead", lead_id)
 		result = lead_doc.as_dict()
+		
+		# Parse tags for frontend convenience 
+		if result.get("_user_tags"):
+			result["tags_parsed"] = [tag.strip() for tag in result["_user_tags"].split(",") if tag.strip()]
+		else:
+			result["tags_parsed"] = []
 		
 		if include_trips:
 			# Get full Trip documents for this lead
@@ -133,11 +161,30 @@ def update_lead(lead_id, lead_data):
 		if isinstance(lead_data, str):
 			lead_data = json.loads(lead_data)
 		
+		# Handle tags separately
+		tags = lead_data.pop("tags", None) or lead_data.pop("_user_tags", None)
+		
 		lead_doc = frappe.get_doc("CRM Lead", lead_id)
 		lead_doc.update(lead_data)
+		
+		# Handle tags if provided
+		if tags is not None:  # Allow empty string to clear tags
+			if isinstance(tags, list):
+				lead_doc._user_tags = ",".join(tags)
+			elif isinstance(tags, str):
+				lead_doc._user_tags = tags
+		
 		lead_doc.save(ignore_permissions=True)
 		
-		return lead_doc.as_dict()
+		result = lead_doc.as_dict()
+		
+		# Parse tags for frontend convenience 
+		if result.get("_user_tags"):
+			result["tags_parsed"] = [tag.strip() for tag in result["_user_tags"].split(",") if tag.strip()]
+		else:
+			result["tags_parsed"] = []
+		
+		return result
 		
 	except Exception as e:
 		frappe.throw(_("Failed to update Lead: {0}").format(str(e)))
@@ -273,6 +320,29 @@ def update_trip(trip_id, trip_data):
 				# Add new rows
 				if value and isinstance(value, list):
 					for row in value:
+						# Special handling for activity field
+						if field == "activity":
+							# Ensure activity is a dictionary with required fields
+							if isinstance(row, str):
+								row = {"activity": row}
+							
+							# Create Activity List record if it doesn't exist
+							activity_name = row.get("activity")
+							if activity_name:
+								try:
+									if not frappe.db.exists("Activity List", activity_name):
+										activity_doc = frappe.new_doc("Activity List")
+										activity_doc.activity = activity_name
+										activity_doc.insert(ignore_permissions=True)
+										frappe.log_error(f"Created Activity List: {activity_name}", "Trip Activity Creation")
+									
+									# Only append the activity if it exists or was successfully created
+									trip_doc.append(field, row)
+								except Exception as activity_error:
+									frappe.log_error(f"Failed to create Activity List '{activity_name}': {activity_error}", "Trip Activity Creation Error")
+									# Skip this activity rather than failing the entire operation
+									pass
+					else:
 						trip_doc.append(field, row)
 			else:
 				setattr(trip_doc, field, value)
@@ -451,7 +521,30 @@ def _create_trip_for_lead(lead_id, trip_data):
 	for field in child_fields:
 		if field in trip_data and trip_data[field]:
 			for row in trip_data[field]:
-				trip_doc.append(field, row)
+				# Special handling for activity field
+				if field == "activity":
+					# Ensure activity is a dictionary with required fields
+					if isinstance(row, str):
+						row = {"activity": row}
+					
+					# Create Activity List record if it doesn't exist
+					activity_name = row.get("activity")
+					if activity_name:
+						try:
+							if not frappe.db.exists("Activity List", activity_name):
+								activity_doc = frappe.new_doc("Activity List")
+								activity_doc.activity = activity_name
+								activity_doc.insert(ignore_permissions=True)
+								frappe.log_error(f"Created Activity List: {activity_name}", "Trip Activity Creation")
+							
+							# Only append the activity if it exists or was successfully created
+							trip_doc.append(field, row)
+						except Exception as activity_error:
+							frappe.log_error(f"Failed to create Activity List '{activity_name}': {activity_error}", "Trip Activity Creation Error")
+							# Skip this activity rather than failing the entire operation
+							pass
+				else:
+					trip_doc.append(field, row)
 	
 	trip_doc.insert(ignore_permissions=True)
 	return trip_doc

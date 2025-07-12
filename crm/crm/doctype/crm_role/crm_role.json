@@ -1,0 +1,226 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:role_name",
+  "creation": "2025-07-11 10:00:00",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "role_name",
+    "description",
+    "permissions_section",
+    "can_access_leads",
+    "can_create_leads",
+    "can_edit_leads",
+    "can_delete_leads",
+    "column_break_1",
+    "can_access_contacts",
+    "can_create_contacts",
+    "can_edit_contacts",
+    "can_delete_contacts",
+    "section_break_2",
+    "can_access_trips",
+    "can_create_trips",
+    "can_edit_trips",
+    "can_delete_trips",
+    "column_break_2",
+    "can_access_invoices",
+    "can_create_invoices",
+    "can_edit_invoices",
+    "can_delete_invoices",
+    "admin_section",
+    "is_admin",
+    "can_manage_users",
+    "can_manage_roles"
+  ],
+  "fields": [
+    {
+      "fieldname": "role_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Role Name",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "permissions_section",
+      "fieldtype": "Section Break",
+      "label": "Permissions"
+    },
+    {
+      "default": "0",
+      "fieldname": "can_access_leads",
+      "fieldtype": "Check",
+      "label": "Can Access Leads"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_leads",
+      "fieldname": "can_create_leads",
+      "fieldtype": "Check",
+      "label": "Can Create Leads"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_leads",
+      "fieldname": "can_edit_leads",
+      "fieldtype": "Check",
+      "label": "Can Edit Leads"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_leads",
+      "fieldname": "can_delete_leads",
+      "fieldtype": "Check",
+      "label": "Can Delete Leads"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "can_access_contacts",
+      "fieldtype": "Check",
+      "label": "Can Access Contacts"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_contacts",
+      "fieldname": "can_create_contacts",
+      "fieldtype": "Check",
+      "label": "Can Create Contacts"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_contacts",
+      "fieldname": "can_edit_contacts",
+      "fieldtype": "Check",
+      "label": "Can Edit Contacts"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_contacts",
+      "fieldname": "can_delete_contacts",
+      "fieldtype": "Check",
+      "label": "Can Delete Contacts"
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "can_access_trips",
+      "fieldtype": "Check",
+      "label": "Can Access Trips"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_trips",
+      "fieldname": "can_create_trips",
+      "fieldtype": "Check",
+      "label": "Can Create Trips"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_trips",
+      "fieldname": "can_edit_trips",
+      "fieldtype": "Check",
+      "label": "Can Edit Trips"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_trips",
+      "fieldname": "can_delete_trips",
+      "fieldtype": "Check",
+      "label": "Can Delete Trips"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "can_access_invoices",
+      "fieldtype": "Check",
+      "label": "Can Access Invoices"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_invoices",
+      "fieldname": "can_create_invoices",
+      "fieldtype": "Check",
+      "label": "Can Create Invoices"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_invoices",
+      "fieldname": "can_edit_invoices",
+      "fieldtype": "Check",
+      "label": "Can Edit Invoices"
+    },
+    {
+      "default": "0",
+      "depends_on": "can_access_invoices",
+      "fieldname": "can_delete_invoices",
+      "fieldtype": "Check",
+      "label": "Can Delete Invoices"
+    },
+    {
+      "fieldname": "admin_section",
+      "fieldtype": "Section Break",
+      "label": "Admin Permissions"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_admin",
+      "fieldtype": "Check",
+      "label": "Is Admin"
+    },
+    {
+      "default": "0",
+      "depends_on": "is_admin",
+      "fieldname": "can_manage_users",
+      "fieldtype": "Check",
+      "label": "Can Manage Users"
+    },
+    {
+      "default": "0",
+      "depends_on": "is_admin",
+      "fieldname": "can_manage_roles",
+      "fieldtype": "Check",
+      "label": "Can Manage Roles"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-07-11 10:00:00",
+  "modified_by": "Administrator",
+  "module": "Crm",
+  "name": "CRM Role",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

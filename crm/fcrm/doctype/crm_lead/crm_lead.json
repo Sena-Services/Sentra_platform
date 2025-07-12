@@ -17,6 +17,7 @@
   "source",
   "lead_owner",
   "service_type",
+  "notes",
   "person_tab",
   "link_to_contact",
   "image",
@@ -178,6 +179,11 @@
    "in_list_view": 1,
    "label": "Instagram ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "notes"
   }
  ],
  "grid_page_length": 50,
@@ -189,7 +195,7 @@
    "link_fieldname": "lead"
   }
  ],
- "modified": "2025-07-07 19:27:24.404856",
+ "modified": "2025-07-09 15:25:43.620259",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

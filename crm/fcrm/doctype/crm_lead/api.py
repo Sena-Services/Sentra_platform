@@ -11,6 +11,12 @@ def get_lead(name):
 
 	lead = lead.as_dict()
 
+	# Parse tags for frontend convenience 
+	if lead.get("_user_tags"):
+		lead["tags_parsed"] = [tag.strip() for tag in lead["_user_tags"].split(",") if tag.strip()]
+	else:
+		lead["tags_parsed"] = []
+
 	lead["fields_meta"] = get_fields_meta("CRM Lead")
 	lead["_form_script"] = get_form_script("CRM Lead")
 	

@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from frappe.desk.doctype.tag.tag import add_tag
 
 
 @frappe.whitelist()
@@ -29,12 +30,26 @@ def create_lead_with_trip(lead_data, trip_data=None):
 			"link_to_contact": lead_data.get("link_to_contact")
 		})
 		
+		# Handle tags separately (don't include in the main lead data)
+		tags = lead_data.pop("tags", None) or lead_data.pop("_user_tags", None)
+		
 		# Add any additional lead fields
 		for key, value in lead_data.items():
-			if hasattr(lead_doc, key) and key not in ["naming_series"]:
+			if hasattr(lead_doc, key) and key not in ["naming_series", "tags", "_user_tags"]:
 				setattr(lead_doc, key, value)
 		
 		lead_doc.insert(ignore_permissions=True)
+		
+		# Handle tags after document creation
+		if tags:
+			if isinstance(tags, list):
+				# If tags is a list, convert to comma-separated string
+				lead_doc._user_tags = ",".join(tags)
+				lead_doc.save(ignore_permissions=True)
+			elif isinstance(tags, str):
+				# If tags is already a string, use it directly
+				lead_doc._user_tags = tags
+				lead_doc.save(ignore_permissions=True)
 		
 		# Step 2: Create Trip if trip_data is provided
 		trip_doc = None
@@ -54,6 +69,7 @@ def create_lead_with_trip(lead_data, trip_data=None):
 				"category": trip_data.get("category"),
 				"no_of_rooms": trip_data.get("no_of_rooms", 1),
 				"flexible_days": trip_data.get("flexible_days", 0),
+				"departure": trip_data.get("departure"),  # Add departure field
 			})
 			
 			# Handle child table fields
@@ -64,26 +80,68 @@ def create_lead_with_trip(lead_data, trip_data=None):
 			
 			if trip_data.get("passenger_details"):
 				trip_doc.passenger_details = []
+				departure_city = None
 				for passenger in trip_data.get("passenger_details", []):
 					trip_doc.append("passenger_details", passenger)
+					# Extract departure city from first passenger if not already set
+					if not departure_city and passenger.get("source_city"):
+						departure_city = passenger.get("source_city")
+				
+				# Set departure field from passenger details if not already provided
+				if departure_city and not trip_doc.departure:
+					trip_doc.departure = departure_city
 			
 			if trip_data.get("activity"):
 				trip_doc.activity = []
 				for activity in trip_data.get("activity", []):
-					trip_doc.append("activity", activity)
+					# Ensure activity is a dictionary with required fields
+					if isinstance(activity, str):
+						activity = {"activity": activity}
+					
+					# Create Activity List record if it doesn't exist
+					activity_name = activity.get("activity")
+					if activity_name:
+						try:
+							if not frappe.db.exists("Activity List", activity_name):
+								activity_doc = frappe.new_doc("Activity List")
+								activity_doc.activity = activity_name
+								activity_doc.insert(ignore_permissions=True)
+								frappe.log_error(f"Created Activity List: {activity_name}", "Trip Activity Creation")
+							
+							# Only append the activity if it exists or was successfully created
+							trip_doc.append("activity", activity)
+						except Exception as activity_error:
+							frappe.log_error(f"Failed to create Activity List '{activity_name}': {activity_error}", "Trip Activity Creation Error")
+							# Skip this activity rather than failing the entire operation
+							pass
 			
 			trip_doc.insert(ignore_permissions=True)
 		
 		# Return lead with trip information
 		result = lead_doc.as_dict()
+		
+		# Parse tags for frontend convenience 
+		if result.get("_user_tags"):
+			result["tags_parsed"] = [tag.strip() for tag in result["_user_tags"].split(",") if tag.strip()]
+		else:
+			result["tags_parsed"] = []
+		
 		if trip_doc:
 			result["trip"] = trip_doc.as_dict()
 		
 		return result
 		
 	except Exception as e:
-		frappe.log_error(f"Error creating lead with trip: {str(e)}")
-		frappe.throw(_("Failed to create Lead and Trip: {0}").format(str(e)))
+		frappe.log_error(f"Error creating lead with trip: {str(e)}", "Lead Trip Creation Error")
+		
+		# Provide more specific error messages based on the error type
+		error_msg = str(e)
+		if "Contact" in error_msg or "link_to_contact" in error_msg:
+			frappe.throw(_("Failed to create Lead: The specified contact does not exist. Please provide a valid contact."))
+		elif "Permission" in error_msg:
+			frappe.throw(_("Failed to create Lead and Trip: Insufficient permissions to create records."))
+		else:
+			frappe.throw(_("Failed to create Lead and Trip: {0}").format(error_msg))
 
 
 @frappe.whitelist()
@@ -105,7 +163,7 @@ def create_lead_with_trip_simple(**kwargs):
 		# Extract lead fields
 		lead_fields = [
 			"lead_owner", "status", "priority", "source", "service_type", 
-			"link_to_contact"
+			"link_to_contact", "notes", "tags", "_user_tags"
 		]
 		
 		for field in lead_fields:
@@ -146,5 +204,12 @@ def create_lead_with_trip_simple(**kwargs):
 		
 	except Exception as e:
 		frappe.log_error(f"API Error: {str(e)}", "Lead Trip API Error")
-		# Let Frappe handle the error naturally
-		frappe.throw(_(str(e)))
+		
+		# Provide more specific error messages based on the error type
+		error_msg = str(e)
+		if "Contact" in error_msg or "link_to_contact" in error_msg:
+			frappe.throw(_("Failed to create Lead: The specified contact does not exist. Please provide a valid contact."))
+		elif "Permission" in error_msg:
+			frappe.throw(_("Failed to create Lead and Trip: Insufficient permissions to create records."))
+		else:
+			frappe.throw(_("Failed to create Lead and Trip: {0}").format(error_msg))
