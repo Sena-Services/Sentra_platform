@@ -27,7 +27,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 13:47:27.938574",
+ "modified": "2025-07-12 12:58:31.637003",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Activity List",
@@ -50,5 +50,6 @@
  "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "activity"
 }

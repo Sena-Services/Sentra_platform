@@ -14,7 +14,8 @@
   "activities",
   "destinations",
   "hotel",
-  "daywise_plan"
+  "daywise_plan",
+  "itinerary"
  ],
  "fields": [
   {
@@ -72,13 +73,19 @@
    "default": "PCK-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Naming Series"
+  },
+  {
+   "fieldname": "itinerary",
+   "fieldtype": "Attach",
+   "label": "Itinerary"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 14:18:15.955826",
+ "modified": "2025-07-12 14:18:41.557496",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",
