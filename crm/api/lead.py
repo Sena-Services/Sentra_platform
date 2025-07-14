@@ -17,7 +17,7 @@ def export_data(doctype=None, export_fields=None, filters=None, file_type="CSV")
 			"CRM Lead": [
 				"name", "lead_name", "first_name", "last_name", 
 				"email", "mobile_no", "status", "source", "service_type",
-				"priority", "lead_owner", "company_name", "notes",
+				"priority", "lead_owner", "notes",
 				"trip_name", "destinations", "source_city", "start_date", "end_date",
 				"budget_per_head", "passenger_adults", "passenger_children", "passenger_infants",
 				"hotel_star_rating", "number_of_rooms", "activity_preferences", "tags",

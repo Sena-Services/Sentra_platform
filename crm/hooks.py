@@ -27,8 +27,8 @@ fixtures = [
     "CRM Lead Status",
     "CRM Lead Source",
 	"Service Type",
-	"Primary Type",
-	"Secondary Type",
+	"Contact Type",
+	"Contact Category",
 	"Communication Medium",
 	{"dt": "Custom Field", "filters": [["module", "=", "CRM"]]},
 ]

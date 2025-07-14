@@ -1,7 +1,7 @@
 [
  {
   "docstatus": 0,
-  "doctype": "Secondary Type",
+  "doctype": "Contact Category",
   "link_to_user": null,
   "modified": "2025-07-05 09:44:04.937719",
   "name": "Individual",
@@ -9,7 +9,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Secondary Type",
+  "doctype": "Contact Category",
   "link_to_user": null,
   "modified": "2025-07-05 09:44:14.465748",
   "name": "Organization",
@@ -17,7 +17,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Secondary Type",
+  "doctype": "Contact Category",
   "link_to_user": null,
   "modified": "2025-07-05 09:44:26.783814",
   "name": "User",
@@ -25,7 +25,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Secondary Type",
+  "doctype": "Contact Category",
   "link_to_user": null,
   "modified": "2025-07-05 09:44:32.985724",
   "name": "Non User",

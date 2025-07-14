@@ -1,21 +1,21 @@
 [
  {
   "docstatus": 0,
-  "doctype": "Primary Type",
+  "doctype": "Contact Type",
   "modified": "2025-07-05 09:40:51.600733",
   "name": "Customer",
   "name1": "Customer"
  },
  {
   "docstatus": 0,
-  "doctype": "Primary Type",
+  "doctype": "Contact Type",
   "modified": "2025-07-05 09:41:12.507302",
   "name": "Vendor",
   "name1": "Vendor"
  },
  {
   "docstatus": 0,
-  "doctype": "Primary Type",
+  "doctype": "Contact Type",
   "modified": "2025-07-05 09:41:29.421135",
   "name": "Employee",
   "name1": "Employee"

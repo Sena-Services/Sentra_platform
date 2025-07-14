@@ -237,9 +237,9 @@ def export_data(doctype=None, export_fields=None, filters=None, file_type="CSV")
 		export_fields = {
 			"Contact": [
 				"name", "full_name", "first_name", "last_name", 
-				"email_id", "mobile_no", "phone", "company_name",
-				"designation", "address", "city", "state", "country",
-				"pincode", "primary_type", "secondary_type", "notes",
+				"email_id", "mobile_no",
+				"designation", "address_line1", "address_line2", "city", "state", "country",
+				"pincode", "contact_type", "contact_category", "notes", "gender",
 				"creation", "modified"
 			]
 		}

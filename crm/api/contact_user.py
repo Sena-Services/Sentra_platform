@@ -35,7 +35,7 @@ def create_user_from_contact(contact_name, password, crm_role, work_email=None):
     contact = frappe.get_doc("Contact", contact_name)
     
     # Validate contact is an employee
-    if contact.primary_type != "Employee":
+    if contact.contact_type != "Employee":
         frappe.throw(_("Only Employee contacts can be converted to users"))
     
     # Determine email to use

@@ -7,20 +7,20 @@ import json
 DEFAULT_EXPORT_FIELDS = {
     "Contact": [
         "name", "full_name", "first_name", "last_name", 
-        "email_id", "mobile_no", "phone", "company_name",
-        "designation", "address", "city", "state", "country",
-        "pincode", "primary_type", "secondary_type", "notes",
+        "email_id", "mobile_no",
+        "designation", "address_line1", "address_line2", "city", "state", "country",
+        "pincode", "contact_type", "contact_category", "notes", "gender",
         "creation", "modified"
     ],
     "CRM Lead": [
         "name", "lead_name", "first_name", "last_name", 
         "email", "mobile_no", "status", "source", "service_type",
-        "priority", "lead_owner", "company_name", "notes",
+        "priority", "lead_owner", "notes",
         "creation", "modified"
     ],
     "Hotel": [
         "name", "hotel_name", "star_rating", "city", "state", "country",
-        "address", "pincode", "phone", "email", "website",
+        "address_line1", "address_line2", "pincode", "phone", "email", "website",
         "amenities", "description", "creation", "modified"
     ],
     "Package": [
@@ -33,8 +33,8 @@ DEFAULT_EXPORT_FIELDS = {
         "price", "description", "creation", "modified"
     ],
     "DMC": [
-        "name", "company_name", "contact_person", "email", "phone",
-        "address", "city", "state", "country", "specialization",
+        "name", "contact_person", "email", "phone",
+        "address_line1", "address_line2", "city", "state", "country", "specialization",
         "creation", "modified"
     ]
 }
