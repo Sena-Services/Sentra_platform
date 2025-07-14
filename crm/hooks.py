@@ -30,6 +30,7 @@ fixtures = [
 	"Primary Type",
 	"Secondary Type",
 	"Communication Medium",
+	{"dt": "Custom Field", "filters": [["module", "=", "CRM"]]},
 ]
 
 
@@ -171,8 +172,9 @@ doc_events = {
 		],
 	},
 	"CRM Lead": {
-		"on_update": ["crm.api.lead_sync.sync_lead_to_contact"],
-		"on_change": ["crm.api.lead_sync.sync_lead_to_contact"],
+		# TEMPORARILY DISABLED - CAUSING INFINITE RECURSION
+		# "on_update": ["crm.api.lead_sync.sync_lead_to_contact"],
+		# "on_change": ["crm.api.lead_sync.sync_lead_to_contact"],
 	},
 	"User": {
 		"before_validate": ["crm.api.demo.validate_user"],

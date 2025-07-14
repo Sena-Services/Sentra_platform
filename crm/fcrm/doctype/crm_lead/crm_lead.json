@@ -17,6 +17,7 @@
   "source",
   "lead_owner",
   "service_type",
+  "notes",
   "person_tab",
   "link_to_contact",
   "image",
@@ -70,7 +71,6 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "CRM Lead Status",
-   "reqd": 1,
    "search_index": 1
   },
   {
@@ -94,15 +94,13 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Source",
-   "options": "CRM Lead Source",
-   "reqd": 1
+   "options": "CRM Lead Source"
   },
   {
    "fieldname": "service_type",
    "fieldtype": "Link",
    "label": "Service Type",
-   "options": "Service Type",
-   "reqd": 1
+   "options": "Service Type"
   },
   {
    "fetch_from": "link_to_contact.image",
@@ -181,6 +179,11 @@
    "in_list_view": 1,
    "label": "Instagram ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "notes"
   }
  ],
  "grid_page_length": 50,
@@ -192,7 +195,7 @@
    "link_fieldname": "lead"
   }
  ],
- "modified": "2025-07-02 21:18:07.593283",
+ "modified": "2025-07-09 15:25:43.620259",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

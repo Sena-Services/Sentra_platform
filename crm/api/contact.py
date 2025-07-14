@@ -221,3 +221,45 @@ def search_emails(txt: str):
 	)
 
 	return results
+
+
+@frappe.whitelist()
+def export_data(doctype=None, export_fields=None, filters=None, file_type="CSV"):
+	"""Export contacts data using Frappe's built-in export functionality"""
+	from frappe.core.doctype.data_import.exporter import Exporter
+	
+	# Default to Contact doctype
+	if not doctype:
+		doctype = "Contact"
+	
+	# Default export fields for contacts
+	if not export_fields:
+		export_fields = {
+			"Contact": [
+				"name", "full_name", "first_name", "last_name", 
+				"email_id", "mobile_no", "phone", "company_name",
+				"designation", "address", "city", "state", "country",
+				"pincode", "primary_type", "secondary_type", "notes",
+				"creation", "modified"
+			]
+		}
+	
+	# Create exporter instance
+	exporter = Exporter(
+		doctype=doctype,
+		export_fields=export_fields,
+		export_data=True,
+		export_filters=filters,
+		file_type=file_type
+	)
+	
+	# Build and return the response
+	exporter.build_response()
+	return True
+
+
+# Alias for backward compatibility
+@frappe.whitelist()
+def export(doctype=None, export_fields=None, filters=None, file_type="CSV"):
+	"""Alias for export_data function"""
+	return export_data(doctype, export_fields, filters, file_type)

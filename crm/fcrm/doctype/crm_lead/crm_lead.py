@@ -501,6 +501,49 @@ class CRMLead(Document):
 			"kanban_fields": '["email", "mobile_no", "_assign", "modified"]',
 		}
 
+	@staticmethod
+	def parse_list_data(data):
+		"""Enhance list data with Trip information for each Lead"""
+		if not data:
+			return data
+		
+		# Get all lead names from the current data
+		lead_names = [row.get("name") for row in data if row.get("name")]
+		
+		if not lead_names:
+			return data
+		
+		# Fetch Trip names for all leads first
+		trip_names = frappe.get_all(
+			"Trip",
+			filters={"lead": ["in", lead_names]},
+			fields=["name", "lead"]
+		)
+		
+		# Create a mapping of lead_name -> trip_data with ALL fields
+		trip_map = {}
+		for trip_info in trip_names:
+			lead_name = trip_info.get("lead")
+			trip_name = trip_info.get("name")
+			
+			# Get complete Trip document with all fields
+			trip_doc = frappe.get_doc("Trip", trip_name)
+			trip_data = trip_doc.as_dict()
+			
+			if lead_name not in trip_map:
+				trip_map[lead_name] = []
+			trip_map[lead_name].append(trip_data)
+		
+		# Add trip data to each lead
+		for row in data:
+			lead_name = row.get("name")
+			if lead_name in trip_map:
+				row["trips"] = trip_map[lead_name]
+			else:
+				row["trips"] = []
+		
+		return data
+
 
 # @frappe.whitelist()
 # def convert_to_deal(lead, doc=None, deal=None, existing_contact=None, existing_organization=None):

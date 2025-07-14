@@ -296,6 +296,7 @@ def get_lead_activities(name):
 	return activities, calls, notes, tasks, attachments
 
 
+@frappe.whitelist()
 def get_attachments(doctype, name):
 	return (
 		frappe.db.get_all(
