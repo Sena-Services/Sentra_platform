@@ -1,0 +1,74 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:57:17.199739",
+  "name": "Hotel",
+  "naming_series": "TYPE.-",
+  "type": "Hotel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:57:26.761717",
+  "name": "Resort",
+  "naming_series": "TYPE.-",
+  "type": "Resort"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:57:53.645081",
+  "name": "Cruise",
+  "naming_series": "TYPE.-",
+  "type": "Cruise"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:58:00.774772",
+  "name": "Boutique Hotel",
+  "naming_series": "TYPE.-",
+  "type": "Boutique Hotel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:58:09.222531",
+  "name": "Service Apartment",
+  "naming_series": "TYPE.-",
+  "type": "Service Apartment"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:58:38.710918",
+  "name": "Homestay",
+  "naming_series": "TYPE.-",
+  "type": "Homestay"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:59:28.201679",
+  "name": "Boathouse",
+  "naming_series": "TYPE.-",
+  "type": "Boathouse"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 10:59:46.755727",
+  "name": "Camp",
+  "naming_series": "TYPE.-",
+  "type": "Camp"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Accommodation Type",
+  "modified": "2025-07-16 11:00:02.386970",
+  "name": "Hostel/PG",
+  "naming_series": "TYPE.-",
+  "type": "Hostel/PG"
+ }
+]

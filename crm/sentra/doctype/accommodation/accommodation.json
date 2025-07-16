@@ -1,0 +1,150 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-06-18 10:23:21.025656",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "accommodation_name",
+  "accommodation_type",
+  "accommodation_category",
+  "link_to_contact",
+  "city",
+  "state",
+  "country",
+  "preferred_currency",
+  "address",
+  "amenities",
+  "price",
+  "terms_and_conditions",
+  "cancellation_policy"
+ ],
+ "fields": [
+  {
+   "default": "HOTEL-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "terms_and_conditions",
+   "fieldtype": "Markdown Editor",
+   "label": "Terms and Conditions"
+  },
+  {
+   "fieldname": "preferred_currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Preferred Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Table MultiSelect",
+   "label": "Amenities",
+   "options": "Hotel Amenity Child Table"
+  },
+  {
+   "fieldname": "cancellation_policy",
+   "fieldtype": "Markdown Editor",
+   "label": "Cancellation Policy"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Table",
+   "label": "Rooms",
+   "options": "Hotel Room and Pricing",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accommodation_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Accommodation Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accommodation_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Accommodation Category",
+   "options": "5 Star\n4 Star\n3Star\n2 Star\n1 Star",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accommodation_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Accommodation Type",
+   "options": "Accommodation Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "link_to_contact",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "link to contact",
+   "options": "Contact",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-16 11:07:17.279144",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Accommodation",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "accommodation_name"
+}

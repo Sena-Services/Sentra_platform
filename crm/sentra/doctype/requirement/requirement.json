@@ -1,0 +1,200 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-06-09 08:30:35.455547",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "trip_details_section",
+  "title",
+  "lead",
+  "use_standard_package",
+  "destination_city",
+  "departure",
+  "column_break_unbf",
+  "start_date",
+  "end_date",
+  "flexible_days",
+  "passenger_details",
+  "pax",
+  "budget",
+  "standard_package",
+  "section_break_dtee",
+  "category",
+  "no_of_rooms",
+  "naming_series",
+  "activities_details_section",
+  "activity",
+  "daywise_plan_section",
+  "daywise_plan",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lead",
+   "options": "CRM Lead",
+   "reqd": 1,
+   "search_index": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "destination_city",
+   "fieldtype": "Table",
+   "label": "Destinations",
+   "options": "Trip Destination"
+  },
+  {
+   "fieldname": "pax",
+   "fieldtype": "Int",
+   "label": "PAX",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Currency",
+   "label": "Budget",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "5 Star\n4 Star\n3 Star\n2 Star"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_rooms",
+   "fieldtype": "Int",
+   "label": "No of Rooms"
+  },
+  {
+   "default": "TRIP-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "section_break_dtee",
+   "fieldtype": "Section Break",
+   "label": "Hotel Details"
+  },
+  {
+   "fieldname": "trip_details_section",
+   "fieldtype": "Section Break",
+   "label": "Trip Details"
+  },
+  {
+   "fieldname": "passenger_details",
+   "fieldtype": "Table",
+   "label": "Passenger Details",
+   "options": "Trip Passenger"
+  },
+  {
+   "fieldname": "activities_details_section",
+   "fieldtype": "Section Break",
+   "label": "Activities Details"
+  },
+  {
+   "fieldname": "activity",
+   "fieldtype": "Table MultiSelect",
+   "label": "Activity",
+   "options": "Activity Child Table"
+  },
+  {
+   "default": "0",
+   "fieldname": "flexible_days",
+   "fieldtype": "Check",
+   "label": "Flexible Days"
+  },
+  {
+   "fieldname": "daywise_plan_section",
+   "fieldtype": "Section Break",
+   "label": "Daywise Plan",
+   "options": "Daywise Plan"
+  },
+  {
+   "fieldname": "daywise_plan",
+   "fieldtype": "Table",
+   "label": "Daywise Plan",
+   "options": "Daywise Plan"
+  },
+  {
+   "default": "0",
+   "fieldname": "standard_package",
+   "fieldtype": "Check",
+   "label": "Make Standard Package"
+  },
+  {
+   "fieldname": "use_standard_package",
+   "fieldtype": "Link",
+   "label": "Use Standard Package",
+   "options": "Standard Package"
+  },
+  {
+   "fieldname": "column_break_unbf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "notes"
+  },
+  {
+   "fieldname": "departure",
+   "fieldtype": "Data",
+   "label": "Departure City"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-09 20:16:07.028778",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Requirement",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

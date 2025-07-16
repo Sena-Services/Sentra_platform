@@ -1,0 +1,50 @@
+[
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:44:49.936852",
+  "name": "DMC",
+  "type": "DMC"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:48:03.660953",
+  "name": "Accommodation",
+  "type": "Accommodation"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:45:09.393683",
+  "name": "Meal",
+  "type": "Meal"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:45:13.539393",
+  "name": "Activity",
+  "type": "Activity"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:50:17.424861",
+  "name": "Transportation",
+  "type": "Transportation"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Vendor Type",
+  "modified": "2025-07-16 10:51:04.696684",
+  "name": "Booking Platform",
+  "type": "Booking Platform"
+ }
+]
