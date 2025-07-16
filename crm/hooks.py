@@ -31,6 +31,8 @@ fixtures = [
 	"Contact Category",
 	"Communication Medium",
 	{"dt": "Custom Field", "filters": [["module", "=", "CRM"]]},
+	"Vendor Type",
+	"Accommodation Type",
 ]
 
 

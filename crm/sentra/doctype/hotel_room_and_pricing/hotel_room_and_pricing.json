@@ -99,7 +99,7 @@
    "fieldname": "hotel",
    "fieldtype": "Link",
    "label": "Hotel",
-   "options": "Hotel"
+   "options": "Accommodation"
   },
   {
    "fieldname": "validity_from",
@@ -116,7 +116,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-01 15:26:31.667655",
+ "modified": "2025-07-16 10:55:02.445351",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Hotel Room and Pricing",

@@ -1,5 +1,12 @@
 [
  {
+  "channel_name": "Whatsapps",
+  "docstatus": 0,
+  "doctype": "Communication Medium",
+  "modified": "2025-07-05 11:51:15.085117",
+  "name": "Whatsapps"
+ },
+ {
   "channel_name": "SMS",
   "docstatus": 0,
   "doctype": "Communication Medium",
