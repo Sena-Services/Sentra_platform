@@ -77,15 +77,21 @@ def update_leads_from_contact(doc, method):
 
 
 def update_deals_email_mobile_no(doc):
+	# Skip if CRM Deal doctype doesn't exist
+	if not frappe.db.exists("DocType", "CRM Deal"):
+		return
+		
+	# Find deals that have this contact linked
+	# Assuming CRM Deal has a field that links to Contact
 	linked_deals = frappe.get_all(
-		"CRM Contacts",
-		filters={"contact": doc.name, "is_primary": 1},
-		fields=["parent"],
+		"CRM Deal",
+		filters={"contact": doc.name},
+		fields=["name", "email", "mobile_no"],
 	)
 
-	for linked_deal in linked_deals:
-		deal = frappe.get_cached_doc("CRM Deal", linked_deal.parent)
-		if deal.email != doc.email_id or deal.mobile_no != doc.mobile_no:
+	for deal_data in linked_deals:
+		if deal_data.email != doc.email_id or deal_data.mobile_no != doc.mobile_no:
+			deal = frappe.get_doc("CRM Deal", deal_data.name)
 			deal.email = doc.email_id
 			deal.mobile_no = doc.mobile_no
 			deal.save(ignore_permissions=True)
@@ -112,7 +118,7 @@ def get_linked_deals(contact):
 		frappe.throw("Not permitted", frappe.PermissionError)
 
 	deal_names = frappe.get_all(
-		"CRM Contacts",
+		"Contact",
 		filters={"contact": contact, "parenttype": "CRM Deal"},
 		fields=["parent"],
 		distinct=True,

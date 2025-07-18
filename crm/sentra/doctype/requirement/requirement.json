@@ -81,7 +81,7 @@
    "fieldname": "category",
    "fieldtype": "Select",
    "label": "Category",
-   "options": "5 Star\n4 Star\n3 Star\n2 Star"
+   "options": "5\n4\n3\n2\n1"
   },
   {
    "default": "0",
@@ -171,7 +171,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-09 20:16:07.028778",
+ "modified": "2025-07-18 15:41:15.379507",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Requirement",

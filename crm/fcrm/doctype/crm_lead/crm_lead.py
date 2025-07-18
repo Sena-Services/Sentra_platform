@@ -20,7 +20,6 @@ class CRMLead(Document):
 		self.set_full_name()
 		self.set_lead_name()
 		self.set_title()
-		self.validate_email()
 		if not self.is_new() and self.has_value_changed("lead_owner") and self.lead_owner:
 			self.share_with_agent(self.lead_owner)
 			self.assign_agent(self.lead_owner)
@@ -31,7 +30,7 @@ class CRMLead(Document):
 		if self.lead_owner:
 			self.assign_agent(self.lead_owner)
 
-		self.create_contact(throw=False)
+		
 
 	def on_update(self):
 		"""Update contact when lead details change"""

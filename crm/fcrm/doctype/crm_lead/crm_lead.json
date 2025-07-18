@@ -17,6 +17,7 @@
   "source",
   "lead_owner",
   "service_type",
+  "service_types",
   "notes",
   "person_tab",
   "link_to_contact",
@@ -24,7 +25,6 @@
   "lead_name",
   "first_name",
   "last_name",
-  "phone",
   "gender",
   "email",
   "instagram",
@@ -80,8 +80,7 @@
    "in_list_view": 1,
    "label": "Email",
    "options": "Email",
-   "read_only": 1,
-   "unique": 1
+   "read_only": 1
   },
   {
    "fieldname": "lead_owner",
@@ -99,8 +98,15 @@
   {
    "fieldname": "service_type",
    "fieldtype": "Link",
-   "label": "Service Type",
-   "options": "Service Type"
+   "label": "Service Type (Legacy)",
+   "options": "Service Type",
+   "hidden": 1
+  },
+  {
+   "fieldname": "service_types",
+   "fieldtype": "Table",
+   "label": "Service Types",
+   "options": "Lead Service Type"
   },
   {
    "fetch_from": "link_to_contact.image",
@@ -156,15 +162,6 @@
    "label": "Link to contact",
    "options": "Contact",
    "reqd": 1
-  },
-  {
-   "fetch_from": "link_to_contact.phone",
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Phone",
-   "read_only": 1,
-   "unique": 1
   },
   {
    "fetch_from": "link_to_contact.mobile_no",
