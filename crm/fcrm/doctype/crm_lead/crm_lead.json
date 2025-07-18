@@ -16,7 +16,6 @@
   "status",
   "source",
   "lead_owner",
-  "service_type",
   "service_types",
   "notes",
   "person_tab",
@@ -94,13 +93,6 @@
    "in_list_view": 1,
    "label": "Source",
    "options": "CRM Lead Source"
-  },
-  {
-   "fieldname": "service_type",
-   "fieldtype": "Link",
-   "label": "Service Type (Legacy)",
-   "options": "Service Type",
-   "hidden": 1
   },
   {
    "fieldname": "service_types",
@@ -188,11 +180,11 @@
  "index_web_pages_for_search": 1,
  "links": [
   {
-   "link_doctype": "Trip",
+   "link_doctype": "Requirement",
    "link_fieldname": "lead"
   }
  ],
- "modified": "2025-07-09 15:25:43.620259",
+ "modified": "2025-07-18 16:52:49.138031",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

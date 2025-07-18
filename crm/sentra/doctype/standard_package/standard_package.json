@@ -7,7 +7,10 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "status",
   "package_name",
+  "description",
+  "vendors",
   "no_of_days",
   "no_of_nights",
   "price",
@@ -80,12 +83,30 @@
    "fieldname": "itinerary",
    "fieldtype": "Attach",
    "label": "Itinerary"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "vendors",
+   "fieldtype": "Table",
+   "label": "Vendors",
+   "options": "Vendor List Child Table"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-12 14:18:41.557496",
+ "modified": "2025-07-18 17:23:49.460725",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",

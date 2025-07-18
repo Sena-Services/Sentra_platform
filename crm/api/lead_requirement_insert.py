@@ -159,6 +159,11 @@ def create_requirement_from_data(lead_id, data):
     """
     Helper to create Requirement from frontend data
     """
+    print(f"\n=== Creating Requirement ===")
+    print(f"Lead ID: {lead_id}")
+    print(f"Data keys: {list(data.keys())}")
+    print(f"Full data: {data}")
+    
     req_doc = frappe.new_doc("Requirement")
     req_doc.lead = lead_id
     
@@ -169,17 +174,20 @@ def create_requirement_from_data(lead_id, data):
     
     # Handle travel dates
     travel_dates = data.get("travel_dates")
+    print(f"🗓️ Processing travel_dates: {travel_dates}")
     if isinstance(travel_dates, dict):
-        req_doc.start_date = travel_dates.get("start_date")
-        req_doc.end_date = travel_dates.get("end_date")
+        # Handle both formats: {start_date, end_date} and {start, end}
+        req_doc.start_date = travel_dates.get("start_date") or travel_dates.get("start")
+        req_doc.end_date = travel_dates.get("end_date") or travel_dates.get("end")
+        print(f"🗓️ Set dates - start: {req_doc.start_date}, end: {req_doc.end_date}")
     
     # Handle date flexibility
     date_flexibility = data.get("date_flexibility")
+    print(f"🔄 Processing date_flexibility: {date_flexibility}")
     if date_flexibility:
-        if isinstance(date_flexibility, str):
-            req_doc.flexible_days = 1 if date_flexibility != "Exact dates" else 0
-        else:
-            req_doc.flexible_days = 1 if date_flexibility else 0
+        # Store the flexibility value directly as string
+        req_doc.flexible_days = date_flexibility
+        print(f"🔄 Set flexible_days to: {req_doc.flexible_days}")
     
     # Handle budget (per person budget only)
     budget_per_person = data.get("budget_per_person")

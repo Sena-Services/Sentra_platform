@@ -25,10 +25,7 @@
   "no_of_rooms",
   "naming_series",
   "activities_details_section",
-  "activity",
-  "daywise_plan_section",
-  "daywise_plan",
-  "notes"
+  "activity"
  ],
  "fields": [
   {
@@ -90,7 +87,7 @@
    "label": "No of Rooms"
   },
   {
-   "default": "TRIP-.YYYY.-",
+   "default": "REQ-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Data",
    "hidden": 1,
@@ -124,22 +121,10 @@
    "options": "Activity Child Table"
   },
   {
-   "default": "0",
    "fieldname": "flexible_days",
-   "fieldtype": "Check",
-   "label": "Flexible Days"
-  },
-  {
-   "fieldname": "daywise_plan_section",
-   "fieldtype": "Section Break",
-   "label": "Daywise Plan",
-   "options": "Daywise Plan"
-  },
-  {
-   "fieldname": "daywise_plan",
-   "fieldtype": "Table",
-   "label": "Daywise Plan",
-   "options": "Daywise Plan"
+   "fieldtype": "Select",
+   "label": "Date Flexibility",
+   "options": "Exact dates\nWithin the week\nWithin the month\nFully flexible"
   },
   {
    "default": "0",
@@ -158,11 +143,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "notes",
-   "fieldtype": "Long Text",
-   "label": "notes"
-  },
-  {
    "fieldname": "departure",
    "fieldtype": "Data",
    "label": "Departure City"
@@ -171,7 +151,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 15:41:15.379507",
+ "modified": "2025-07-18 17:05:11.512464",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Requirement",
