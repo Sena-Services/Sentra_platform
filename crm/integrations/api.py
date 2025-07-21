@@ -275,6 +275,44 @@ def get_whatsapp_messages(contact_id):
 
 
 @frappe.whitelist()
+def get_whatsapp_contacts_by_activity():
+	"""Get contacts sorted by latest WhatsApp message activity."""
+	try:
+		# Get all contacts with mobile numbers and their latest WhatsApp communication date
+		contacts_with_activity = frappe.db.sql("""
+			SELECT 
+				c.name,
+				c.full_name,
+				c.first_name,
+				c.last_name,
+				c.mobile_no,
+				c.image,
+				COALESCE(comm.latest_communication_date, c.modified) as last_activity
+			FROM `tabContact` c
+			LEFT JOIN (
+				SELECT 
+					reference_name,
+					MAX(communication_date) as latest_communication_date
+				FROM `tabCommunication`
+				WHERE reference_doctype = 'Contact'
+					AND communication_medium = 'WhatsApp'
+					AND communication_type = 'Communication'
+				GROUP BY reference_name
+			) comm ON c.name = comm.reference_name
+			WHERE c.mobile_no IS NOT NULL 
+				AND c.mobile_no != ''
+			ORDER BY last_activity DESC
+			LIMIT 1000
+		""", as_dict=True)
+		
+		return contacts_with_activity
+		
+	except Exception as e:
+		frappe.log_error(f"Error fetching WhatsApp contacts by activity: {str(e)}")
+		return []
+
+
+@frappe.whitelist()
 def get_instagram_messages(contact_id):
 	"""Get Instagram messages for a specific contact from Communication doctype."""
 	if not contact_id:
