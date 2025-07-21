@@ -246,6 +246,8 @@ usr=your_username&pwd=your_password
 **Method:** `POST`  
 **Description:** Update an existing lead and optionally its requirement.
 
+⚠️ **Note**: If you update the `link_to_contact` field, personal fields will be automatically updated from the new contact via fetch rules.
+
 ### Request Body:
 ```json
 {
@@ -253,6 +255,7 @@ usr=your_username&pwd=your_password
   "doc": {
     "status": "Contacted",
     "priority": "High",
+    "source": "Referral", 
     "notes": "Customer interested in premium package"
   },
   "update_requirement": true,
@@ -516,21 +519,77 @@ async function getLeadsWithRequirements(page = 0, pageSize = 20) {
   }
 }
 
-// Example: Create lead with requirement
-async function createLeadWithTrip(leadData, tripData) {
+// Example: Create contact first, then lead with requirement
+async function createCustomerAndLead(customerData, leadData, tripData) {
   try {
+    // Step 1: Create or find contact
+    let contact;
+    try {
+      // Try to find existing contact by email
+      const existingContacts = await axios.get('/api/resource/Contact', {
+        params: { filters: [['email_id', '=', customerData.email_id]] }
+      });
+      
+      if (existingContacts.data.data.length > 0) {
+        contact = existingContacts.data.data[0];
+      } else {
+        // Create new contact
+        const contactResponse = await axios.post('/api/resource/Contact', customerData);
+        contact = contactResponse.data.data;
+      }
+    } catch (error) {
+      throw new Error(`Failed to create/find contact: ${error.message}`);
+    }
+
+    // Step 2: Create lead with the contact link
     const response = await api.post('.create', {
-      doc: leadData,
+      doc: {
+        ...leadData,
+        link_to_contact: contact.name,
+        doctype: 'CRM Lead'
+      },
       with_requirement: true,
       requirement_data: tripData
     });
     
-    return response.data.message;
+    return {
+      contact: contact,
+      lead: response.data.message
+    };
   } catch (error) {
     console.error('Error creating lead:', error);
     throw error;
   }
 }
+
+// Usage example:
+const result = await createCustomerAndLead(
+  // Customer/Contact data
+  {
+    doctype: 'Contact',
+    first_name: 'John',
+    last_name: 'Doe',
+    email_id: 'john@example.com',
+    mobile_no: '+1234567890',
+    gender: 'Male'
+  },
+  // Lead data (personal fields will be auto-populated)
+  {
+    status: 'New',
+    source: 'Website',
+    priority: 'High',
+    notes: 'Interested in Europe tour packages'
+  },
+  // Trip/Requirement data
+  {
+    doctype: 'Requirement',
+    title: 'Europe Summer Tour',
+    departure: 'Mumbai',
+    start_date: '2025-06-01',
+    end_date: '2025-06-15',
+    budget: 150000
+  }
+);
 ```
 
 ---
@@ -592,6 +651,61 @@ Common HTTP status codes:
 - `417`: Validation error
 - `500`: Server error
 
+### Common Validation Errors
+
+| Error Message | Cause | Solution |
+|---------------|--------|----------|
+| "A Lead requires a person's name" | Linked contact has empty `full_name` or no contact linked | Ensure the linked contact has proper `first_name`, `last_name`, or `full_name` |
+| "Could not find Link to contact: [ID]" | Invalid contact ID provided | Verify the contact exists and use the correct contact name/ID |
+| "Could not find Status: [STATUS]" | Invalid lead status | Use valid statuses: "New", "Contacted", "Negotiating", "Converted", "Lost", "RFI" |
+| "Contact is required to create a Lead" | Missing `link_to_contact` field | Always provide a valid `link_to_contact` when creating leads |
+
+---
+
+## Data Integrity & Fetch Rules
+
+### Understanding CRM Lead Fetch Rules
+
+CRM Leads are designed to maintain data consistency through Frappe's fetch rules. When you link a lead to a contact, the following fields are automatically populated:
+
+| Lead Field | Fetched From | Description |
+|------------|-------------|-------------|
+| `lead_name` | `contact.full_name` | Person's full name |
+| `email` | `contact.email_id` | Primary email address |
+| `mobile_no` | `contact.mobile_no` | Mobile phone number |
+| `first_name` | `contact.first_name` | First name |
+| `last_name` | `contact.last_name` | Last name |
+| `gender` | `contact.gender` | Gender |
+| `instagram` | `contact.instagram` | Instagram handle |
+| `image` | `contact.image` | Profile picture |
+
+### Best Practices
+
+1. **Always use valid contacts**: Ensure the `link_to_contact` references a contact with proper data
+2. **Let fetch rules work**: Don't manually set fields that are fetched - they will be overwritten
+3. **Update contact data**: If you need to change personal information, update the contact record instead of the lead
+4. **Create contacts first**: For new customers, create the contact record before creating the lead
+
+### Example Workflow
+
+```javascript
+// 1. First, create or find a contact
+const contact = await createContact({
+  first_name: "John",
+  last_name: "Doe", 
+  email_id: "john@example.com",
+  mobile_no: "+1234567890"
+});
+
+// 2. Then create the lead linking to this contact
+const lead = await createLead({
+  link_to_contact: contact.name,
+  status: "New",
+  source: "Website"
+  // lead_name, email, etc. will be automatically populated
+});
+```
+
 ---
 
 ## Notes
@@ -602,3 +716,4 @@ Common HTTP status codes:
 4. **Field Names**: Use exact field names as defined in the DocType
 5. **Smart Performance**: The `get_list` API automatically optimizes based on your field/filter requirements
 6. **Requirement Fields**: Use dot notation (e.g., `requirement.title`) to access requirement data
+7. **Data Consistency**: Personal fields are managed through Contact records via fetch rules
