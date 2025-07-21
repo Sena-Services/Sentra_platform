@@ -893,3 +893,471 @@ def insert_trip_ignore_links(doc):
 	trip.update(doc)
 	trip.insert(ignore_permissions=True, ignore_links=True)
 	return trip.as_dict()
+
+
+# ========== STANDARD PACKAGE APIs ==========
+
+@frappe.whitelist()
+def get_packages(filters=None, fields=None, order_by=None, limit_start=0, limit_page_length=20):
+	"""
+	Get list of standard packages with filtering and pagination
+	
+	Args:
+		filters (dict): Filter conditions
+		fields (list): Fields to return
+		order_by (str): Sort order
+		limit_start (int): Pagination start
+		limit_page_length (int): Number of records per page
+	
+	Returns:
+		dict: List of packages with count
+	"""
+	try:
+		if isinstance(filters, str):
+			filters = json.loads(filters)
+		if isinstance(fields, str):
+			fields = json.loads(fields)
+		
+		if not fields:
+			fields = [
+				"name", "package_name", "package_code", "status", 
+				"dmc", "valid_from", "valid_to", "base_cost", 
+				"net_price", "currency", "min_group_size", 
+				"max_group_size", "creation", "modified"
+			]
+		
+		packages = frappe.get_list(
+			"Standard Package",
+			filters=filters or {},
+			fields=fields,
+			order_by=order_by or "creation desc",
+			start=int(limit_start),
+			page_length=int(limit_page_length)
+		)
+		
+		# Get total count
+		total_count = frappe.db.count("Standard Package", filters=filters or {})
+		
+		return {
+			"data": packages,
+			"count": len(packages),
+			"total_count": total_count,
+			"limit_start": int(limit_start),
+			"limit_page_length": int(limit_page_length)
+		}
+		
+	except Exception as e:
+		frappe.log_error(f"Error in get_packages: {str(e)}")
+		frappe.throw(_("Failed to fetch packages: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def get_package(name):
+	"""
+	Get single package by name with full details including itinerary
+	
+	Args:
+		name (str): Package ID
+		
+	Returns:
+		dict: Package document with all child tables
+	"""
+	try:
+		if not frappe.db.exists("Standard Package", name):
+			frappe.throw(_("Package not found"))
+		
+		package = frappe.get_doc("Standard Package", name)
+		
+		# Parse JSON itinerary data if exists
+		package_dict = package.as_dict()
+		if package_dict.get("itinerary_data"):
+			try:
+				package_dict["itinerary_data"] = json.loads(package_dict["itinerary_data"])
+			except:
+				pass  # If parsing fails, leave as is
+		
+		return package_dict
+		
+	except Exception as e:
+		frappe.log_error(f"Error in get_package: {str(e)}")
+		frappe.throw(_("Failed to fetch package: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def create_package(package_data):
+	"""
+	Create new standard package
+	
+	Args:
+		package_data (dict): Package data including child tables
+		
+	Returns:
+		dict: Created package document
+	"""
+	try:
+		if isinstance(package_data, str):
+			package_data = json.loads(package_data)
+		
+		# Validate required fields
+		required_fields = ["package_name", "package_code", "dmc", "valid_from", "valid_to", 
+						   "currency", "base_cost", "markup_percentage"]
+		for field in required_fields:
+			if not package_data.get(field):
+				frappe.throw(_("Field '{0}' is required").format(field))
+		
+		# Check if package_code is unique
+		if frappe.db.exists("Standard Package", {"package_code": package_data.get("package_code")}):
+			frappe.throw(_("Package Code '{0}' already exists").format(package_data.get("package_code")))
+		
+		# Validate dates
+		if package_data.get("valid_from") and package_data.get("valid_to"):
+			from frappe.utils import getdate
+			if getdate(package_data["valid_from"]) > getdate(package_data["valid_to"]):
+				frappe.throw(_("Valid From date cannot be after Valid To date"))
+		
+		# Convert itinerary data to JSON if provided as dict
+		if package_data.get("itinerary_data") and isinstance(package_data["itinerary_data"], (dict, list)):
+			package_data["itinerary_data"] = json.dumps(package_data["itinerary_data"])
+		
+		# Calculate net price if base_cost and markup are provided
+		if package_data.get("base_cost") and package_data.get("markup_percentage"):
+			base_cost = float(package_data["base_cost"])
+			markup = float(package_data["markup_percentage"])
+			package_data["net_price"] = base_cost * (1 + markup / 100)
+		
+		doc = frappe.new_doc("Standard Package")
+		doc.update(package_data)
+		doc.insert()
+		
+		frappe.db.commit()
+		
+		return doc.as_dict()
+		
+	except Exception as e:
+		frappe.db.rollback()
+		frappe.log_error(f"Error in create_package: {str(e)}")
+		frappe.throw(_("Failed to create package: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def update_package(name, package_data):
+	"""
+	Update existing standard package
+	
+	Args:
+		name (str): Package ID
+		package_data (dict): Updated package data
+		
+	Returns:
+		dict: Updated package document
+	"""
+	try:
+		if isinstance(package_data, str):
+			package_data = json.loads(package_data)
+		
+		if not frappe.db.exists("Standard Package", name):
+			frappe.throw(_("Package not found"))
+		
+		doc = frappe.get_doc("Standard Package", name)
+		
+		# Check if package_code is being updated and is unique
+		if "package_code" in package_data and package_data["package_code"] != doc.package_code:
+			if frappe.db.exists("Standard Package", {"package_code": package_data["package_code"], "name": ["!=", name]}):
+				frappe.throw(_("Package Code '{0}' already exists").format(package_data["package_code"]))
+		
+		# Validate dates if provided
+		if package_data.get("valid_from") or package_data.get("valid_to"):
+			from frappe.utils import getdate
+			valid_from = getdate(package_data.get("valid_from", doc.valid_from))
+			valid_to = getdate(package_data.get("valid_to", doc.valid_to))
+			if valid_from > valid_to:
+				frappe.throw(_("Valid From date cannot be after Valid To date"))
+		
+		# Convert itinerary data to JSON if provided as dict
+		if package_data.get("itinerary_data") and isinstance(package_data["itinerary_data"], (dict, list)):
+			package_data["itinerary_data"] = json.dumps(package_data["itinerary_data"])
+		
+		# Recalculate net price if base_cost or markup changed
+		if "base_cost" in package_data or "markup_percentage" in package_data:
+			base_cost = float(package_data.get("base_cost", doc.base_cost))
+			markup = float(package_data.get("markup_percentage", doc.markup_percentage))
+			package_data["net_price"] = base_cost * (1 + markup / 100)
+		
+		doc.update(package_data)
+		doc.save()
+		
+		frappe.db.commit()
+		
+		return doc.as_dict()
+		
+	except Exception as e:
+		frappe.db.rollback()
+		frappe.log_error(f"Error in update_package: {str(e)}")
+		frappe.throw(_("Failed to update package: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def delete_package(name):
+	"""
+	Delete standard package
+	
+	Args:
+		name (str): Package ID
+		
+	Returns:
+		dict: Success message
+	"""
+	try:
+		if not frappe.db.exists("Standard Package", name):
+			frappe.throw(_("Package not found"))
+		
+		frappe.delete_doc("Standard Package", name)
+		frappe.db.commit()
+		
+		return {"message": _("Package deleted successfully")}
+		
+	except Exception as e:
+		frappe.db.rollback()
+		frappe.log_error(f"Error in delete_package: {str(e)}")
+		frappe.throw(_("Failed to delete package: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def get_active_packages(filters=None, limit=50):
+	"""
+	Get active packages (status = Active and within valid dates)
+	
+	Args:
+		filters (dict): Additional filters
+		limit (int): Maximum results
+		
+	Returns:
+		list: Active packages
+	"""
+	try:
+		if isinstance(filters, str):
+			filters = json.loads(filters)
+		
+		from frappe.utils import today
+		base_filters = {
+			"status": "Active",
+			"valid_from": ["<=", today()],
+			"valid_to": [">=", today()]
+		}
+		if filters:
+			base_filters.update(filters)
+		
+		packages = frappe.get_list(
+			"Standard Package",
+			filters=base_filters,
+			fields=[
+				"name", "package_name", "package_code", "dmc",
+				"base_cost", "net_price", "currency",
+				"min_group_size", "max_group_size",
+				"valid_from", "valid_to"
+			],
+			order_by="package_name",
+			limit=int(limit)
+		)
+		
+		return packages
+		
+	except Exception as e:
+		frappe.log_error(f"Error in get_active_packages: {str(e)}")
+		frappe.throw(_("Failed to fetch active packages: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def get_packages_by_dmc(dmc, filters=None, limit=50):
+	"""
+	Get packages by DMC provider
+	
+	Args:
+		dmc (str): DMC name
+		filters (dict): Additional filters
+		limit (int): Maximum results
+		
+	Returns:
+		list: Packages by the specified DMC
+	"""
+	try:
+		if isinstance(filters, str):
+			filters = json.loads(filters)
+		
+		base_filters = {"dmc": dmc}
+		if filters:
+			base_filters.update(filters)
+		
+		packages = frappe.get_list(
+			"Standard Package",
+			filters=base_filters,
+			fields=[
+				"name", "package_name", "package_code", "status",
+				"valid_from", "valid_to", "base_cost", "net_price",
+				"currency", "min_group_size", "max_group_size"
+			],
+			order_by="package_name",
+			limit=int(limit)
+		)
+		
+		return packages
+		
+	except Exception as e:
+		frappe.log_error(f"Error in get_packages_by_dmc: {str(e)}")
+		frappe.throw(_("Failed to fetch packages by DMC: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def search_packages(query, filters=None, limit=20):
+	"""
+	Search packages by name, code, or description
+	
+	Args:
+		query (str): Search query
+		filters (dict): Additional filters
+		limit (int): Maximum results
+		
+	Returns:
+		list: Matching packages
+	"""
+	try:
+		if isinstance(filters, str):
+			filters = json.loads(filters)
+		
+		base_filters = {}
+		if filters:
+			base_filters.update(filters)
+		
+		# Search in multiple fields
+		or_filters = [
+			["package_name", "like", f"%{query}%"],
+			["package_code", "like", f"%{query}%"],
+			["description", "like", f"%{query}%"],
+			["notes", "like", f"%{query}%"]
+		]
+		
+		packages = frappe.get_list(
+			"Standard Package",
+			filters=base_filters,
+			or_filters=or_filters,
+			fields=[
+				"name", "package_name", "package_code", "status",
+				"dmc", "base_cost", "net_price", "currency",
+				"valid_from", "valid_to"
+			],
+			order_by="package_name",
+			limit=int(limit)
+		)
+		
+		return packages
+		
+	except Exception as e:
+		frappe.log_error(f"Error in search_packages: {str(e)}")
+		frappe.throw(_("Failed to search packages: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def get_package_stats():
+	"""
+	Get package statistics
+	
+	Returns:
+		dict: Package statistics
+	"""
+	try:
+		from frappe.utils import today
+		
+		stats = {
+			"total_packages": frappe.db.count("Standard Package"),
+			"active_packages": frappe.db.count("Standard Package", {
+				"status": "Active",
+				"valid_from": ["<=", today()],
+				"valid_to": [">=", today()]
+			}),
+			"draft_packages": frappe.db.count("Standard Package", {"status": "Draft"}),
+			"archived_packages": frappe.db.count("Standard Package", {"status": "Archived"}),
+			"by_dmc": {},
+			"price_range": {}
+		}
+		
+		# Packages by DMC
+		dmc_stats = frappe.db.sql("""
+			SELECT dmc, COUNT(*) as count
+			FROM `tabStandard Package`
+			WHERE status = 'Active'
+			GROUP BY dmc
+			ORDER BY count DESC
+			LIMIT 10
+		""", as_dict=True)
+		
+		stats["by_dmc"] = {item["dmc"]: item["count"] for item in dmc_stats if item["dmc"]}
+		
+		# Price range statistics
+		price_stats = frappe.db.sql("""
+			SELECT 
+				MIN(net_price) as min_price,
+				MAX(net_price) as max_price,
+				AVG(net_price) as avg_price
+			FROM `tabStandard Package`
+			WHERE status = 'Active' AND net_price > 0
+		""", as_dict=True)
+		
+		if price_stats:
+			stats["price_range"] = {
+				"min": price_stats[0].get("min_price", 0),
+				"max": price_stats[0].get("max_price", 0),
+				"average": round(price_stats[0].get("avg_price", 0), 2) if price_stats[0].get("avg_price") else 0
+			}
+		
+		return stats
+		
+	except Exception as e:
+		frappe.log_error(f"Error in get_package_stats: {str(e)}")
+		frappe.throw(_("Failed to fetch package statistics: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def duplicate_package(name, new_package_code=None):
+	"""
+	Duplicate an existing package with a new code
+	
+	Args:
+		name (str): Source package ID
+		new_package_code (str): Code for the new package (optional)
+		
+	Returns:
+		dict: New package document
+	"""
+	try:
+		if not frappe.db.exists("Standard Package", name):
+			frappe.throw(_("Source package not found"))
+		
+		source_doc = frappe.get_doc("Standard Package", name)
+		
+		# Generate new package code if not provided
+		if not new_package_code:
+			new_package_code = f"{source_doc.package_code}_COPY"
+			counter = 1
+			while frappe.db.exists("Standard Package", {"package_code": new_package_code}):
+				new_package_code = f"{source_doc.package_code}_COPY{counter}"
+				counter += 1
+		
+		# Check if new code already exists
+		if frappe.db.exists("Standard Package", {"package_code": new_package_code}):
+			frappe.throw(_("Package Code '{0}' already exists").format(new_package_code))
+		
+		# Create new document with copied data
+		new_doc = frappe.copy_doc(source_doc)
+		new_doc.package_code = new_package_code
+		new_doc.package_name = f"{source_doc.package_name} (Copy)"
+		new_doc.status = "Draft"  # Always set duplicated packages as Draft
+		
+		new_doc.insert()
+		frappe.db.commit()
+		
+		return new_doc.as_dict()
+		
+	except Exception as e:
+		frappe.db.rollback()
+		frappe.log_error(f"Error in duplicate_package: {str(e)}")
+		frappe.throw(_("Failed to duplicate package: {0}").format(str(e)))
