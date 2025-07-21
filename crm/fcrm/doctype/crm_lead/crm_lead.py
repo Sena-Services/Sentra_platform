@@ -196,15 +196,41 @@ class CRMLead(Document):
 					],
 				)
 			)
+		# Don't override lead_name if no first_name is provided
+		# This preserves lead_name set directly or from other sources
 
 	def set_lead_name(self):
 		if not self.lead_name:
-			# Check for leads being created through data import
-			if not self.email and not self.flags.ignore_mandatory:
-				frappe.throw(_("A Lead requiresa person's name"))
+			# Try to construct lead_name from available data
+			if self.first_name and self.last_name:
+				self.lead_name = f"{self.first_name} {self.last_name}".strip()
+			elif self.first_name:
+				self.lead_name = self.first_name
+			elif self.last_name:
+				self.lead_name = self.last_name
 			elif self.email:
 				self.lead_name = self.email.split("@")[0]
-			else:
+			elif self.link_to_contact:
+				# Get name from linked contact
+				try:
+					contact = frappe.get_doc("Contact", self.link_to_contact)
+					if contact.full_name:
+						self.lead_name = contact.full_name
+					elif contact.first_name and contact.last_name:
+						self.lead_name = f"{contact.first_name} {contact.last_name}".strip()
+					elif contact.first_name:
+						self.lead_name = contact.first_name
+					elif contact.last_name:
+						self.lead_name = contact.last_name
+					elif contact.email_id:
+						self.lead_name = contact.email_id.split("@")[0]
+				except Exception as e:
+					pass
+			
+			# Final check - if still no lead_name and not ignoring mandatory
+			if not self.lead_name and not self.flags.ignore_mandatory:
+				frappe.throw(_("A Lead requires a person's name"))
+			elif not self.lead_name:
 				self.lead_name = "Unnamed Lead"
 
 	def set_title(self):
