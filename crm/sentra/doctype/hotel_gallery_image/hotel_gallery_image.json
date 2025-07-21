@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "creation": "2025-07-19 12:50:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "image",
+  "image_type",
+  "caption"
+ ],
+ "fields": [
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "in_list_view": 1,
+   "label": "Image",
+   "reqd": 1
+  },
+  {
+   "fieldname": "image_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Image Type",
+   "options": "\nExterior\nLobby\nRoom\nBathroom\nRestaurant\nPool\nGym\nSpa\nMeeting Room\nOther"
+  },
+  {
+   "fieldname": "caption",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Caption"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-19 12:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Gallery Image",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,404 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-19 13:10:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company_information_section",
+  "naming_series",
+  "company_name",
+  "dmc_code",
+  "registration_number",
+  "column_break_ci1",
+  "status",
+  "established_year",
+  "company_type",
+  "specialization",
+  "contact_details_section",
+  "primary_contact",
+  "column_break_cd1",
+  "secondary_contact",
+  "address_section",
+  "address_line_1",
+  "address_line_2",
+  "city",
+  "state",
+  "column_break_as1",
+  "country",
+  "pincode",
+  "operational_details_section",
+  "destinations_covered",
+  "services_offered",
+  "fleet_vehicles",
+  "guide_languages",
+  "financial_information_section",
+  "currency",
+  "payment_terms",
+  "commission_percentage",
+  "column_break_fi1",
+  "bank_name",
+  "bank_account",
+  "ifsc_code",
+  "pan_number",
+  "gst_number",
+  "certifications_licenses_section",
+  "licenses",
+  "insurance_section",
+  "liability_insurance",
+  "insurance_provider",
+  "policy_number",
+  "column_break_is1",
+  "insurance_validity",
+  "coverage_amount",
+  "additional_info_section",
+  "notes",
+  "documents"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_information_section",
+   "fieldtype": "Section Break",
+   "label": "Company Information"
+  },
+  {
+   "default": "DMC-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "dmc_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "DMC Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  },
+  {
+   "fieldname": "column_break_ci1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nSuspended\nBlacklisted",
+   "reqd": 1
+  },
+  {
+   "fieldname": "established_year",
+   "fieldtype": "Int",
+   "label": "Established Year"
+  },
+  {
+   "fieldname": "company_type",
+   "fieldtype": "Select",
+   "label": "Company Type",
+   "options": "\nPrivate Limited\nPublic Limited\nPartnership\nSole Proprietorship\nLLP"
+  },
+  {
+   "fieldname": "specialization",
+   "fieldtype": "Long Text",
+   "label": "Specialization"
+  },
+  {
+   "fieldname": "contact_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Details"
+  },
+  {
+   "fieldname": "primary_contact_person",
+   "fieldtype": "Data",
+   "label": "Primary Contact Person",
+   "reqd": 0
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "primary_email",
+   "fieldtype": "Data",
+   "label": "Primary Email",
+   "options": "Email",
+   "reqd": 0
+  },
+  {
+   "fieldname": "primary_phone",
+   "fieldtype": "Data",
+   "label": "Primary Phone",
+   "options": "Phone",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_cd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "secondary_contact_person",
+   "fieldtype": "Data",
+   "label": "Secondary Contact Person"
+  },
+  {
+   "fieldname": "secondary_designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "secondary_email",
+   "fieldtype": "Data",
+   "label": "Secondary Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "secondary_phone",
+   "fieldtype": "Data",
+   "label": "Secondary Phone",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address & Location"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State/Province"
+  },
+  {
+   "fieldname": "column_break_as1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Zip/Postal Code"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "fieldname": "office_hours",
+   "fieldtype": "Data",
+   "label": "Office Hours"
+  },
+  {
+   "fieldname": "operational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Operational Details"
+  },
+  {
+   "fieldname": "destinations_covered",
+   "fieldtype": "Long Text",
+   "label": "Destinations Covered"
+  },
+  {
+   "fieldname": "services_offered",
+   "fieldtype": "Long Text",
+   "label": "Services Offered"
+  },
+  {
+   "fieldname": "fleet_vehicles",
+   "fieldtype": "Long Text",
+   "label": "Fleet/Vehicles"
+  },
+  {
+   "fieldname": "guide_languages",
+   "fieldtype": "Long Text",
+   "label": "Guide Languages"
+  },
+  {
+   "fieldname": "financial_information_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Information"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Default Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nAdvance Payment\nNet 30\nNet 60\nNet 90\n50% Advance"
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Standard Commission %"
+  },
+  {
+   "fieldname": "column_break_fi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC/SWIFT Code"
+  },
+  {
+   "fieldname": "pan_number",
+   "fieldtype": "Data",
+   "label": "PAN Number"
+  },
+  {
+   "fieldname": "gst_number",
+   "fieldtype": "Data",
+   "label": "GST Number"
+  },
+  {
+   "fieldname": "certifications_licenses_section",
+   "fieldtype": "Section Break",
+   "label": "Certifications & Licenses"
+  },
+  {
+   "fieldname": "licenses",
+   "fieldtype": "Long Text",
+   "label": "Licenses & Certifications"
+  },
+  {
+   "fieldname": "insurance_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "liability_insurance",
+   "fieldtype": "Check",
+   "label": "Has Liability Insurance"
+  },
+  {
+   "depends_on": "liability_insurance",
+   "fieldname": "insurance_provider",
+   "fieldtype": "Data",
+   "label": "Insurance Provider"
+  },
+  {
+   "depends_on": "liability_insurance",
+   "fieldname": "policy_number",
+   "fieldtype": "Data",
+   "label": "Policy Number"
+  },
+  {
+   "fieldname": "column_break_is1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "liability_insurance",
+   "fieldname": "insurance_validity",
+   "fieldtype": "Date",
+   "label": "Valid Till"
+  },
+  {
+   "depends_on": "liability_insurance",
+   "fieldname": "coverage_amount",
+   "fieldtype": "Currency",
+   "label": "Coverage Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Long Text",
+   "label": "Documents"
+  }
+ ],
+ "links": [],
+ "modified": "2025-07-19 13:10:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "DMC",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "company_name,dmc_code,city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "company_name",
+ "track_changes": 1
+}

@@ -1,0 +1,370 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-19 12:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "hotel_name",
+  "hotel_code",
+  "hotel_chain",
+  "column_break_bi1",
+  "star_rating",
+  "category",
+  "status",
+  "property_type",
+  "location_details_section",
+  "address_line_1",
+  "address_line_2",
+  "city",
+  "state",
+  "column_break_ld1",
+  "country",
+  "pincode",
+  "latitude",
+  "longitude",
+  "contact_information_section",
+  "primary_contact",
+  "column_break_ci1",
+  "secondary_contact",
+  "property_details_section",
+  "total_rooms",
+  "total_floors",
+  "check_in_time",
+  "check_out_time",
+  "column_break_pd1",
+  "year_built",
+  "last_renovation",
+  "hotel_description",
+  "facilities_amenities_section",
+  "facilities",
+  "room_types_section",
+  "room_types",
+  "pricing_commission_section",
+  "currency",
+  "standard_commission",
+  "column_break_pc1",
+  "payment_terms",
+  "cancellation_policy",
+  "certifications_section",
+  "certifications",
+  "images_section",
+  "main_image",
+  "gallery",
+  "additional_info_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "default": "HTL-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "hotel_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hotel Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "hotel_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hotel Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "hotel_chain",
+   "fieldtype": "Link",
+   "label": "Hotel Chain",
+   "options": "Hotel Chain"
+  },
+  {
+   "fieldname": "column_break_bi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "star_rating",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Star Rating",
+   "options": "\n1 Star\n2 Star\n3 Star\n4 Star\n5 Star\n5 Star Deluxe\n7 Star",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nBudget\nMid-Range\nLuxury\nBoutique\nResort\nBusiness\nAirport\nHeritage"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nUnder Renovation\nClosed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Select",
+   "label": "Property Type",
+   "options": "\nHotel\nResort\nMotel\nInn\nBed & Breakfast\nHostel\nGuest House\nVilla\nApartment"
+  },
+  {
+   "fieldname": "location_details_section",
+   "fieldtype": "Section Break",
+   "label": "Location Details"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State/Province"
+  },
+  {
+   "fieldname": "column_break_ld1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Zip/Postal Code"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "contact_information_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "primary_contact",
+   "fieldtype": "Link",
+   "label": "Primary Contact",
+   "options": "Contact",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_ci1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "secondary_contact",
+   "fieldtype": "Link",
+   "label": "Secondary Contact",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "property_details_section",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "total_rooms",
+   "fieldtype": "Int",
+   "label": "Total Rooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "total_floors",
+   "fieldtype": "Int",
+   "label": "Total Floors",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "check_in_time",
+   "fieldtype": "Time",
+   "label": "Check-in Time"
+  },
+  {
+   "fieldname": "check_out_time",
+   "fieldtype": "Time",
+   "label": "Check-out Time"
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "year_built",
+   "fieldtype": "Int",
+   "label": "Year Built"
+  },
+  {
+   "fieldname": "last_renovation",
+   "fieldtype": "Int",
+   "label": "Last Renovation Year"
+  },
+  {
+   "fieldname": "hotel_description",
+   "fieldtype": "Text Editor",
+   "label": "Hotel Description"
+  },
+  {
+   "fieldname": "facilities_amenities_section",
+   "fieldtype": "Section Break",
+   "label": "Facilities & Amenities"
+  },
+  {
+   "fieldname": "facilities",
+   "fieldtype": "Long Text",
+   "label": "Facilities"
+  },
+  {
+   "fieldname": "room_types_section",
+   "fieldtype": "Section Break",
+   "label": "Room Types"
+  },
+  {
+   "fieldname": "room_types",
+   "fieldtype": "Long Text",
+   "label": "Room Types"
+  },
+  {
+   "fieldname": "pricing_commission_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing & Commission"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Default Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "standard_commission",
+   "fieldtype": "Percent",
+   "label": "Standard Commission %"
+  },
+  {
+   "fieldname": "column_break_pc1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nAdvance Payment\nNet 30\nNet 60\nNet 90\nOn Arrival"
+  },
+  {
+   "fieldname": "cancellation_policy",
+   "fieldtype": "Text Editor",
+   "label": "Cancellation Policy"
+  },
+  {
+   "fieldname": "certifications_section",
+   "fieldtype": "Section Break",
+   "label": "Certifications & Awards"
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Long Text",
+   "label": "Certifications"
+  },
+  {
+   "fieldname": "images_section",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "main_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Image"
+  },
+  {
+   "fieldname": "gallery",
+   "fieldtype": "Long Text",
+   "label": "Gallery"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Notes"
+  }
+ ],
+ "image_field": "main_image",
+ "links": [],
+ "modified": "2025-07-19 12:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "hotel_name,hotel_code,city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "hotel_name",
+ "track_changes": 1
+}

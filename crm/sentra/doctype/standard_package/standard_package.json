@@ -6,10 +6,39 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "package_details_section",
   "naming_series",
-  "status",
   "package_name",
+  "package_code",
+  "status",
+  "column_break_pd1",
+  "dmc",
   "description",
+  "availability_section",
+  "valid_from",
+  "valid_to",
+  "min_group_size",
+  "max_group_size",
+  "column_break_av1",
+  "operating_days",
+  "operating_hours",
+  "target_audience",
+  "exclusion_criteria",
+  "pricing_section",
+  "currency",
+  "base_cost",
+  "column_break_pr1",
+  "markup_percentage",
+  "net_price",
+  "daywise_itinerary_section",
+  "itinerary_data",
+  "inclusions_exclusions_section",
+  "package_inclusions",
+  "package_exclusions",
+  "terms_and_conditions",
+  "additional_info_section",
+  "notes",
+  "legacy_fields_section",
   "vendors",
   "no_of_days",
   "no_of_nights",
@@ -17,60 +46,13 @@
   "activities",
   "destinations",
   "hotel",
-  "daywise_plan",
-  "itinerary"
+  "daywise_plan"
  ],
  "fields": [
   {
-   "fieldname": "package_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Package Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "no_of_days",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "No. of Days",
-   "reqd": 1
-  },
-  {
-   "fieldname": "no_of_nights",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "No. of Nights",
-   "reqd": 1
-  },
-  {
-   "description": "Price per person",
-   "fieldname": "price",
-   "fieldtype": "Currency",
-   "label": "Price"
-  },
-  {
-   "fieldname": "destinations",
-   "fieldtype": "Table",
-   "label": "Destinations",
-   "options": "Trip Destination"
-  },
-  {
-   "fieldname": "activities",
-   "fieldtype": "Table MultiSelect",
-   "label": "Activities",
-   "options": "Activity Child Table"
-  },
-  {
-   "fieldname": "hotel",
-   "fieldtype": "Table",
-   "label": "Hotel",
-   "options": "Hotel Room and Pricing"
-  },
-  {
-   "fieldname": "daywise_plan",
-   "fieldtype": "Table",
-   "label": "Daywise Plan",
-   "options": "Daywise Plan"
+   "fieldname": "package_details_section",
+   "fieldtype": "Section Break",
+   "label": "Package Details"
   },
   {
    "default": "PCK-.YYYY.-",
@@ -80,15 +62,38 @@
    "label": "Naming Series"
   },
   {
-   "fieldname": "itinerary",
-   "fieldtype": "Attach",
-   "label": "Itinerary"
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Name",
+   "reqd": 1
   },
   {
+   "fieldname": "package_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Draft\nActive\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dmc",
+   "fieldtype": "Link",
+   "label": "DMC Provider",
+   "options": "Contact",
    "reqd": 1
   },
   {
@@ -97,10 +102,201 @@
    "label": "Description"
   },
   {
+   "fieldname": "availability_section",
+   "fieldtype": "Section Break",
+   "label": "Availability"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "Valid To",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_group_size",
+   "fieldtype": "Int",
+   "label": "Min Group Size",
+   "non_negative": 1
+  },
+  {
+   "default": "10",
+   "fieldname": "max_group_size",
+   "fieldtype": "Int",
+   "label": "Max Group Size",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_av1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "operating_days",
+   "fieldtype": "Table MultiSelect",
+   "label": "Operating Days",
+   "options": "Operating Day"
+  },
+  {
+   "fieldname": "operating_hours",
+   "fieldtype": "Data",
+   "label": "Operating Hours"
+  },
+  {
+   "fieldname": "target_audience",
+   "fieldtype": "Table MultiSelect",
+   "label": "Target Audience",
+   "options": "Target Audience"
+  },
+  {
+   "fieldname": "exclusion_criteria",
+   "fieldtype": "Table MultiSelect",
+   "label": "Exclusion Criteria",
+   "options": "Exclusion Criteria"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "base_cost",
+   "fieldtype": "Currency",
+   "label": "Base Cost (per pax)",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "markup_percentage",
+   "fieldtype": "Percent",
+   "label": "Markup (%)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "net_price",
+   "fieldtype": "Currency",
+   "label": "Net Price",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "daywise_itinerary_section",
+   "fieldtype": "Section Break",
+   "label": "Day-wise Itinerary"
+  },
+  {
+   "fieldname": "itinerary_data",
+   "fieldtype": "JSON",
+   "label": "Interactive Day-wise Itinerary"
+  },
+  {
+   "fieldname": "inclusions_exclusions_section",
+   "fieldtype": "Section Break",
+   "label": "Inclusions, Exclusions & Terms"
+  },
+  {
+   "fieldname": "package_inclusions",
+   "fieldtype": "Table MultiSelect",
+   "label": "Inclusions",
+   "options": "Package Inclusion"
+  },
+  {
+   "fieldname": "package_exclusions",
+   "fieldtype": "Table MultiSelect",
+   "label": "Exclusions",
+   "options": "Package Exclusion"
+  },
+  {
+   "fieldname": "terms_and_conditions",
+   "fieldtype": "Text Editor",
+   "label": "Terms & Conditions"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Info"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "legacy_fields_section",
+   "fieldtype": "Section Break",
+   "label": "Legacy Fields",
+   "collapsible": 1,
+   "hidden": 1
+  },
+  {
    "fieldname": "vendors",
    "fieldtype": "Table",
    "label": "Vendors",
-   "options": "Vendor List Child Table"
+   "options": "Vendor List Child Table",
+   "hidden": 1
+  },
+  {
+   "fieldname": "no_of_days",
+   "fieldtype": "Int",
+   "label": "No. of Days",
+   "hidden": 1
+  },
+  {
+   "fieldname": "no_of_nights",
+   "fieldtype": "Int",
+   "label": "No. of Nights",
+   "hidden": 1
+  },
+  {
+   "description": "Price per person",
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price",
+   "hidden": 1
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Table MultiSelect",
+   "label": "Activities",
+   "options": "Activity Child Table",
+   "hidden": 1
+  },
+  {
+   "fieldname": "destinations",
+   "fieldtype": "Table",
+   "label": "Destinations",
+   "options": "Trip Destination",
+   "hidden": 1
+  },
+  {
+   "fieldname": "hotel",
+   "fieldtype": "Table",
+   "label": "Hotel",
+   "options": "Hotel Room and Pricing",
+   "hidden": 1
+  },
+  {
+   "fieldname": "daywise_plan",
+   "fieldtype": "Table",
+   "label": "Daywise Plan",
+   "options": "Daywise Plan",
+   "hidden": 1
   }
  ],
  "grid_page_length": 50,
