@@ -1,175 +1,129 @@
 # List View Settings Guide
 
-This guide provides a comprehensive overview of Frappe's List View Settings functionality, explaining how to programmatically save and retrieve user preferences for list views, including sorting, filtering, and display options.
+This guide provides a comprehensive overview of Frappe's enhanced List View Settings functionality, explaining how to programmatically save and retrieve multiple, named user preferences for list views.
 
 ## Overview
 
-Frappe provides a built-in mechanism to store and manage settings for list views on a per-DocType basis. These settings are saved in a dedicated DocType called "List View Settings" and apply to all users who have access to that DocType's list view.
+Frappe's list view settings have been extended to allow storing multiple named configurations per DocType. This enables users to create and save different views with unique filters, sorting, and display options. These settings are stored in the "List View Settings" DocType and are available to all users with access to that DocType's list view.
 
-The core of this functionality revolves around two primary functions located in `frappe/desk/listview.py`:
+The core of this functionality revolves around three primary functions in `frappe/desk/listview.py`:
 
--   `get_list_settings(doctype)`: Retrieves the saved settings for a specific DocType.
--   `set_list_settings(doctype, values)`: Saves or updates the settings for a specific DocType.
+-   `set_list_settings(doctype, settings_name, values)`: Saves or updates a named settings configuration.
+-   `get_list_settings(doctype, settings_name)`: Retrieves a specific named settings configuration.
+-   `get_all_list_settings(doctype)`: Retrieves all saved settings configurations for a DocType.
 
 ## Core Functions
 
-### `get_list_settings(doctype)`
+### `set_list_settings(doctype, settings_name, values)`
 
-This function fetches the saved list view settings for a given DocType.
+This function saves or updates a named list view setting. If a setting with the given name doesn't exist, a new one is created.
 
-**Parameters:**
+-   **`doctype`**: The DocType for which to save settings (e.g., 'Contact').
+-   **`settings_name`**: A unique name for the setting (e.g., 'Customers Only').
+-   **`values`**: A JSON string with the settings to be saved.
 
--   `doctype` (string): The name of the DocType for which to retrieve settings (e.g., 'Contact').
+### `get_list_settings(doctype, settings_name)`
 
-**Returns:**
+Fetches a specific named list view setting.
 
-A Document object containing the saved settings, or `None` if no settings have been saved for that DocType.
+-   **`doctype`**: The DocType for which to retrieve settings.
+-   **`settings_name`**: The name of the setting to retrieve.
 
-### `set_list_settings(doctype, values)`
+Returns a Document object or `None`.
 
-This function saves or updates the list view settings for a specific DocType. If a settings document for the given DocType doesn't exist, a new one is created. Otherwise, the existing document is updated with the new values.
+### `get_all_list_settings(doctype)`
 
-**Parameters:**
+Retrieves all saved list view settings for a given DocType.
 
--   `doctype` (string): The name of the DocType for which to save settings (e.g., 'Lead').
--   `values` (JSON string): A JSON string containing the settings to be saved.
+-   **`doctype`**: The DocType for which to retrieve all settings.
+
+Returns a list of Document objects.
 
 ## Request Body Format (`values`)
 
-The `values` parameter must be a JSON string that represents a dictionary of settings. The following keys are supported:
+The `values` parameter is a JSON string representing a dictionary of settings. Supported keys include:
 
-| Key | Type | Description | Example |
-|-----|------|-------------|---------|
-| `filters` | string | JSON string with filter conditions array | `'[["status", "=", "Open"]]'` |
-| `order_by` | string | Field and sort direction | `'modified desc'` |
-| `fields` | string | JSON string with fields array for display | `'["name", "status", "lead_owner"]'` |
-| `disable_count` | boolean | Disable record count display | `true` |
-| `disable_auto_refresh` | boolean | Disable automatic list refresh | `true` |
-| `disable_comment_count` | boolean | Disable comment count display | `true` |
-| `disable_sidebar_stats` | boolean | Disable sidebar statistics | `true` |
-| `total_fields` | integer | Maximum fields to display | `8` |
-
-### Filter Format
-
-Filters must be provided as a JSON string containing an array of arrays, where each inner array represents a filter condition in the format `[field, operator, value]`.
-
-**Examples:**
-
--   **Single Filter:** `'[["status", "=", "Open"]]'`
--   **Multiple Filters:** `'[["status", "=", "Open"], ["priority", "=", "High"]]'`
--   **Complex Filters:** `'[["creation", ">", "2024-01-01"], ["status", "!=", "Closed"]]'`
+| Key      | Type    | Description                            | Example                                |
+|----------|---------|----------------------------------------|----------------------------------------|
+| `filters`  | string  | JSON string of filter conditions       | `'[["is_customer", "=", 1]]'`          |
+| `order_by` | string  | Field and sort direction               | `'modified desc'`                      |
+| `fields`   | string  | JSON string of fields for display      | `'["name", "status", "lead_owner"]'`   |
 
 ## Practical Examples
 
-### Example 1: Simple Filter and Sort on Contact
+### Example 1: Creating Multiple Views for Contacts
 
-This example sets the default filter for the 'Contact' list view to show only 'Lead' type contacts and sorts them by their creation date.
+This example creates two named views for the 'Contact' DocType.
 
 ```python
 # In bench console
 import json
-from frappe.desk.listview import set_list_settings, get_list_settings
+from frappe.desk.listview import set_list_settings
 
-# Define the settings
-contact_settings = {
-    "filters": '[["contact_type", "=", "Lead"]]',
+# 1. View for "Customers Only"
+customer_settings = {
+    "filters": '[["is_customer", "=", 1]]',
+    "order_by": "modified desc"
+}
+set_list_settings('Contact', 'Customers Only', json.dumps(customer_settings))
+
+# 2. View for "USA Suppliers"
+supplier_settings = {
+    "filters": '[["is_supplier", "=", 1], ["country", "=", "United States"]]',
     "order_by": "creation asc"
 }
-
-# Save the settings
-set_list_settings('Contact', json.dumps(contact_settings))
-
-# Verify the settings
-saved_settings = get_list_settings('Contact')
-print("Saved filters:", saved_settings.filters)
-print("Saved order by:", saved_settings.order_by)
+set_list_settings('Contact', 'USA Suppliers', json.dumps(supplier_settings))
 ```
 
-**Verifiable Result:**
+### Example 2: Retrieving Settings
 
-Navigate to the 'Contact' list view in the UI. You will observe that the view is now filtered by "Contact Type = Lead" and sorted by "creation" in ascending order.
-
-### Example 2: Advanced Settings on Lead
-
-This example demonstrates setting multiple properties at once for the 'CRM Lead' DocType, including filters, fields, and disabling UI elements.
+You can retrieve a specific setting by name or get all settings for a DocType.
 
 ```python
 # In bench console
-import json
-from frappe.desk.listview import set_list_settings, get_list_settings
+from frappe.desk.listview import get_list_settings, get_all_list_settings
 
-# Define the settings
-lead_settings = {
-    "filters": '[["status", "=", "New"], ["priority", "=", "High"]]',
-    "fields": '["name", "lead_name", "status", "priority", "lead_owner"]',
-    "order_by": "modified desc",
-    "disable_count": True,
-    "disable_auto_refresh": True
-}
+# Get the "Customers Only" setting
+customer_view = get_list_settings('Contact', 'Customers Only')
+if customer_view:
+    print("Filters for 'Customers Only':", customer_view.filters)
 
-# Save the settings
-set_list_settings('CRM Lead', json.dumps(lead_settings))
-
-# Verify the settings
-saved_settings = get_list_settings('CRM Lead')
-print("Saved settings for CRM Lead:", saved_settings.as_dict())
+# Get all settings for 'Contact'
+all_contact_views = get_all_list_settings('Contact')
+print("\\nAll saved views for Contact:")
+for view in all_contact_views:
+    print(f"- {view.settings_name}")
 ```
-
-**Verifiable Result:**
-
-Navigate to the 'CRM Lead' list view. You will see that:
--   The view is filtered by "Status = New" and "Priority = High".
--   The displayed columns are "name", "lead_name", "status", "priority", and "lead_owner".
--   The list is sorted by the last modified date in descending order.
--   The record count and auto-refresh functionality are disabled.
 
 ## Testing from the Browser Console
 
-You can also test these functions directly from your browser's developer console.
+You can also test these functions from the browser's developer console using `frappe.call`.
 
-1.  Open your Frappe instance in the browser and log in.
-2.  Open the developer console (usually by pressing F12).
-3.  Use the `frappe.call` method to interact with the functions.
-
-**Example: Set settings for the 'ToDo' DocType**
+**Example: Create a "High-Priority Leads" view**
 
 ```javascript
 frappe.call({
     method: 'frappe.desk.listview.set_list_settings',
     args: {
-        doctype: 'ToDo',
+        doctype: 'Contact',
+        settings_name: 'High-Priority Leads',
         values: JSON.stringify({
-            filters: '[["status", "=", "Open"]]',
-            order_by: 'priority desc'
+            filters: '[["is_lead", "=", 1], ["custom_priority", "=", "High"]]',
+            order_by: 'modified desc'
         })
     },
     callback: function(r) {
         console.log('Settings saved:', r.message);
-        // Now, get the settings to verify
-        frappe.call({
-            method: 'frappe.desk.listview.get_list_settings',
-            args: {
-                doctype: 'ToDo'
-            },
-            callback: function(r) {
-                console.log('Saved settings:', r.message);
-            }
-        });
     }
 });
 ```
 
-**Verifiable Result:**
-
-Go to the 'ToDo' list view. You will see that the list is filtered by "Status = Open" and sorted by priority in descending order.
-
 ## Important Notes
 
-1.  **DocType-wide Settings**: These settings apply to all users viewing the DocType, not individual users.
-2.  **Automatic Creation**: A "List View Settings" document is created automatically when settings are saved for the first time for a DocType.
-3.  **Updates**: Calling `set_list_settings` on a DocType with existing settings will update them with the new values.
-4.  **Persistence**: Settings are stored in the database and persist across sessions.
-5.  **User-specific Settings**: For user-specific preferences, you would need to create a custom solution.
+1.  **Named Settings**: Each list view setting must have a unique name for a given DocType.
+2.  **DocType-wide**: Settings are available to all users with access to the DocType.
+3.  **Updates**: Calling `set_list_settings` with an existing `settings_name` will overwrite the previous configuration.
+4.  **UI Integration**: The Desk UI must be updated to provide a way for users to select from and manage these saved views.
 
 ## Extending for User-specific Settings
 
