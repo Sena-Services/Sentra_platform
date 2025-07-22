@@ -76,7 +76,7 @@ fetch('/api/v2/document/Contact', {
   "last_name": "Doe",
   "full_name": "John Doe",        // Auto-computed
   "gender": "Male",               // Male/Female/Other
-  "date_of_birth": "1990-01-01",
+  "dob": "1990-01-01",
   "image": "/files/profile.jpg",
   
   // Contact details (Child tables)
@@ -103,7 +103,6 @@ fetch('/api/v2/document/Contact', {
   "pincode": "10001",
   
   // Business information
-  "company_name": "ACME Corp",
   "designation": "Software Engineer",
   "department": "Engineering",
   
@@ -112,8 +111,6 @@ fetch('/api/v2/document/Contact', {
   
   // Flags
   "is_primary_contact": 0,        // 1 if customer contact
-  "is_billing_contact": 0,
-  "disabled": 0,
   
   // System fields
   "creation": "2024-01-01 10:00:00",
