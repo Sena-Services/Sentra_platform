@@ -1,20 +1,21 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-06-19 13:43:26.799636",
+ "creation": "2025-07-23 14:10:02.164041",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "activity"
+  "target_audience"
  ],
  "fields": [
   {
-   "fieldname": "activity",
+   "fieldname": "target_audience",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Activity",
-   "options": "Activity List",
+   "label": "Target Audience",
+   "options": "Target Audience",
    "reqd": 1
   }
  ],
@@ -22,11 +23,10 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-23 14:04:16.241913",
+ "modified": "2025-07-23 14:10:02.164041",
  "modified_by": "Administrator",
  "module": "Sentra",
- "name": "Activity Child Table",
- "naming_rule": "Autoincrement",
+ "name": "Exclusion Criteria Child Table",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",

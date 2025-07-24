@@ -66,8 +66,7 @@ headers: {
   "min_group_size": 2,                         // Default: 1
   "max_group_size": 20,                        // Default: 10
   
-  // Operational
-  "operating_days": [],                        // Table MultiSelect
+                         // Table MultiSelect
   "operating_hours": "9:00 AM - 6:00 PM",
   "target_audience": [],                       // Table MultiSelect
   "exclusion_criteria": [],                    // Table MultiSelect

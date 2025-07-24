@@ -11,6 +11,7 @@
   "package_name",
   "package_code",
   "status",
+  "itinerary_link",
   "column_break_pd1",
   "dmc",
   "description",
@@ -20,8 +21,6 @@
   "min_group_size",
   "max_group_size",
   "column_break_av1",
-  "operating_days",
-  "operating_hours",
   "target_audience",
   "exclusion_criteria",
   "pricing_section",
@@ -137,27 +136,16 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "operating_days",
-   "fieldtype": "Table MultiSelect",
-   "label": "Operating Days",
-   "options": "Operating Day"
-  },
-  {
-   "fieldname": "operating_hours",
-   "fieldtype": "Data",
-   "label": "Operating Hours"
-  },
-  {
    "fieldname": "target_audience",
    "fieldtype": "Table MultiSelect",
    "label": "Target Audience",
-   "options": "Target Audience"
+   "options": "Target Audience Child Table"
   },
   {
    "fieldname": "exclusion_criteria",
    "fieldtype": "Table MultiSelect",
    "label": "Exclusion Criteria",
-   "options": "Exclusion Criteria"
+   "options": "Exclusion Criteria Child Table"
   },
   {
    "fieldname": "pricing_section",
@@ -214,13 +202,13 @@
    "fieldname": "package_inclusions",
    "fieldtype": "Table MultiSelect",
    "label": "Inclusions",
-   "options": "Package Inclusion"
+   "options": "Package Inclusion Child Table"
   },
   {
    "fieldname": "package_exclusions",
    "fieldtype": "Table MultiSelect",
    "label": "Exclusions",
-   "options": "Package Exclusion"
+   "options": "Package Exclusion Child Table"
   },
   {
    "fieldname": "terms_and_conditions",
@@ -238,71 +226,76 @@
    "label": "Notes"
   },
   {
+   "collapsible": 1,
    "fieldname": "legacy_fields_section",
    "fieldtype": "Section Break",
-   "label": "Legacy Fields",
-   "collapsible": 1,
-   "hidden": 1
+   "hidden": 1,
+   "label": "Legacy Fields"
   },
   {
    "fieldname": "vendors",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Vendors",
-   "options": "Vendor List Child Table",
-   "hidden": 1
+   "options": "Vendor List Child Table"
   },
   {
    "fieldname": "no_of_days",
    "fieldtype": "Int",
-   "label": "No. of Days",
-   "hidden": 1
+   "hidden": 1,
+   "label": "No. of Days"
   },
   {
    "fieldname": "no_of_nights",
    "fieldtype": "Int",
-   "label": "No. of Nights",
-   "hidden": 1
+   "hidden": 1,
+   "label": "No. of Nights"
   },
   {
    "description": "Price per person",
    "fieldname": "price",
    "fieldtype": "Currency",
-   "label": "Price",
-   "hidden": 1
+   "hidden": 1,
+   "label": "Price"
   },
   {
    "fieldname": "activities",
    "fieldtype": "Table MultiSelect",
+   "hidden": 1,
    "label": "Activities",
-   "options": "Activity Child Table",
-   "hidden": 1
+   "options": "Activity Child Table"
   },
   {
    "fieldname": "destinations",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Destinations",
-   "options": "Trip Destination",
-   "hidden": 1
+   "options": "Trip Destination"
   },
   {
    "fieldname": "hotel",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Hotel",
-   "options": "Hotel Room and Pricing",
-   "hidden": 1
+   "options": "Hotel Room and Pricing"
   },
   {
    "fieldname": "daywise_plan",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Daywise Plan",
-   "options": "Daywise Plan",
-   "hidden": 1
+   "options": "Daywise Plan"
+  },
+  {
+   "fieldname": "itinerary_link",
+   "fieldtype": "Attach",
+   "label": "Itinerary Link"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 17:23:49.460725",
+ "modified": "2025-07-23 14:10:08.568104",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",

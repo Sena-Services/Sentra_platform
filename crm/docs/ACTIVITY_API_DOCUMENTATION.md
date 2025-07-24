@@ -76,7 +76,7 @@ headers: {
   "max_participants": 20,
   
   // Operational
-  "operating_days": "Daily",
+  
   "timings": "4:00 PM - 10:30 PM",
   "seasonal_availability": "Year Round",
   
