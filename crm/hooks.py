@@ -30,7 +30,6 @@ fixtures = [
 	"Contact Type",
 	"Contact Category",
 	"Communication Medium",
-	{"dt": "Custom Field", "filters": [["module", "=", "CRM"]]},
 	"Vendor Type",
 	"Accommodation Type",
 ]
@@ -144,7 +143,6 @@ before_uninstall = "crm.uninstall.before_uninstall"
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Contact": "crm.overrides.contact.CustomContact",
 	"Email Template": "crm.overrides.email_template.CustomEmailTemplate",
 }
 

@@ -20,6 +20,11 @@ class CRMLead(Document):
 		self.set_full_name()
 		self.set_lead_name()
 		self.set_title()
+
+		if self.is_new():
+			if not self.email and not self.mobile_no:
+				frappe.throw(_("A Lead must have either an Email Address or a Mobile Number."))
+
 		if not self.is_new() and self.has_value_changed("lead_owner") and self.lead_owner:
 			self.share_with_agent(self.lead_owner)
 			self.assign_agent(self.lead_owner)
