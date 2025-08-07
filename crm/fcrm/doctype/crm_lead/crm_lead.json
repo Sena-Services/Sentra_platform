@@ -98,7 +98,7 @@
    "fieldname": "service_types",
    "fieldtype": "Table",
    "label": "Service Types",
-   "options": "Lead Service Type"
+   "options": "Trip Service Type"
   },
   {
    "fetch_from": "link_to_contact.image",
@@ -180,11 +180,11 @@
  "index_web_pages_for_search": 1,
  "links": [
   {
-   "link_doctype": "Requirement",
+   "link_doctype": "Trip",
    "link_fieldname": "lead"
   }
  ],
- "modified": "2025-07-18 16:52:49.138031",
+ "modified": "2025-08-07 17:43:23.438872",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

@@ -22,7 +22,7 @@
  "modified": "2025-01-18 09:50:00.000000",
  "modified_by": "Administrator",
  "module": "FCRM",
- "name": "Lead Service Type",
+ "name": "Trip Service Type",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
