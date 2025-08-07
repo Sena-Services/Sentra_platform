@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestRequirement(UnitTestCase):
+class UnitTestTrip(UnitTestCase):
 	"""
-	Unit tests for Requirement.
+	Unit tests for Trip.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestRequirement(IntegrationTestCase):
+class IntegrationTestTrip(IntegrationTestCase):
 	"""
-	Integration tests for Requirement.
+	Integration tests for Trip.
 	Use this class for testing interactions between multiple components.
 	"""
 

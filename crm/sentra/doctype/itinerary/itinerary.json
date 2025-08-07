@@ -31,7 +31,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Requirement",
-   "options": "Requirement",
+   "options": "Trip",
    "reqd": 1
   },
   {
@@ -55,7 +55,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-18 17:06:40.728885",
+ "modified": "2025-08-07 13:04:54.605499",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Itinerary",

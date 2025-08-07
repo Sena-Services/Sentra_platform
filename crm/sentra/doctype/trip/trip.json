@@ -8,7 +8,7 @@
  "field_order": [
   "trip_details_section",
   "title",
-  "lead",
+  "contact",
   "use_standard_package",
   "destination_city",
   "departure",
@@ -28,16 +28,6 @@
   "activity"
  ],
  "fields": [
-  {
-   "fieldname": "lead",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Lead",
-   "options": "CRM Lead",
-   "reqd": 1,
-   "search_index": 1,
-   "set_only_once": 1
-  },
   {
    "fieldname": "destination_city",
    "fieldtype": "Table",
@@ -146,15 +136,25 @@
    "fieldname": "departure",
    "fieldtype": "Data",
    "label": "Departure City"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Contact",
+   "options": "Contact",
+   "reqd": 1,
+   "search_index": 1,
+   "set_only_once": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 17:05:11.512464",
+ "modified": "2025-08-07 13:06:09.638279",
  "modified_by": "Administrator",
  "module": "Sentra",
- "name": "Requirement",
+ "name": "Trip",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

@@ -1,4 +1,4 @@
-frappe.ui.form.on('Requirement', {
+frappe.ui.form.on('Trip', {
     // This function will run when the 'use_standard_package' field's value changes
     use_standard_package: function(frm) {
         

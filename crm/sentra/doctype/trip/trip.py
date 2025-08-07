@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 
 
-class Requirement(Document):
+class Trip(Document):
 	def insert(self, ignore_permissions=None, ignore_links=None, ignore_if_duplicate=None, ignore_mandatory=None, set_name=None, set_child_names=None):
 		"""Override insert to auto-create destinations before link validation"""
 		
@@ -14,7 +14,7 @@ class Requirement(Document):
 			if hasattr(self, 'destination_city') and self.destination_city:
 				for destination_row in self.destination_city:
 					if hasattr(destination_row, 'destination') and destination_row.destination:
-						destination_name = str(destination_row.destination).srequirement()
+						destination_name = str(destination_row.destination).strip()
 						if destination_name:
 							# Check if destination exists
 							if not frappe.db.exists("Destination", destination_name):
@@ -42,11 +42,11 @@ class Requirement(Document):
 	@staticmethod
 	def default_list_data():
 		"""
-		Default list configuration for Requirement doctype
+		Default list configuration for Trip doctype
 		Following CRM's exact pattern
 		"""
 		columns = [
-			{"label": "Requirement Name", "type": "Data", "key": "title", "width": "200px"},
+			{"label": "Trip Name", "type": "Data", "key": "title", "width": "200px"},
 			{"label": "Destination", "type": "Data", "key": "destination_city", "width": "150px"},
 			{"label": "Start Date", "type": "Date", "key": "start_date", "width": "120px"},
 			{"label": "End Date", "type": "Date", "key": "end_date", "width": "120px"},
