@@ -8,7 +8,7 @@
  "field_order": [
   "trip_details_section",
   "title",
-  "contact",
+  "customer",
   "use_standard_package",
   "destination_city",
   "departure",
@@ -21,7 +21,6 @@
   "budget",
   "priority",
   "status",
-  "trip owner",
   "service_type",
   "standard_package",
   "section_break_dtee",
@@ -29,7 +28,8 @@
   "no_of_rooms",
   "naming_series",
   "activities_details_section",
-  "activity"
+  "activity",
+  "trip_owner"
  ],
  "fields": [
   {
@@ -57,32 +57,32 @@
    "label": "End Date"
   },
   {
-    "fieldname": "priority",
-    "fieldtype": "Select",
-    "label": "Priority",
-    "options": "High\nMedium\nLow"
-   },
-   {
-    "default": "New",
-    "fieldname": "status",
-    "fieldtype": "Link",
-    "in_list_view": 1,
-    "label": "Status",
-    "options": "CRM Lead Status",
-    "search_index": 1
-   },
-   {
-    "fieldname": "trip_owner",
-    "fieldtype": "Link",
-    "label": "Trip Owner",
-    "options": "User"
-   },
-   {
-    "fieldname": "service_type",
-    "fieldtype": "Table",
-    "label": "Service Type",
-    "options": "Trip Service Type"
-   },
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "High\nMedium\nLow"
+  },
+  {
+   "default": "New",
+   "fieldname": "status",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "CRM Lead Status",
+   "search_index": 1
+  },
+  {
+   "fieldname": "trip_owner",
+   "fieldtype": "Link",
+   "label": "Trip Owner",
+   "options": "User"
+  },
+  {
+   "fieldname": "service_type",
+   "fieldtype": "Table",
+   "label": "Service Type",
+   "options": "Trip Service Type"
+  },
   {
    "fieldname": "budget",
    "fieldtype": "Currency",
@@ -169,10 +169,10 @@
    "label": "Departure City"
   },
   {
-   "fieldname": "contact",
+   "fieldname": "customer",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Contact",
+   "label": "Customer",
    "options": "Contact",
    "reqd": 1,
    "search_index": 1,
@@ -182,7 +182,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-07 13:06:09.638279",
+ "modified": "2025-08-07 18:27:17.190593",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",
