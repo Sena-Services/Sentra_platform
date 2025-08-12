@@ -14,6 +14,7 @@
   "itinerary_link",
   "column_break_pd1",
   "dmc",
+  "destinations",
   "description",
   "availability_section",
   "valid_from",
@@ -23,12 +24,13 @@
   "column_break_av1",
   "target_audience",
   "exclusion_criteria",
+  "no_of_days",
+  "no_of_nights",
   "pricing_section",
   "currency",
   "base_cost",
   "column_break_pr1",
   "markup_percentage",
-  "net_price",
   "daywise_itinerary_section",
   "itinerary_data",
   "inclusions_exclusions_section",
@@ -36,15 +38,12 @@
   "package_exclusions",
   "terms_and_conditions",
   "additional_info_section",
+  "hotel",
   "notes",
   "legacy_fields_section",
   "vendors",
-  "no_of_days",
-  "no_of_nights",
   "price",
   "activities",
-  "destinations",
-  "hotel",
   "daywise_plan"
  ],
  "fields": [
@@ -177,13 +176,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "net_price",
-   "fieldtype": "Currency",
-   "label": "Net Price",
-   "options": "currency",
-   "read_only": 1
-  },
-  {
    "fieldname": "daywise_itinerary_section",
    "fieldtype": "Section Break",
    "label": "Day-wise Itinerary"
@@ -191,7 +183,7 @@
   {
    "fieldname": "itinerary_data",
    "fieldtype": "JSON",
-   "label": "Interactive Day-wise Itinerary"
+   "label": "Day-wise Itinerary"
   },
   {
    "fieldname": "inclusions_exclusions_section",
@@ -242,13 +234,11 @@
   {
    "fieldname": "no_of_days",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "No. of Days"
   },
   {
    "fieldname": "no_of_nights",
    "fieldtype": "Int",
-   "hidden": 1,
    "label": "No. of Nights"
   },
   {
@@ -268,16 +258,15 @@
   {
    "fieldname": "destinations",
    "fieldtype": "Table",
-   "hidden": 1,
    "label": "Destinations",
-   "options": "Trip Destination"
+   "options": "Trip Destination",
+   "reqd": 1
   },
   {
    "fieldname": "hotel",
-   "fieldtype": "Table",
-   "hidden": 1,
+   "fieldtype": "Select",
    "label": "Hotel",
-   "options": "Hotel Room and Pricing"
+   "options": "5\n4\n3\n2\n1"
   },
   {
    "fieldname": "daywise_plan",
@@ -295,7 +284,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-23 14:10:08.568104",
+ "modified": "2025-08-12 11:16:05.153496",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",

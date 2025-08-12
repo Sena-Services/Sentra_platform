@@ -42,8 +42,7 @@
    "fieldname": "pax",
    "fieldtype": "Int",
    "label": "PAX",
-   "non_negative": 1,
-   "read_only": 1
+   "non_negative": 1
   },
   {
    "fieldname": "start_date",
@@ -84,6 +83,7 @@
    "options": "Trip Service Type"
   },
   {
+   "description": "per person (USD)",
    "fieldname": "budget",
    "fieldtype": "Currency",
    "label": "Budget",
@@ -108,7 +108,7 @@
    "label": "No of Rooms"
   },
   {
-   "default": "REQ-.YYYY.-",
+   "default": "TRIP-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Data",
    "hidden": 1,
@@ -175,14 +175,13 @@
    "label": "Customer",
    "options": "Contact",
    "reqd": 1,
-   "search_index": 1,
-   "set_only_once": 1
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-07 18:27:17.190593",
+ "modified": "2025-08-12 22:10:23.799429",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",
