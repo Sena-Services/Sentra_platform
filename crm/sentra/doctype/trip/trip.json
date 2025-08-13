@@ -23,15 +23,54 @@
   "status",
   "service_type",
   "standard_package",
-  "section_break_dtee",
+  "requirements_section",
+  "preferred_meal_types",
+  "column_break_requirements",
   "category",
   "no_of_rooms",
+  "preferred_activity_types",
+  "preferred_transport_class",
+  "special_requirements",
+  "section_break_dtee",
   "naming_series",
   "activities_details_section",
   "activity",
   "trip_owner"
  ],
  "fields": [
+  {
+   "fieldname": "requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Requirements & Preferences"
+  },
+  {
+   "fieldname": "preferred_meal_types",
+   "fieldtype": "Small Text",
+   "label": "Preferred Meal Types",
+   "description": "e.g., Local cuisine, International, Vegetarian, Fine dining, Street food"
+  },
+  {
+   "fieldname": "column_break_requirements",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_activity_types",
+   "fieldtype": "Small Text",
+   "label": "Preferred Activity Types",
+   "description": "e.g., Cultural tours, Adventure sports, Museums, Shopping, Nightlife"
+  },
+  {
+   "fieldname": "preferred_transport_class",
+   "fieldtype": "Select",
+   "label": "Preferred Transportation Class",
+   "options": "\nEconomy\nPremium Economy\nBusiness\nFirst Class"
+  },
+  {
+   "fieldname": "special_requirements",
+   "fieldtype": "Small Text",
+   "label": "Special Requirements",
+   "description": "Dietary restrictions, accessibility needs, celebration occasions, etc."
+  },
   {
    "fieldname": "destination_city",
    "fieldtype": "Table",

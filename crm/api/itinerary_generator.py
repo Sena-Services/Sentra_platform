@@ -646,3 +646,566 @@ def format_recommendations(ai_analysis: Dict[str, Any], score_breakdown: Dict[st
             unique_recommendations.append(rec)
     
     return unique_recommendations[:5]  # Return top 5 recommendations
+
+@frappe.whitelist()
+def build_detailed_itinerary(trip_name: str, fill_itinerary: bool = True, use_ai_selection: bool = True) -> Dict[str, Any]:
+    """
+    Enhanced API that can both analyze package match AND create actual Itinerary doctype records
+    
+    Args:
+        trip_name: Name/ID of the Trip document
+        fill_itinerary: If True, will create actual Itinerary doctype with selected services
+        use_ai_selection: Whether to use AI for intelligent service selection
+    
+    Returns:
+        Dict containing package analysis + created Itinerary record
+    """
+    
+    print(f"\n🚀 =============================================================")
+    print(f"🚀 STARTING ENHANCED ITINERARY GENERATOR")
+    print(f"🚀 Trip: {trip_name}")
+    print(f"🚀 Fill Itinerary: {fill_itinerary}")  
+    print(f"🚀 Use AI: {use_ai_selection}")
+    print(f"🚀 =============================================================")
+    
+    try:
+        # Step 1: Get package matching analysis
+        print(f"\n📊 STEP 1: Analyzing package match for trip {trip_name}")
+        match_result = analyze_trip_package_match(trip_name)
+        
+        print(f"✅ Package analysis completed:")
+        print(f"   - Success: {match_result.get('success')}")
+        if match_result.get('success'):
+            pkg = match_result["selected_package"]
+            print(f"   - Selected Package: {pkg['package_name']} (ID: {pkg['name']})")
+            print(f"   - Match Score: {match_result['match_score']:.1f}%")
+        else:
+            print(f"   - Error: {match_result.get('message')}")
+            
+        if not match_result["success"]:
+            print(f"❌ Cannot proceed without successful package match")
+            return match_result
+            
+        if not fill_itinerary:
+            print(f"ℹ️ fill_itinerary=False, returning package analysis only")
+            return match_result
+        
+        # Step 2: Load trip and package data  
+        print(f"\n📋 STEP 2: Loading trip and package data")
+        trip = frappe.get_doc("Trip", trip_name)
+        selected_package = match_result["selected_package"]
+        
+        print(f"✅ Trip loaded: {trip.title}")
+        print(f"   - Customer: {trip.customer}")
+        print(f"   - Budget: {trip.budget}")
+        print(f"   - PAX: {trip.pax}")
+        
+        # Get destinations from trip
+        destinations = []
+        if trip.destination_city:
+            destinations = [dest.destination for dest in trip.destination_city if hasattr(dest, 'destination')]
+        print(f"   - Destinations: {destinations}")
+        
+        if not destinations:
+            error_msg = "No destinations specified in trip"
+            print(f"❌ {error_msg}")
+            match_result["itinerary_error"] = error_msg
+            return match_result
+        
+        # Step 3: Build detailed itinerary with service selection
+        print(f"\n🏗️ STEP 3: Building detailed itinerary with service selection")
+        print(f"   - Using {'AI-powered' if use_ai_selection else 'rule-based'} selection")
+        
+        itinerary_result = _build_itinerary_with_services(
+            trip, selected_package, destinations, use_ai_selection
+        )
+        
+        print(f"✅ Service selection completed:")
+        services = itinerary_result.get("services", {})
+        for service_type, service_list in services.items():
+            print(f"   - {service_type.title()}: {len(service_list)} selected")
+            if service_list:
+                print(f"     {service_list[:3]}")  # Show first 3
+        
+        cost = itinerary_result.get("cost_breakdown", {})
+        print(f"   - Total Cost: {cost.get('total', 0):.2f}")
+        
+        # Step 4: Create actual Itinerary doctype record
+        print(f"\n💾 STEP 4: Creating Itinerary doctype record")
+        
+        itinerary_doc = _create_itinerary_doctype(
+            trip=trip,
+            package_info=selected_package,
+            itinerary_data=itinerary_result,
+            match_result=match_result
+        )
+        
+        print(f"✅ Itinerary record created: {itinerary_doc.name}")
+        print(f"   - Name: {itinerary_doc.itinerary_name}")
+        print(f"   - Code: {itinerary_doc.itinerary_code}")
+        print(f"   - Status: {itinerary_doc.status}")
+        
+        # Step 5: Update response
+        print(f"\n📤 STEP 5: Preparing final response")
+        match_result.update({
+            "itinerary_created": True,
+            "itinerary_name": itinerary_doc.name,
+            "itinerary_id": itinerary_doc.name,
+            "itinerary_code": itinerary_doc.itinerary_code,
+            "detailed_itinerary": itinerary_result["itinerary"],
+            "selected_services": itinerary_result["services"], 
+            "total_cost_breakdown": itinerary_result["cost_breakdown"],
+            "ai_itinerary_reasoning": itinerary_result.get("ai_reasoning"),
+            "service_recommendations": itinerary_result.get("recommendations", [])
+        })
+        
+        print(f"\n🎉 =============================================================")
+        print(f"🎉 ITINERARY GENERATION COMPLETED SUCCESSFULLY!")
+        print(f"🎉 Created Itinerary: {itinerary_doc.name}")
+        print(f"🎉 Total Services: {sum(len(v) for v in services.values())}")
+        print(f"🎉 Total Cost: {cost.get('total', 0):.2f}")
+        print(f"🎉 =============================================================")
+        
+        return match_result
+        
+    except Exception as e:
+        error_msg = f"Error in build_detailed_itinerary: {str(e)}"
+        print(f"\n❌ FATAL ERROR: {error_msg}")
+        frappe.log_error(error_msg, "Enhanced Itinerary Generator")
+        import traceback
+        print(f"❌ Traceback: {traceback.format_exc()}")
+        return {
+            "success": False,
+            "error": str(e),
+            "message": "An error occurred while building the detailed itinerary"
+        }
+
+def _create_itinerary_doctype(trip, package_info: Dict, itinerary_data: Dict, match_result: Dict) -> Any:
+    """Create actual Itinerary doctype record"""
+    
+    print(f"\n📝 Creating Itinerary doctype with the following data:")
+    print(f"   - Trip: {trip.name}")
+    print(f"   - Package: {package_info['name']}")
+    
+    try:
+        # Create new Itinerary document
+        itinerary = frappe.new_doc("Itinerary")
+        
+        # Basic info
+        itinerary.trip = trip.name
+        itinerary.package = package_info['name']
+        # Create unique itinerary name and code with incremental numbering
+        existing_count = frappe.db.count("Itinerary", {"trip": trip.name})
+        itinerary_number = existing_count + 1
+        
+        itinerary.itinerary_name = f"{trip.title} - Itinerary {itinerary_number}"
+        itinerary.itinerary_code = f"{trip.name}-ITIN-{itinerary_number:02d}"
+        itinerary.status = "Draft"
+        itinerary.description = f"AI-generated itinerary based on {package_info['package_name']}"
+        
+        # Copy package details
+        itinerary.dmc = package_info.get('dmc', 'AI Generated')
+        itinerary.currency = package_info.get('currency', 'USD')
+        itinerary.base_cost = itinerary_data['cost_breakdown'].get('total', package_info.get('base_cost', 0))
+        itinerary.markup_percentage = 20  # Default markup
+        itinerary.hotel = package_info.get('hotel_category', '4')
+        
+        # Dates from trip
+        itinerary.valid_from = trip.start_date
+        itinerary.valid_to = trip.end_date
+        itinerary.min_group_size = 1
+        itinerary.max_group_size = trip.pax or 10
+        
+        # Add destinations with nights calculation
+        print(f"   - Adding destinations...")
+        total_nights = (trip.end_date - trip.start_date).days if trip.end_date and trip.start_date else 3
+        nights_per_dest = max(1, total_nights // len(trip.destination_city)) if trip.destination_city else 1
+        
+        for i, dest in enumerate(trip.destination_city):
+            # For the last destination, give it any remaining nights
+            nights = nights_per_dest
+            if i == len(trip.destination_city) - 1:
+                nights = total_nights - (nights_per_dest * i)
+            
+            itinerary.append("destinations", {
+                "destination": dest.destination,
+                "nights": nights,
+                "sequence": i + 1
+            })
+            print(f"     * {dest.destination}: {nights} nights")
+        
+        # Store detailed itinerary data as JSON
+        print(f"   - Storing itinerary data as JSON...")
+        itinerary.itinerary_data = json.dumps(itinerary_data['itinerary'])
+        
+        # Add notes with service details
+        services = itinerary_data.get('services', {})
+        notes = [
+            f"AI-Generated Itinerary",
+            f"Base Package: {package_info['package_name']}",
+            f"Match Score: {match_result.get('match_score', 0):.1f}%",
+            "",
+            "Selected Services:",
+        ]
+        
+        for service_type, service_list in services.items():
+            notes.append(f"- {service_type.title()}: {len(service_list)} items")
+            for service in service_list[:3]:  # Show first 3
+                notes.append(f"  * {service}")
+            if len(service_list) > 3:
+                notes.append(f"  * ... and {len(service_list)-3} more")
+        
+        if itinerary_data.get('ai_reasoning'):
+            notes.extend([
+                "",
+                "AI Selection Reasoning:",
+                itinerary_data['ai_reasoning'][:500] + "..." if len(itinerary_data['ai_reasoning']) > 500 else itinerary_data['ai_reasoning']
+            ])
+        
+        itinerary.notes = "\n".join(notes)
+        
+        # Save the document
+        print(f"   - Saving Itinerary document...")
+        itinerary.insert()
+        
+        print(f"✅ Itinerary doctype created successfully:")
+        print(f"   - ID: {itinerary.name}")
+        print(f"   - Name: {itinerary.itinerary_name}")
+        print(f"   - Cost: {itinerary.currency} {itinerary.base_cost}")
+        
+        frappe.db.commit()
+        return itinerary
+        
+    except Exception as e:
+        error_msg = f"Failed to create Itinerary doctype: {str(e)}"
+        print(f"❌ {error_msg}")
+        import traceback
+        print(f"❌ Traceback: {traceback.format_exc()}")
+        raise Exception(error_msg)
+
+def _build_itinerary_with_services(trip: Any, selected_package: Dict, destinations: List[str], use_ai: bool) -> Dict:
+    """Build itinerary using actual Hotels, Activities, Meals, Transportation, Transfer services"""
+    
+    print(f"\n🔍 Collecting available services for destinations: {destinations}")
+    
+    # Service selection functions with logging
+    def get_hotels(city: str = None, star_rating: str = None, limit: int = 10):
+        filters = {"status": "Active"}
+        if city:
+            filters["city"] = city
+        if star_rating:
+            filters["star_rating"] = star_rating
+        
+        print(f"🏨 Searching hotels: {filters}")
+        results = frappe.get_list("Hotel", fields=[
+            "name", "hotel_name", "star_rating", "city", "currency"
+        ], filters=filters, limit=limit)
+        # Add default base_price if not present
+        for hotel in results:
+            if "base_price" not in hotel:
+                # Assign default price based on star rating
+                star_prices = {"5": 250, "4": 150, "3": 100, "2": 75, "1": 50}
+                hotel["base_price"] = star_prices.get(hotel.get("star_rating", "3"), 100)
+        print(f"   Found {len(results)} hotels")
+        return results
+    
+    def get_activities(city: str = None, limit: int = 20):
+        filters = {"status": "Active"}
+        if city:
+            filters["city"] = city
+        
+        print(f"🎯 Searching activities: {filters}")
+        results = frappe.get_list("Activity", fields=[
+            "name", "activity_name", "activity_type", "city", "adult_price", "currency", "duration_hours"
+        ], filters=filters, limit=limit)
+        print(f"   Found {len(results)} activities")
+        return results
+    
+    def get_meals(city: str = None, limit: int = 15):
+        filters = {"status": "Active"}
+        if city:
+            filters["city"] = city
+            
+        print(f"🍽️ Searching meals: {filters}")
+        results = frappe.get_list("Meal", fields=[
+            "name", "meal_name", "meal_type", "city", "adult_price", "currency"
+        ], filters=filters, limit=limit)
+        print(f"   Found {len(results)} meals")
+        return results
+    
+    def get_transportation(arrival_city: str = None, limit: int = 10):
+        filters = {"status": "Confirmed"}
+        if arrival_city:
+            filters["arrival_city"] = arrival_city
+            
+        print(f"✈️ Searching transportation: {filters}")
+        results = frappe.get_list("Transportation", fields=[
+            "name", "transportation_name", "service_class", "arrival_city", "adult_price", "currency"
+        ], filters=filters, limit=limit)
+        print(f"   Found {len(results)} transportation options")
+        return results
+    
+    def get_transfers(city: str = None, limit: int = 10):
+        filters = {"status": "Confirmed"}
+        if city:
+            filters["pickup_city"] = city
+            
+        print(f"🚗 Searching transfers: {filters}")
+        results = frappe.get_list("Transfer", fields=[
+            "name", "transfer_name", "transfer_type", "pickup_city", "base_price", "currency"
+        ], filters=filters, limit=limit)
+        print(f"   Found {len(results)} transfers")
+        return results
+    
+    # Collect available services for all destinations
+    all_services = {"hotels": [], "activities": [], "meals": [], "transportation": [], "transfers": []}
+    
+    print(f"\n📦 Collecting services for each destination:")
+    for destination in destinations:
+        print(f"\n   Processing destination: {destination}")
+        
+        hotels = get_hotels(city=destination)
+        activities = get_activities(city=destination)
+        meals = get_meals(city=destination)
+        transportation = get_transportation(arrival_city=destination)
+        transfers = get_transfers(city=destination)
+        
+        all_services["hotels"].extend(hotels)
+        all_services["activities"].extend(activities)
+        all_services["meals"].extend(meals)
+        all_services["transportation"].extend(transportation)
+        all_services["transfers"].extend(transfers)
+        
+        print(f"     Added: {len(hotels)} hotels, {len(activities)} activities, {len(meals)} meals, {len(transportation)} transport, {len(transfers)} transfers")
+    
+    print(f"\n📊 Total services collected:")
+    for service_type, service_list in all_services.items():
+        print(f"   - {service_type.title()}: {len(service_list)} total")
+    
+    # AI-only approach - no rule-based fallback
+    print(f"🤖 Using AI-powered service selection...")
+    return _build_ai_itinerary(trip, selected_package, destinations, all_services)
+
+def _build_ai_itinerary(trip: Any, package: Dict, destinations: List[str], services: Dict) -> Dict:
+    """Use AI to build itinerary with intelligent service selection"""
+    
+    # Prepare trip requirements
+    trip_requirements = {
+        "destinations": destinations,
+        "budget": trip.budget,
+        "group_size": len(trip.passenger_details) if trip.passenger_details else (trip.pax or 2),
+        "preferred_hotel_star_rating": getattr(trip, "preferred_hotel_star_rating", None),
+        "preferred_meal_types": getattr(trip, "preferred_meal_types", None),
+        "preferred_activity_types": getattr(trip, "preferred_activity_types", None),
+        "preferred_transport_class": getattr(trip, "preferred_transport_class", None),
+        "special_requirements": getattr(trip, "special_requirements", None),
+        "no_of_days": package.get("no_of_days", 4)
+    }
+    
+    # Create AI prompt
+    prompt = f"""
+You are a travel planning expert. Create a detailed day-by-day itinerary using the available services.
+
+TRIP REQUIREMENTS:
+{json.dumps(trip_requirements, indent=2)}
+
+SELECTED PACKAGE BASELINE:
+{json.dumps(package, indent=2)}
+
+AVAILABLE SERVICES:
+{json.dumps(services, indent=2)}
+
+Select the best services and create a {trip_requirements['no_of_days']}-day itinerary. Consider:
+1. Customer preferences (hotel stars, meal types, activities, transport class)
+2. Budget constraints and group size
+3. Logical daily flow and timing
+4. Value for money
+
+Respond with JSON:
+{{
+    "selected_services": {{
+        "hotels": ["service_name_1"],
+        "activities": ["service_name_1", "service_name_2"],
+        "meals": ["service_name_1"],
+        "transportation": ["service_name_1"],
+        "transfers": ["service_name_1"]
+    }},
+    "daily_itinerary": [
+        {{
+            "day": 1,
+            "date": "2025-03-15",
+            "city": "{destinations[0]}",
+            "services": [
+                {{"type": "transportation", "service_name": "service_name", "time": "09:00"}},
+                {{"type": "hotel", "service_name": "service_name", "time": "12:00"}},
+                {{"type": "meal", "service_name": "service_name", "time": "13:00"}},
+                {{"type": "activity", "service_name": "service_name", "time": "15:00"}}
+            ]
+        }}
+    ],
+    "cost_breakdown": {{
+        "hotels": 500,
+        "activities": 200,
+        "meals": 150,
+        "transportation": 800,
+        "transfers": 100,
+        "total": 1750
+    }},
+    "reasoning": "Selection explanation..."
+}}
+"""
+
+    try:
+        # Use the correct AI function from frappe_ai
+        from frappe_ai.utils.llm_utils import analyze_with_llm
+        
+        print(f"🤖 Calling AI with analyze_with_llm...")
+        
+        # Prepare context with all available services - handle missing fields gracefully
+        context_data = {
+            "trip_requirements": trip_requirements,
+            "available_services": {
+                "hotels": [{"name": h["name"], "hotel_name": h.get("hotel_name", "Unknown"), "star_rating": h.get("star_rating", "3"), "city": h.get("city", ""), "base_price": h.get("base_price", 100)} for h in services["hotels"]],
+                "activities": [{"name": a["name"], "activity_name": a.get("activity_name", "Unknown"), "city": a.get("city", ""), "adult_price": a.get("adult_price", 50), "duration_hours": a.get("duration_hours", 2)} for a in services["activities"]],
+                "meals": [{"name": m["name"], "meal_name": m.get("meal_name", "Unknown"), "meal_type": m.get("meal_type", "Lunch"), "city": m.get("city", ""), "adult_price": m.get("adult_price", 30)} for m in services["meals"]],
+                "transportation": [{"name": t["name"], "transportation_name": t.get("transportation_name", "Unknown"), "arrival_city": t.get("arrival_city", ""), "adult_price": t.get("adult_price", 100)} for t in services["transportation"]],
+                "transfers": [{"name": tf["name"], "transfer_name": tf.get("transfer_name", "Unknown"), "pickup_city": tf.get("pickup_city", ""), "base_price": tf.get("base_price", 50)} for tf in services["transfers"]]
+            }
+        }
+        
+        context = json.dumps(context_data, indent=2)
+        
+        ai_result = analyze_with_llm(
+            context=context,
+            query=prompt,
+            system_prompt="You are a travel planning expert. Create detailed day-by-day itineraries using the available services. Respond with valid JSON only.",
+            model="gpt-4o-mini",
+            json_response=True
+        )
+        
+        print(f"   AI Success: {ai_result.get('success')}")
+        if ai_result.get("content"):
+            print(f"   AI Content Length: {len(ai_result['content'])} chars")
+        
+        if ai_result.get("success") and ai_result.get("content"):
+            ai_response = json.loads(ai_result["content"])
+            daily_itinerary = ai_response.get("daily_itinerary", [])
+            
+            print(f"   AI returned {len(daily_itinerary)} days")
+            
+            # Check if AI populated services in daily itinerary
+            has_populated_services = any(
+                day.get("services") and len(day["services"]) > 0 
+                for day in daily_itinerary
+            )
+            
+            print(f"   AI populated services: {has_populated_services}")
+            
+            # If AI didn't populate services properly, create from selected services
+            if not has_populated_services and ai_response.get("selected_services"):
+                print("🔧 AI didn't populate daily services - creating from selected services...")
+                daily_itinerary = _create_daily_itinerary_from_services(
+                    ai_response.get("selected_services", {}), 
+                    destinations, 
+                    package.get("no_of_days", 4),
+                    services
+                )
+            
+            print(f"✅ AI itinerary generation completed successfully")
+            return {
+                "itinerary": daily_itinerary,
+                "services": ai_response.get("selected_services", {}),
+                "cost_breakdown": ai_response.get("cost_breakdown", {}),
+                "ai_reasoning": ai_response.get("reasoning", ""),
+                "recommendations": []
+            }
+        else:
+            error_msg = f"AI failed to generate response: {ai_result.get('error', 'Unknown error')}"
+            print(f"❌ {error_msg}")
+            raise Exception(error_msg)
+            
+    except Exception as e:
+        error_msg = f"AI itinerary generation failed: {str(e)}"
+        print(f"❌ {error_msg}")
+        frappe.log_error(error_msg, "AI Itinerary")
+        raise Exception(error_msg)
+
+def _create_daily_itinerary_from_services(selected_services: Dict, destinations: List[str], num_days: int, all_services: Dict) -> List[Dict]:
+    """Helper function to create daily itinerary structure from selected services"""
+    
+    # Get service details for each selected service - handle missing fields
+    hotel_services = []
+    for hotel_name in selected_services.get("hotels", []):
+        hotel_data = next((h for h in all_services["hotels"] if h["name"] == hotel_name), None)
+        if hotel_data:
+            hotel_services.append({
+                "type": "hotel", 
+                "service_name": hotel_data.get("hotel_name", "Unknown Hotel"),
+                "service_id": hotel_name,
+                "time": "Check-in",
+                "cost": hotel_data.get("base_price", 100),
+                "city": hotel_data.get("city", "")
+            })
+    
+    activity_services = []
+    for activity_name in selected_services.get("activities", []):
+        activity_data = next((a for a in all_services["activities"] if a["name"] == activity_name), None)
+        if activity_data:
+            activity_services.append({
+                "type": "activity",
+                "service_name": activity_data.get("activity_name", "Unknown Activity"), 
+                "service_id": activity_name,
+                "time": "09:00",
+                "cost": activity_data.get("adult_price", 50),
+                "duration": activity_data.get("duration_hours", 2),
+                "city": activity_data.get("city", "")
+            })
+    
+    meal_services = []
+    for meal_name in selected_services.get("meals", []):
+        meal_data = next((m for m in all_services["meals"] if m["name"] == meal_name), None)
+        if meal_data:
+            meal_services.append({
+                "type": "meal",
+                "service_name": meal_data.get("meal_name", "Unknown Meal"),
+                "service_id": meal_name, 
+                "time": "12:00" if meal_data.get("meal_type") == "Lunch" else "19:00",
+                "cost": meal_data.get("adult_price", 30),
+                "city": meal_data.get("city", "")
+            })
+    
+    # Create daily itinerary
+    daily_itinerary = []
+    for day in range(1, num_days + 1):
+        day_city = destinations[(day-1) % len(destinations)] if destinations else "TBD"
+        day_services = []
+        
+        # Add hotel for each day
+        day_hotel = next((h for h in hotel_services if h["city"] == day_city), None)
+        if day_hotel:
+            day_services.append(day_hotel)
+        
+        # Distribute activities across days
+        day_activities = [a for a in activity_services if a["city"] == day_city]
+        if day_activities:
+            activities_per_day = max(1, len(day_activities) // num_days)
+            start_idx = (day-1) * activities_per_day
+            end_idx = min(start_idx + activities_per_day, len(day_activities))
+            day_services.extend(day_activities[start_idx:end_idx])
+        
+        # Distribute meals across days
+        day_meals = [m for m in meal_services if m["city"] == day_city]
+        if day_meals:
+            meals_per_day = max(1, len(day_meals) // num_days)
+            start_idx = (day-1) * meals_per_day
+            end_idx = min(start_idx + meals_per_day, len(day_meals))
+            day_services.extend(day_meals[start_idx:end_idx])
+        
+        daily_itinerary.append({
+            "day": day,
+            "city": day_city,
+            "services": sorted(day_services, key=lambda x: x["time"])
+        })
+    
+    return daily_itinerary
+

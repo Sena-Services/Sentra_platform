@@ -1,14 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2025-07-18 17:01:08.347480",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_onoa",
   "amended_from",
-  "requirement",
-  "lead",
+  "trip",
   "package",
   "package_details_section",
   "naming_series",
@@ -16,9 +16,11 @@
   "itinerary_code",
   "status",
   "itinerary_link",
+  "destinations",
   "column_break_pd1",
   "dmc",
   "description",
+  "hotel",
   "availability_section",
   "valid_from",
   "valid_to",
@@ -43,12 +45,8 @@
   "notes",
   "legacy_fields_section",
   "vendors",
-  "no_of_days",
-  "no_of_nights",
   "price",
   "activities",
-  "destinations",
-  "hotel",
   "daywise_plan"
  ],
  "fields": [
@@ -65,24 +63,6 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "requirement",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Requirement",
-   "options": "Trip",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "requirement.lead",
-   "fieldname": "lead",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Lead",
-   "options": "CRM Lead",
-   "read_only": 1,
-   "reqd": 1
   },
   {
    "fieldname": "package",
@@ -287,18 +267,6 @@
    "options": "Vendor List Child Table"
   },
   {
-   "fieldname": "no_of_days",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "No. of Days"
-  },
-  {
-   "fieldname": "no_of_nights",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "No. of Nights"
-  },
-  {
    "description": "Price per person",
    "fieldname": "price",
    "fieldtype": "Currency",
@@ -315,16 +283,16 @@
   {
    "fieldname": "destinations",
    "fieldtype": "Table",
-   "hidden": 1,
    "label": "Destinations",
-   "options": "Trip Destination"
+   "options": "Trip Destination",
+   "reqd": 1
   },
   {
    "fieldname": "hotel",
-   "fieldtype": "Table",
-   "hidden": 1,
-   "label": "Hotel",
-   "options": "Hotel Room and Pricing"
+   "fieldtype": "Select",
+   "label": "Hotel Category",
+   "options": "5\n4\n3\n2\n1",
+   "reqd": 1
   },
   {
    "fieldname": "daywise_plan",
@@ -332,16 +300,25 @@
    "hidden": 1,
    "label": "Daywise Plan",
    "options": "Daywise Plan"
+  },
+  {
+   "fieldname": "trip",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Trip",
+   "options": "Trip",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-07 13:04:54.605499",
+ "modified": "2025-08-13 13:38:16.926723",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Itinerary",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,0 +1,170 @@
+[
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0001-inc-1",
+    "parent": "PCK-2025-0001",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "4-star hotel accommodation for 4 nights"
+  },
+  {
+    "doctype": "Package Inclusion Child Table", 
+    "name": "PCK-2025-0001-inc-2",
+    "parent": "PCK-2025-0001",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Professional English-speaking guide"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0001-inc-3",
+    "parent": "PCK-2025-0001", 
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Entrance fees to all mentioned attractions"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0001-inc-4",
+    "parent": "PCK-2025-0001",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Daily breakfast and 3 dinners"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0001-inc-5",
+    "parent": "PCK-2025-0001",
+    "parenttype": "Standard Package", 
+    "parentfield": "package_inclusions",
+    "inclusion": "Thames river cruise"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0002-inc-1",
+    "parent": "PCK-2025-0002",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "5-star luxury hotel accommodation for 5 nights"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0002-inc-2", 
+    "parent": "PCK-2025-0002",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions", 
+    "inclusion": "Private guide and luxury vehicle"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0002-inc-3",
+    "parent": "PCK-2025-0002",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "VIP access to all attractions"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0002-inc-4",
+    "parent": "PCK-2025-0002",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "All meals at premium restaurants"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0003-inc-1",
+    "parent": "PCK-2025-0003", 
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "4-star hotel accommodation for 3 nights"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0003-inc-2",
+    "parent": "PCK-2025-0003",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Local guide for cultural tours"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0003-inc-3",
+    "parent": "PCK-2025-0003",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Universal Studios Singapore tickets"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0003-inc-4",
+    "parent": "PCK-2025-0003",
+    "parenttype": "Standard Package", 
+    "parentfield": "package_inclusions",
+    "inclusion": "Airport transfers and local transport"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0004-inc-1",
+    "parent": "PCK-2025-0004",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "5-star luxury hotel accommodation for 4 nights"
+  },
+  {
+    "doctype": "Package Inclusion Child Table", 
+    "name": "PCK-2025-0004-inc-2",
+    "parent": "PCK-2025-0004",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Private guide and luxury transport"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0004-inc-3",
+    "parent": "PCK-2025-0004",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "VIP access to all attractions and experiences"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0005-inc-1",
+    "parent": "PCK-2025-0005",
+    "parenttype": "Standard Package", 
+    "parentfield": "package_inclusions",
+    "inclusion": "International flights London-Singapore"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0005-inc-2", 
+    "parent": "PCK-2025-0005",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "4-star accommodation in both cities"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0005-inc-3",
+    "parent": "PCK-2025-0005",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Local guides in both destinations"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0006-inc-1",
+    "parent": "PCK-2025-0006",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions", 
+    "inclusion": "Traditional 3-star pub accommodation"
+  },
+  {
+    "doctype": "Package Inclusion Child Table",
+    "name": "PCK-2025-0006-inc-2",
+    "parent": "PCK-2025-0006",
+    "parenttype": "Standard Package",
+    "parentfield": "package_inclusions",
+    "inclusion": "Expert pub historian guide"
+  }
+]

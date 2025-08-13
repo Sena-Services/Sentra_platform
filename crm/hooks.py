@@ -32,6 +32,15 @@ fixtures = [
 	"Communication Medium",
 	"Vendor Type",
 	"Accommodation Type",
+	"Hotel",
+	"Activity",
+	"Meal",
+	"Transportation",
+	"Transfer",
+	# "Standard Package",  # Temporarily disabled - child table issue with fixtures
+	"Trip Destination",
+	"Package Inclusion Child Table",
+	"Package Exclusion Child Table",
 ]
 
 
