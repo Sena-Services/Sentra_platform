@@ -32,15 +32,16 @@ fixtures = [
 	"Communication Medium",
 	"Vendor Type",
 	"Accommodation Type",
+	"Destination",  # Required for Trip Destination child table
 	"Hotel",
 	"Activity",
 	"Meal",
 	"Transportation",
 	"Transfer",
-	# "Standard Package",  # Temporarily disabled - child table issue with fixtures
-	"Trip Destination",
-	"Package Inclusion Child Table",
-	"Package Exclusion Child Table",
+	# Child tables removed - they are part of parent doctypes:
+	# "Trip Destination" - child of Trip and Standard Package
+	# "Package Inclusion Child Table" - child of Standard Package
+	# "Package Exclusion Child Table" - child of Standard Package
 ]
 
 
