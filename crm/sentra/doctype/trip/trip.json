@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "naming_series: naming_series",
  "creation": "2025-06-09 08:30:35.455547",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "trip_details_section",
+  "naming_series",
   "title",
   "customer",
   "use_standard_package",
@@ -31,8 +32,6 @@
   "preferred_activity_types",
   "preferred_transport_class",
   "special_requirements",
-  "section_break_dtee",
-  "naming_series",
   "activities_details_section",
   "activity",
   "trip_owner"
@@ -44,20 +43,20 @@
    "label": "Customer Requirements & Preferences"
   },
   {
+   "description": "e.g., Local cuisine, International, Vegetarian, Fine dining, Street food",
    "fieldname": "preferred_meal_types",
    "fieldtype": "Small Text",
-   "label": "Preferred Meal Types",
-   "description": "e.g., Local cuisine, International, Vegetarian, Fine dining, Street food"
+   "label": "Preferred Meal Types"
   },
   {
    "fieldname": "column_break_requirements",
    "fieldtype": "Column Break"
   },
   {
+   "description": "e.g., Cultural tours, Adventure sports, Museums, Shopping, Nightlife",
    "fieldname": "preferred_activity_types",
    "fieldtype": "Small Text",
-   "label": "Preferred Activity Types",
-   "description": "e.g., Cultural tours, Adventure sports, Museums, Shopping, Nightlife"
+   "label": "Preferred Activity Types"
   },
   {
    "fieldname": "preferred_transport_class",
@@ -66,10 +65,10 @@
    "options": "\nEconomy\nPremium Economy\nBusiness\nFirst Class"
   },
   {
+   "description": "Dietary restrictions, accessibility needs, celebration occasions, etc.",
    "fieldname": "special_requirements",
    "fieldtype": "Small Text",
-   "label": "Special Requirements",
-   "description": "Dietary restrictions, accessibility needs, celebration occasions, etc."
+   "label": "Special Requirements"
   },
   {
    "fieldname": "destination_city",
@@ -101,12 +100,12 @@
    "options": "High\nMedium\nLow"
   },
   {
-   "default": "New",
+   "default": "Inquiry",
    "fieldname": "status",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "CRM Lead Status",
+   "options": "Inquiry\nPlanning\nProposal\nNegotiation\nBooked\nOngoing\nCompleted\nCancelled",
    "search_index": 1
   },
   {
@@ -152,11 +151,6 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Naming Series"
-  },
-  {
-   "fieldname": "section_break_dtee",
-   "fieldtype": "Section Break",
-   "label": "Hotel Details"
   },
   {
    "fieldname": "trip_details_section",
@@ -220,7 +214,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-12 22:10:23.799429",
+ "modified": "2025-08-20 11:11:08.637072",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip",
@@ -245,5 +239,6 @@
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
- "title_field": "title"
+ "title_field": "title",
+ "track_changes": 1
 }
