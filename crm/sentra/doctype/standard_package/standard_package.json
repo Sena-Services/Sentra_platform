@@ -16,6 +16,13 @@
   "dmc",
   "destinations",
   "description",
+  "marketing_section",
+  "category",
+  "image_url",
+  "column_break_mk1",
+  "popularity_score",
+  "rating",
+  "review_count",
   "availability_section",
   "valid_from",
   "valid_to",
@@ -98,6 +105,49 @@
    "fieldname": "description",
    "fieldtype": "Long Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "marketing_section",
+   "fieldtype": "Section Break",
+   "label": "Marketing & Rating"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "City Tours\nBeach & Island\nLuxury\nAdventure\nHoneymoon\nCultural\nHeritage\nWildlife\nMulti-Country"
+  },
+  {
+   "description": "URL to package image",
+   "fieldname": "image_url",
+   "fieldtype": "Data",
+   "label": "Image URL"
+  },
+  {
+   "fieldname": "column_break_mk1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Popularity rating (0-100)",
+   "fieldname": "popularity_score",
+   "fieldtype": "Int",
+   "label": "Popularity Score"
+  },
+  {
+   "description": "Customer rating (1.0-5.0)",
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1"
+  },
+  {
+   "default": "0",
+   "description": "Number of customer reviews",
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count"
   },
   {
    "fieldname": "availability_section",
@@ -191,16 +241,16 @@
    "label": "Inclusions, Exclusions & Terms"
   },
   {
+   "description": "What's included in this package",
    "fieldname": "package_inclusions",
-   "fieldtype": "Table MultiSelect",
-   "label": "Inclusions",
-   "options": "Package Inclusion Child Table"
+   "fieldtype": "Text Editor",
+   "label": "Inclusions"
   },
   {
+   "description": "What's not included in this package",
    "fieldname": "package_exclusions",
-   "fieldtype": "Table MultiSelect",
-   "label": "Exclusions",
-   "options": "Package Exclusion Child Table"
+   "fieldtype": "Text Editor",
+   "label": "Exclusions"
   },
   {
    "fieldname": "terms_and_conditions",
@@ -284,7 +334,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-12 11:16:05.153496",
+ "modified": "2025-08-21 13:46:22.933471",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",

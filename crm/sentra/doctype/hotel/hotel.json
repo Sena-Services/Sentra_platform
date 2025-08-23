@@ -55,7 +55,13 @@
   "main_image",
   "gallery",
   "additional_info_section",
-  "notes"
+  "notes",
+  "inventory_section",
+  "base_display_price",
+  "rating",
+  "column_break_inv1",
+  "short_description",
+  "is_featured"
  ],
  "fields": [
   {
@@ -327,6 +333,41 @@
    "fieldname": "notes",
    "fieldtype": "Long Text",
    "label": "Notes"
+  },
+  {
+   "fieldname": "inventory_section",
+   "fieldtype": "Section Break",
+   "label": "Inventory Display"
+  },
+  {
+   "fieldname": "base_display_price",
+   "fieldtype": "Currency",
+   "label": "Base Display Price",
+   "description": "Price shown in inventory panels",
+   "options": "currency"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "description": "Overall rating (0-5 scale)",
+   "precision": 1
+  },
+  {
+   "fieldname": "column_break_inv1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description",
+   "description": "Brief description for inventory display (max 200 chars)"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured in Inventory",
+   "description": "Highlight this hotel in inventory panels"
   }
  ],
  "image_field": "main_image",
