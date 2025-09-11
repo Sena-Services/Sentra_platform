@@ -5,7 +5,6 @@ import frappe
 def get_first_lead():
 	lead = frappe.get_all(
 		"CRM Lead",
-		filters={"converted": 0},
 		fields=["name"],
 		order_by="creation",
 		limit=1,

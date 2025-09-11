@@ -1,0 +1,507 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-19 13:20:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "activity_name",
+  "activity_type",
+  "column_break_bi1",
+  "status",
+  "details_section",
+  "description",
+  "highlights",
+  "duration_hours",
+  "duration_minutes",
+  "column_break_ds1",
+  "minimum_age",
+  "maximum_age",
+  "min_participants",
+  "max_participants",
+  "location_venue_section",
+  "venue_name",
+  "address",
+  "city",
+  "column_break_lv1",
+  "landmark",
+  "latitude",
+  "longitude",
+  "operational_information_section",
+  "operating_days",
+  "timings",
+  "blackout_dates",
+  "seasonal_availability",
+  "pricing_section",
+  "currency",
+  "pricing_type",
+  "adult_price",
+  "child_price",
+  "column_break_ps1",
+  "infant_price",
+  "group_discount_applicable",
+  "group_size_for_discount",
+  "group_discount_percentage",
+  "inclusions_exclusions_section",
+  "inclusions",
+  "exclusions",
+  "requirements_restrictions_section",
+  "requirements",
+  "restrictions",
+  "equipment_provided",
+  "what_to_bring",
+  "vendor_information_section",
+  "vendor_type",
+  "vendor",
+  "column_break_vi1",
+  "commission_percentage",
+  "payment_terms",
+  "cancellation_policy",
+  "safety_compliance_section",
+  "safety_measures",
+  "insurance_required",
+  "certifications",
+  "images_section",
+  "main_image",
+  "gallery",
+  "additional_info_section",
+  "languages_available",
+  "tags",
+  "notes",
+  "inventory_section",
+  "base_display_price",
+  "rating",
+  "column_break_inv1",
+  "short_description",
+  "is_featured"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "default": "ACT-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "activity_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Activity Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "activity_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Activity Type",
+   "options": "\nMeals\nSports\nEvents\nSightseeing\nAdventure\nCultural Experience\nWellness\nEntertainment\nShopping\nTransportation\nWorkshop/Class\nNature\nWater Activities\nAir Activities\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_bi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nSeasonal\nComing Soon",
+   "reqd": 1
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "highlights",
+   "fieldtype": "Long Text",
+   "label": "Highlights"
+  },
+  {
+   "fieldname": "duration_hours",
+   "fieldtype": "Int",
+   "label": "Duration (Hours)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "duration_minutes",
+   "fieldtype": "Int",
+   "label": "Duration (Minutes)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_ds1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "minimum_age",
+   "fieldtype": "Int",
+   "label": "Minimum Age",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "maximum_age",
+   "fieldtype": "Int",
+   "label": "Maximum Age",
+   "non_negative": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_participants",
+   "fieldtype": "Int",
+   "label": "Min Participants",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "max_participants",
+   "fieldtype": "Int",
+   "label": "Max Participants",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "location_venue_section",
+   "fieldtype": "Section Break",
+   "label": "Location & Venue"
+  },
+  {
+   "fieldname": "venue_name",
+   "fieldtype": "Data",
+   "label": "Venue Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_lv1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Landmark"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "operational_information_section",
+   "fieldtype": "Section Break",
+   "label": "Operational Information"
+  },
+  {
+   "fieldname": "operating_days",
+   "fieldtype": "Long Text",
+   "label": "Operating Days"
+  },
+  {
+   "fieldname": "timings",
+   "fieldtype": "Long Text",
+   "label": "Timings"
+  },
+  {
+   "fieldname": "blackout_dates",
+   "fieldtype": "Long Text",
+   "label": "Blackout Dates"
+  },
+  {
+   "fieldname": "seasonal_availability",
+   "fieldtype": "Small Text",
+   "label": "Seasonal Availability"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_type",
+   "fieldtype": "Select",
+   "label": "Pricing Type",
+   "options": "\nPer Person\nPer Group\nPer Hour\nFixed Price\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "adult_price",
+   "fieldtype": "Currency",
+   "label": "Adult Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "child_price",
+   "fieldtype": "Currency",
+   "label": "Child Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_ps1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "infant_price",
+   "fieldtype": "Currency",
+   "label": "Infant Price",
+   "options": "currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "group_discount_applicable",
+   "fieldtype": "Check",
+   "label": "Group Discount Applicable"
+  },
+  {
+   "depends_on": "group_discount_applicable",
+   "fieldname": "group_size_for_discount",
+   "fieldtype": "Int",
+   "label": "Min Group Size for Discount",
+   "non_negative": 1
+  },
+  {
+   "depends_on": "group_discount_applicable",
+   "fieldname": "group_discount_percentage",
+   "fieldtype": "Percent",
+   "label": "Group Discount %"
+  },
+  {
+   "fieldname": "inclusions_exclusions_section",
+   "fieldtype": "Section Break",
+   "label": "Inclusions & Exclusions"
+  },
+  {
+   "fieldname": "inclusions",
+   "fieldtype": "Long Text",
+   "label": "Inclusions"
+  },
+  {
+   "fieldname": "exclusions",
+   "fieldtype": "Long Text",
+   "label": "Exclusions"
+  },
+  {
+   "fieldname": "requirements_restrictions_section",
+   "fieldtype": "Section Break",
+   "label": "Requirements & Restrictions"
+  },
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Long Text",
+   "label": "Requirements"
+  },
+  {
+   "fieldname": "restrictions",
+   "fieldtype": "Long Text",
+   "label": "Restrictions"
+  },
+  {
+   "fieldname": "equipment_provided",
+   "fieldtype": "Long Text",
+   "label": "Equipment Provided"
+  },
+  {
+   "fieldname": "what_to_bring",
+   "fieldtype": "Small Text",
+   "label": "What to Bring"
+  },
+  {
+   "fieldname": "vendor_information_section",
+   "fieldtype": "Section Break",
+   "label": "Vendor Information"
+  },
+  {
+   "fieldname": "vendor_type",
+   "fieldtype": "Select",
+   "label": "Vendor Type",
+   "options": "\nDirect Supplier\nDMC\nHotel\nRestaurant\nIndependent Guide\nActivity Company\nOther"
+  },
+  {
+   "fieldname": "vendor",
+   "fieldtype": "Dynamic Link",
+   "label": "Vendor",
+   "options": "vendor_type"
+  },
+  {
+   "fieldname": "column_break_vi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nAdvance Payment\nOn Spot\nNet 30\nNet 60"
+  },
+  {
+   "fieldname": "cancellation_policy",
+   "fieldtype": "Small Text",
+   "label": "Cancellation Policy"
+  },
+  {
+   "fieldname": "safety_compliance_section",
+   "fieldtype": "Section Break",
+   "label": "Safety & Compliance"
+  },
+  {
+   "fieldname": "safety_measures",
+   "fieldtype": "Small Text",
+   "label": "Safety Measures"
+  },
+  {
+   "default": "0",
+   "fieldname": "insurance_required",
+   "fieldtype": "Check",
+   "label": "Insurance Required"
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Long Text",
+   "label": "Certifications"
+  },
+  {
+   "fieldname": "images_section",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "main_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Image"
+  },
+  {
+   "fieldname": "gallery",
+   "fieldtype": "Long Text",
+   "label": "Gallery"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "languages_available",
+   "fieldtype": "Long Text",
+   "label": "Languages Available"
+  },
+  {
+   "fieldname": "tags",
+   "fieldtype": "Long Text",
+   "label": "Tags"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "inventory_section",
+   "fieldtype": "Section Break",
+   "label": "Inventory Display"
+  },
+  {
+   "fieldname": "base_display_price",
+   "fieldtype": "Currency",
+   "label": "Base Display Price",
+   "description": "Price shown in inventory panels",
+   "options": "currency"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "description": "Overall rating (0-5 scale)",
+   "precision": 1
+  },
+  {
+   "fieldname": "column_break_inv1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description",
+   "description": "Brief description for inventory display (max 200 chars)"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured in Inventory",
+   "description": "Highlight this activity in inventory panels"
+  }
+ ],
+ "image_field": "main_image",
+ "links": [],
+ "modified": "2025-07-19 13:20:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Activity",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "activity_name,activity_code,activity_type,city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "activity_name",
+ "track_changes": 1
+}

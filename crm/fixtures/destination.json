@@ -1,0 +1,72 @@
+[
+  {
+    "doctype": "Destination",
+    "name": "London",
+    "city": "London",
+    "state": "England",
+    "country": "United Kingdom"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Singapore",
+    "city": "Singapore",
+    "state": "Singapore",
+    "country": "Singapore"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Paris",
+    "city": "Paris",
+    "state": "Île-de-France",
+    "country": "France"
+  },
+  {
+    "doctype": "Destination",
+    "name": "New York",
+    "city": "New York",
+    "state": "New York",
+    "country": "United States"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Dubai",
+    "city": "Dubai",
+    "state": "Dubai",
+    "country": "United Arab Emirates"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Tokyo",
+    "city": "Tokyo",
+    "state": "Tokyo",
+    "country": "Japan"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Bangkok",
+    "city": "Bangkok",
+    "state": "Bangkok",
+    "country": "Thailand"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Rome",
+    "city": "Rome",
+    "state": "Lazio",
+    "country": "Italy"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Barcelona",
+    "city": "Barcelona",
+    "state": "Catalonia",
+    "country": "Spain"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Amsterdam",
+    "city": "Amsterdam",
+    "state": "North Holland",
+    "country": "Netherlands"
+  }
+]

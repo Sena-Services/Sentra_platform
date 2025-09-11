@@ -22,6 +22,29 @@ add_to_apps_screen = [
 	}
 ]
 
+
+fixtures = [
+    "CRM Lead Status",
+    "CRM Lead Source",
+	"Service Type",
+	"Contact Type",
+	"Contact Category",
+	"Communication Medium",
+	"Vendor Type",
+	"Accommodation Type",
+	"Destination",  # Required for Trip Destination child table
+	"Hotel",
+	"Activity",
+	"Meal",
+	"Transportation",
+	"Transfer",
+	# Child tables removed - they are part of parent doctypes:
+	# "Trip Destination" - child of Trip and Standard Package
+	# "Package Inclusion Child Table" - child of Standard Package
+	# "Package Exclusion Child Table" - child of Standard Package
+]
+
+
 # Includes in <head>
 # ------------------
 
@@ -130,7 +153,6 @@ before_uninstall = "crm.uninstall.before_uninstall"
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Contact": "crm.overrides.contact.CustomContact",
 	"Email Template": "crm.overrides.email_template.CustomEmailTemplate",
 }
 
@@ -141,6 +163,7 @@ override_doctype_class = {
 doc_events = {
 	"Contact": {
 		"validate": ["crm.api.contact.validate"],
+		"on_update": ["crm.api.contact.update_leads_from_contact"],
 	},
 	"ToDo": {
 		"after_insert": ["crm.api.todo.after_insert"],
@@ -159,8 +182,9 @@ doc_events = {
 		],
 	},
 	"CRM Lead": {
-		"on_update": ["crm.api.lead_sync.sync_lead_to_contact"],
-		"on_change": ["crm.api.lead_sync.sync_lead_to_contact"],
+		# TEMPORARILY DISABLED - CAUSING INFINITE RECURSION
+		# "on_update": ["crm.api.lead_sync.sync_lead_to_contact"],
+		# "on_change": ["crm.api.lead_sync.sync_lead_to_contact"],
 	},
 	"User": {
 		"before_validate": ["crm.api.demo.validate_user"],

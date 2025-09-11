@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:amenity",
+ "creation": "2025-06-18 11:43:53.982665",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "amenity",
+  "link"
+ ],
+ "fields": [
+  {
+   "fieldname": "amenity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Amenity",
+   "options": "Hotel Room Amenity List",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "link",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Link",
+   "options": "Hotel Room Amenity Child Table"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-19 13:46:38.891075",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Room Amenity Child Table",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

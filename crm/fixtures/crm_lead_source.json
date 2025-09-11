@@ -1,0 +1,50 @@
+[
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.844951",
+  "name": "Existing Customer",
+  "source_name": "Existing Customer"
+ },
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.849992",
+  "name": "Website",
+  "source_name": "Website"
+ },
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.850568",
+  "name": "Phone Call",
+  "source_name": "Phone Call"
+ },
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.851203",
+  "name": "WhatsApp",
+  "source_name": "WhatsApp"
+ },
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.852519",
+  "name": "Walk In",
+  "source_name": "Walk In"
+ },
+ {
+  "details": null,
+  "docstatus": 0,
+  "doctype": "CRM Lead Source",
+  "modified": "2025-06-21 09:40:29.851890",
+  "name": "Instagram",
+  "source_name": "Instagram"
+ }
+]

@@ -1,0 +1,541 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-08-13 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "meal_name",
+  "meal_type",
+  "column_break_bi1",
+  "cuisine_type",
+  "meal_category",
+  "status",
+  "details_section",
+  "description",
+  "menu_highlights",
+  "dietary_options",
+  "column_break_ds1",
+  "duration_hours",
+  "duration_minutes",
+  "min_participants",
+  "max_participants",
+  "venue_information_section",
+  "venue_type",
+  "venue_name",
+  "restaurant_name",
+  "address",
+  "column_break_vi1",
+  "city",
+  "landmark",
+  "latitude",
+  "longitude",
+  "operational_details_section",
+  "operating_days",
+  "meal_timings",
+  "last_order_time",
+  "column_break_od1",
+  "dress_code",
+  "reservation_required",
+  "advance_booking_days",
+  "blackout_dates",
+  "pricing_section",
+  "currency",
+  "pricing_type",
+  "adult_price",
+  "child_price",
+  "column_break_ps1",
+  "infant_price",
+  "service_charge_percentage",
+  "tax_percentage",
+  "gratuity_included",
+  "inclusions_exclusions_section",
+  "inclusions",
+  "exclusions",
+  "beverages_included",
+  "alcohol_available",
+  "vendor_information_section",
+  "vendor_type",
+  "vendor",
+  "column_break_vendor1",
+  "commission_percentage",
+  "payment_terms",
+  "cancellation_policy",
+  "certifications_section",
+  "hygiene_rating",
+  "certifications",
+  "awards",
+  "images_section",
+  "main_image",
+  "gallery",
+  "additional_info_section",
+  "ambiance",
+  "special_features",
+  "chef_details",
+  "notes",
+  "inventory_section",
+  "base_display_price",
+  "rating",
+  "column_break_inv1",
+  "short_description",
+  "is_featured"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "default": "MEAL-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "meal_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Meal Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "meal_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Meal Type",
+   "options": "\nBreakfast\nBrunch\nLunch\nAfternoon Tea\nHigh Tea\nDinner\nSupper\nSnack\nBuffet\nGala Dinner\nBBQ\nPicnic",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_bi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cuisine_type",
+   "fieldtype": "Select",
+   "label": "Cuisine Type",
+   "options": "\nLocal\nInternational\nAsian\nWestern\nChinese\nIndian\nJapanese\nKorean\nThai\nItalian\nFrench\nMediterranean\nMiddle Eastern\nMexican\nAmerican\nBritish\nSeafood\nVegetarian\nVegan\nFusion\nStreet Food\nFine Dining\nOther"
+  },
+  {
+   "fieldname": "meal_category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nStandard\nPremium\nLuxury\nBudget\nThemed\nCultural Experience"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nSeasonal\nFully Booked",
+   "reqd": 1
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Meal Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "menu_highlights",
+   "fieldtype": "Long Text",
+   "label": "Menu Highlights"
+  },
+  {
+   "fieldname": "dietary_options",
+   "fieldtype": "Long Text",
+   "label": "Dietary Options Available"
+  },
+  {
+   "fieldname": "column_break_ds1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duration_hours",
+   "fieldtype": "Int",
+   "label": "Duration (Hours)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "duration_minutes",
+   "fieldtype": "Int",
+   "label": "Duration (Minutes)",
+   "non_negative": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_participants",
+   "fieldtype": "Int",
+   "label": "Min Participants",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "max_participants",
+   "fieldtype": "Int",
+   "label": "Max Participants",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "venue_information_section",
+   "fieldtype": "Section Break",
+   "label": "Venue Information"
+  },
+  {
+   "fieldname": "venue_type",
+   "fieldtype": "Select",
+   "label": "Venue Type",
+   "options": "\nRestaurant\nHotel Restaurant\nCafe\nBistro\nFood Court\nHawker Centre\nStreet Stall\nCruise\nRooftop\nBeachside\nGarden\nPrivate Venue\nHome\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "venue_name",
+   "fieldtype": "Data",
+   "label": "Venue Name"
+  },
+  {
+   "fieldname": "restaurant_name",
+   "fieldtype": "Data",
+   "label": "Restaurant Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_vi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Nearby Landmark"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "operational_details_section",
+   "fieldtype": "Section Break",
+   "label": "Operational Details"
+  },
+  {
+   "fieldname": "operating_days",
+   "fieldtype": "Long Text",
+   "label": "Operating Days"
+  },
+  {
+   "fieldname": "meal_timings",
+   "fieldtype": "Long Text",
+   "label": "Meal Timings"
+  },
+  {
+   "fieldname": "last_order_time",
+   "fieldtype": "Time",
+   "label": "Last Order Time"
+  },
+  {
+   "fieldname": "column_break_od1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dress_code",
+   "fieldtype": "Select",
+   "label": "Dress Code",
+   "options": "\nCasual\nSmart Casual\nBusiness Casual\nFormal\nBlack Tie\nTraditional\nNo Restriction"
+  },
+  {
+   "default": "0",
+   "fieldname": "reservation_required",
+   "fieldtype": "Check",
+   "label": "Reservation Required"
+  },
+  {
+   "depends_on": "reservation_required",
+   "fieldname": "advance_booking_days",
+   "fieldtype": "Int",
+   "label": "Advance Booking Required (Days)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "blackout_dates",
+   "fieldtype": "Small Text",
+   "label": "Blackout Dates"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_type",
+   "fieldtype": "Select",
+   "label": "Pricing Type",
+   "options": "\nPer Person\nPer Table\nA La Carte\nSet Menu\nBuffet\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "adult_price",
+   "fieldtype": "Currency",
+   "label": "Adult Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "child_price",
+   "fieldtype": "Currency",
+   "label": "Child Price (5-12 years)",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_ps1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "infant_price",
+   "fieldtype": "Currency",
+   "label": "Infant Price (0-4 years)",
+   "options": "currency"
+  },
+  {
+   "fieldname": "service_charge_percentage",
+   "fieldtype": "Percent",
+   "label": "Service Charge %"
+  },
+  {
+   "fieldname": "tax_percentage",
+   "fieldtype": "Percent",
+   "label": "Tax %"
+  },
+  {
+   "default": "0",
+   "fieldname": "gratuity_included",
+   "fieldtype": "Check",
+   "label": "Gratuity Included"
+  },
+  {
+   "fieldname": "inclusions_exclusions_section",
+   "fieldtype": "Section Break",
+   "label": "Inclusions & Exclusions"
+  },
+  {
+   "fieldname": "inclusions",
+   "fieldtype": "Long Text",
+   "label": "Inclusions"
+  },
+  {
+   "fieldname": "exclusions",
+   "fieldtype": "Long Text",
+   "label": "Exclusions"
+  },
+  {
+   "default": "0",
+   "fieldname": "beverages_included",
+   "fieldtype": "Check",
+   "label": "Beverages Included"
+  },
+  {
+   "default": "0",
+   "fieldname": "alcohol_available",
+   "fieldtype": "Check",
+   "label": "Alcohol Available"
+  },
+  {
+   "fieldname": "vendor_information_section",
+   "fieldtype": "Section Break",
+   "label": "Vendor Information"
+  },
+  {
+   "fieldname": "vendor_type",
+   "fieldtype": "Select",
+   "label": "Vendor Type",
+   "options": "\nDirect Restaurant\nHotel\nDMC\nCatering Company\nOther"
+  },
+  {
+   "fieldname": "vendor",
+   "fieldtype": "Dynamic Link",
+   "label": "Vendor",
+   "options": "vendor_type"
+  },
+  {
+   "fieldname": "column_break_vendor1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nAdvance Payment\nOn Spot\nNet 30\nNet 60"
+  },
+  {
+   "fieldname": "cancellation_policy",
+   "fieldtype": "Small Text",
+   "label": "Cancellation Policy"
+  },
+  {
+   "fieldname": "certifications_section",
+   "fieldtype": "Section Break",
+   "label": "Certifications & Awards"
+  },
+  {
+   "fieldname": "hygiene_rating",
+   "fieldtype": "Select",
+   "label": "Hygiene Rating",
+   "options": "\nA (Excellent)\nB (Good)\nC (Satisfactory)\nNot Rated"
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Long Text",
+   "label": "Certifications"
+  },
+  {
+   "fieldname": "awards",
+   "fieldtype": "Long Text",
+   "label": "Awards & Recognition"
+  },
+  {
+   "fieldname": "images_section",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "main_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Image"
+  },
+  {
+   "fieldname": "gallery",
+   "fieldtype": "Long Text",
+   "label": "Gallery"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "ambiance",
+   "fieldtype": "Small Text",
+   "label": "Ambiance Description"
+  },
+  {
+   "fieldname": "special_features",
+   "fieldtype": "Long Text",
+   "label": "Special Features"
+  },
+  {
+   "fieldname": "chef_details",
+   "fieldtype": "Small Text",
+   "label": "Chef Details"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "inventory_section",
+   "fieldtype": "Section Break",
+   "label": "Inventory Display"
+  },
+  {
+   "fieldname": "base_display_price",
+   "fieldtype": "Currency",
+   "label": "Base Display Price",
+   "description": "Price shown in inventory panels",
+   "options": "currency"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "description": "Overall rating (0-5 scale)",
+   "precision": 1
+  },
+  {
+   "fieldname": "column_break_inv1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description",
+   "description": "Brief description for inventory display (max 200 chars)"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured in Inventory",
+   "description": "Highlight this meal in inventory panels"
+  }
+ ],
+ "image_field": "main_image",
+ "links": [],
+ "modified": "2025-08-13 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Meal",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "meal_name,meal_type,cuisine_type,city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "meal_name",
+ "track_changes": 1
+}

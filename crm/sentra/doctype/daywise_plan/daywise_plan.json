@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2025-06-09 14:04:34.608418",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "day",
+  "day_activity"
+ ],
+ "fields": [
+  {
+   "fieldname": "day",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Day",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "trip.lead",
+   "fieldname": "day_activity",
+   "fieldtype": "Markdown Editor",
+   "label": "Activity",
+   "reqd": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-01 12:14:26.769894",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Daywise Plan",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "day"
+}

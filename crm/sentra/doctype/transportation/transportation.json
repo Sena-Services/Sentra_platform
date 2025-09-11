@@ -1,0 +1,710 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-08-13 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "transportation_name",
+  "transportation_type",
+  "column_break_bi1",
+  "mode_of_transport",
+  "service_class",
+  "status",
+  "route_information_section",
+  "departure_city",
+  "departure_location",
+  "departure_terminal",
+  "column_break_ri1",
+  "arrival_city",
+  "arrival_location",
+  "arrival_terminal",
+  "schedule_section",
+  "departure_date",
+  "departure_time",
+  "column_break_s1",
+  "arrival_date",
+  "arrival_time",
+  "duration_calculation",
+  "journey_duration_hours",
+  "journey_duration_minutes",
+  "column_break_dc1",
+  "layover_details",
+  "total_stops",
+  "carrier_information_section",
+  "carrier_type",
+  "carrier_name",
+  "flight_number",
+  "train_number",
+  "bus_number",
+  "vessel_name",
+  "column_break_ci1",
+  "aircraft_type",
+  "train_type",
+  "bus_type",
+  "vessel_type",
+  "vehicle_details_section",
+  "seat_configuration",
+  "total_seats",
+  "seats_available",
+  "column_break_vd1",
+  "baggage_allowance",
+  "cabin_baggage",
+  "additional_baggage_cost",
+  "facilities_amenities_section",
+  "onboard_facilities",
+  "meal_service",
+  "entertainment_options",
+  "wifi_available",
+  "power_outlets",
+  "pricing_section",
+  "currency",
+  "pricing_structure",
+  "adult_price",
+  "child_price",
+  "infant_price",
+  "column_break_ps1",
+  "senior_citizen_price",
+  "group_discount_applicable",
+  "group_size_for_discount",
+  "group_discount_percentage",
+  "taxes_fees_section",
+  "base_fare",
+  "taxes",
+  "fuel_surcharge",
+  "column_break_tf1",
+  "service_fee",
+  "total_price",
+  "price_includes",
+  "booking_policies_section",
+  "booking_class",
+  "refundable",
+  "changeable",
+  "column_break_bp1",
+  "cancellation_charges",
+  "change_fee",
+  "no_show_policy",
+  "vendor_information_section",
+  "vendor_type",
+  "vendor",
+  "booking_reference",
+  "column_break_vendor1",
+  "commission_percentage",
+  "payment_terms",
+  "special_instructions",
+  "passenger_requirements_section",
+  "valid_id_required",
+  "visa_required",
+  "minimum_age",
+  "special_assistance_available",
+  "pet_policy",
+  "additional_info_section",
+  "check_in_time",
+  "boarding_time",
+  "gate_information",
+  "platform_information",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "default": "TRANS-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "transportation_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Transportation Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "transportation_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Transportation Type",
+   "options": "\nInternational Flight\nDomestic Flight\nTrain\nBus\nCruise\nFerry\nPrivate Transfer\nHelicopter\nSeaplane\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_bi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode",
+   "options": "\nAir\nRail\nRoad\nSea\nCombined",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_class",
+   "fieldtype": "Select",
+   "label": "Service Class",
+   "options": "\nEconomy\nPremium Economy\nBusiness\nFirst Class\nStandard\nExecutive\nSleeper\nSeater\nAC\nNon-AC\nDeluxe\nSuper Deluxe"
+  },
+  {
+   "default": "Confirmed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Confirmed\nWaitlisted\nPending\nCancelled\nRescheduled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "route_information_section",
+   "fieldtype": "Section Break",
+   "label": "Route Information"
+  },
+  {
+   "fieldname": "departure_city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Departure City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "departure_location",
+   "fieldtype": "Data",
+   "label": "Departure Location/Airport/Station"
+  },
+  {
+   "fieldname": "departure_terminal",
+   "fieldtype": "Data",
+   "label": "Departure Terminal/Platform"
+  },
+  {
+   "fieldname": "column_break_ri1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "arrival_city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Arrival City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "arrival_location",
+   "fieldtype": "Data",
+   "label": "Arrival Location/Airport/Station"
+  },
+  {
+   "fieldname": "arrival_terminal",
+   "fieldtype": "Data",
+   "label": "Arrival Terminal/Platform"
+  },
+  {
+   "fieldname": "schedule_section",
+   "fieldtype": "Section Break",
+   "label": "Schedule"
+  },
+  {
+   "fieldname": "departure_date",
+   "fieldtype": "Date",
+   "label": "Departure Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "departure_time",
+   "fieldtype": "Time",
+   "label": "Departure Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_s1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "arrival_date",
+   "fieldtype": "Date",
+   "label": "Arrival Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "arrival_time",
+   "fieldtype": "Time",
+   "label": "Arrival Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duration_calculation",
+   "fieldtype": "Section Break",
+   "label": "Duration & Stops"
+  },
+  {
+   "fieldname": "journey_duration_hours",
+   "fieldtype": "Int",
+   "label": "Journey Duration (Hours)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "journey_duration_minutes",
+   "fieldtype": "Int",
+   "label": "Journey Duration (Minutes)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_dc1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "layover_details",
+   "fieldtype": "Small Text",
+   "label": "Layover/Stop Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_stops",
+   "fieldtype": "Int",
+   "label": "Total Stops",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "carrier_information_section",
+   "fieldtype": "Section Break",
+   "label": "Carrier Information"
+  },
+  {
+   "fieldname": "carrier_type",
+   "fieldtype": "Select",
+   "label": "Carrier Type",
+   "options": "\nAirline\nRailway\nBus Operator\nCruise Line\nFerry Operator\nPrivate Operator"
+  },
+  {
+   "fieldname": "carrier_name",
+   "fieldtype": "Data",
+   "label": "Carrier/Operator Name"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type.includes('Flight')",
+   "fieldname": "flight_number",
+   "fieldtype": "Data",
+   "label": "Flight Number"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Train'",
+   "fieldname": "train_number",
+   "fieldtype": "Data",
+   "label": "Train Number/Name"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Bus'",
+   "fieldname": "bus_number",
+   "fieldtype": "Data",
+   "label": "Bus Number"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Cruise' || doc.transportation_type=='Ferry'",
+   "fieldname": "vessel_name",
+   "fieldtype": "Data",
+   "label": "Vessel Name"
+  },
+  {
+   "fieldname": "column_break_ci1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type.includes('Flight')",
+   "fieldname": "aircraft_type",
+   "fieldtype": "Data",
+   "label": "Aircraft Type"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Train'",
+   "fieldname": "train_type",
+   "fieldtype": "Select",
+   "label": "Train Type",
+   "options": "\nExpress\nSuperfast\nBullet Train\nLocal\nMetro\nMonorail"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Bus'",
+   "fieldname": "bus_type",
+   "fieldtype": "Select",
+   "label": "Bus Type",
+   "options": "\nVolvo\nMercedes\nScania\nAshok Leyland\nSleeper\nSemi-Sleeper\nSeater"
+  },
+  {
+   "depends_on": "eval:doc.transportation_type=='Cruise' || doc.transportation_type=='Ferry'",
+   "fieldname": "vessel_type",
+   "fieldtype": "Data",
+   "label": "Vessel Type"
+  },
+  {
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle & Seating Details"
+  },
+  {
+   "fieldname": "seat_configuration",
+   "fieldtype": "Data",
+   "label": "Seat Configuration"
+  },
+  {
+   "fieldname": "total_seats",
+   "fieldtype": "Int",
+   "label": "Total Seats/Capacity",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "seats_available",
+   "fieldtype": "Int",
+   "label": "Seats Available",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_vd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "baggage_allowance",
+   "fieldtype": "Data",
+   "label": "Baggage Allowance"
+  },
+  {
+   "fieldname": "cabin_baggage",
+   "fieldtype": "Data",
+   "label": "Cabin/Hand Baggage"
+  },
+  {
+   "fieldname": "additional_baggage_cost",
+   "fieldtype": "Currency",
+   "label": "Additional Baggage Cost"
+  },
+  {
+   "fieldname": "facilities_amenities_section",
+   "fieldtype": "Section Break",
+   "label": "Facilities & Amenities"
+  },
+  {
+   "fieldname": "onboard_facilities",
+   "fieldtype": "Long Text",
+   "label": "Onboard Facilities"
+  },
+  {
+   "fieldname": "meal_service",
+   "fieldtype": "Select",
+   "label": "Meal Service",
+   "options": "\nNot Included\nSnacks Only\nMeal Included\nMultiple Meals\nPaid Meal\nComplimentary"
+  },
+  {
+   "fieldname": "entertainment_options",
+   "fieldtype": "Small Text",
+   "label": "Entertainment Options"
+  },
+  {
+   "default": "0",
+   "fieldname": "wifi_available",
+   "fieldtype": "Check",
+   "label": "WiFi Available"
+  },
+  {
+   "default": "0",
+   "fieldname": "power_outlets",
+   "fieldtype": "Check",
+   "label": "Power Outlets/USB Ports"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_structure",
+   "fieldtype": "Select",
+   "label": "Pricing Structure",
+   "options": "\nPer Person\nPer Seat\nPer Cabin\nPer Vehicle\nGroup Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "adult_price",
+   "fieldtype": "Currency",
+   "label": "Adult Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "child_price",
+   "fieldtype": "Currency",
+   "label": "Child Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "infant_price",
+   "fieldtype": "Currency",
+   "label": "Infant Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_ps1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "senior_citizen_price",
+   "fieldtype": "Currency",
+   "label": "Senior Citizen Price",
+   "options": "currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "group_discount_applicable",
+   "fieldtype": "Check",
+   "label": "Group Discount Applicable"
+  },
+  {
+   "depends_on": "group_discount_applicable",
+   "fieldname": "group_size_for_discount",
+   "fieldtype": "Int",
+   "label": "Min Group Size",
+   "non_negative": 1
+  },
+  {
+   "depends_on": "group_discount_applicable",
+   "fieldname": "group_discount_percentage",
+   "fieldtype": "Percent",
+   "label": "Group Discount %"
+  },
+  {
+   "fieldname": "taxes_fees_section",
+   "fieldtype": "Section Break",
+   "label": "Taxes & Fees"
+  },
+  {
+   "fieldname": "base_fare",
+   "fieldtype": "Currency",
+   "label": "Base Fare",
+   "options": "currency"
+  },
+  {
+   "fieldname": "taxes",
+   "fieldtype": "Currency",
+   "label": "Taxes",
+   "options": "currency"
+  },
+  {
+   "fieldname": "fuel_surcharge",
+   "fieldtype": "Currency",
+   "label": "Fuel Surcharge",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_tf1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_fee",
+   "fieldtype": "Currency",
+   "label": "Service Fee",
+   "options": "currency"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Currency",
+   "label": "Total Price",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "price_includes",
+   "fieldtype": "Small Text",
+   "label": "Price Includes"
+  },
+  {
+   "fieldname": "booking_policies_section",
+   "fieldtype": "Section Break",
+   "label": "Booking & Cancellation Policies"
+  },
+  {
+   "fieldname": "booking_class",
+   "fieldtype": "Data",
+   "label": "Booking Class/Fare Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "refundable",
+   "fieldtype": "Check",
+   "label": "Refundable"
+  },
+  {
+   "default": "0",
+   "fieldname": "changeable",
+   "fieldtype": "Check",
+   "label": "Date/Time Changeable"
+  },
+  {
+   "fieldname": "column_break_bp1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cancellation_charges",
+   "fieldtype": "Small Text",
+   "label": "Cancellation Charges"
+  },
+  {
+   "fieldname": "change_fee",
+   "fieldtype": "Currency",
+   "label": "Change Fee",
+   "options": "currency"
+  },
+  {
+   "fieldname": "no_show_policy",
+   "fieldtype": "Small Text",
+   "label": "No Show Policy"
+  },
+  {
+   "fieldname": "vendor_information_section",
+   "fieldtype": "Section Break",
+   "label": "Vendor Information"
+  },
+  {
+   "fieldname": "vendor_type",
+   "fieldtype": "Select",
+   "label": "Vendor Type",
+   "options": "\nDirect Carrier\nTravel Agent\nDMC\nOnline Portal\nOther"
+  },
+  {
+   "fieldname": "vendor",
+   "fieldtype": "Dynamic Link",
+   "label": "Vendor",
+   "options": "vendor_type"
+  },
+  {
+   "fieldname": "booking_reference",
+   "fieldtype": "Data",
+   "label": "Booking Reference/PNR"
+  },
+  {
+   "fieldname": "column_break_vendor1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nImmediate\nNet 30\nNet 60\nOn Travel Date"
+  },
+  {
+   "fieldname": "special_instructions",
+   "fieldtype": "Small Text",
+   "label": "Special Instructions"
+  },
+  {
+   "fieldname": "passenger_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Passenger Requirements"
+  },
+  {
+   "default": "1",
+   "fieldname": "valid_id_required",
+   "fieldtype": "Check",
+   "label": "Valid ID Required"
+  },
+  {
+   "default": "0",
+   "fieldname": "visa_required",
+   "fieldtype": "Check",
+   "label": "Visa Required"
+  },
+  {
+   "fieldname": "minimum_age",
+   "fieldtype": "Int",
+   "label": "Minimum Age (Unaccompanied)",
+   "non_negative": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "special_assistance_available",
+   "fieldtype": "Check",
+   "label": "Special Assistance Available"
+  },
+  {
+   "fieldname": "pet_policy",
+   "fieldtype": "Small Text",
+   "label": "Pet Policy"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "check_in_time",
+   "fieldtype": "Data",
+   "label": "Check-in Opens/Closes"
+  },
+  {
+   "fieldname": "boarding_time",
+   "fieldtype": "Time",
+   "label": "Boarding Time"
+  },
+  {
+   "fieldname": "gate_information",
+   "fieldtype": "Data",
+   "label": "Gate Information"
+  },
+  {
+   "fieldname": "platform_information",
+   "fieldtype": "Data",
+   "label": "Platform Information"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Internal Notes"
+  }
+ ],
+ "links": [],
+ "modified": "2025-08-13 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Transportation",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "transportation_name,transportation_type,departure_city,arrival_city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "transportation_name",
+ "track_changes": 1
+}

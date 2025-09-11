@@ -1,0 +1,38 @@
+{
+ "actions": [],
+ "creation": "2025-07-19 12:35:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "facility",
+  "category"
+ ],
+ "fields": [
+  {
+   "fieldname": "facility",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Facility",
+   "options": "Facility Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "\nBasic\nRecreation\nBusiness\nDining\nWellness\nTransport\nOther"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-19 12:35:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Facility",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC"
+}

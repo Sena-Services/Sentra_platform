@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:chain_name",
+ "creation": "2025-07-19 12:55:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "chain_name",
+  "chain_code",
+  "headquarters",
+  "website",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "chain_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Chain Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "chain_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Chain Code"
+  },
+  {
+   "fieldname": "headquarters",
+   "fieldtype": "Data",
+   "label": "Headquarters"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive"
+  }
+ ],
+ "links": [],
+ "modified": "2025-07-19 12:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Hotel Chain",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "chain_name,chain_code",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,362 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-07-01 13:59:54.862617",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "package_details_section",
+  "naming_series",
+  "package_name",
+  "package_code",
+  "status",
+  "itinerary_link",
+  "column_break_pd1",
+  "dmc",
+  "destinations",
+  "description",
+  "marketing_section",
+  "category",
+  "image_url",
+  "column_break_mk1",
+  "popularity_score",
+  "rating",
+  "review_count",
+  "availability_section",
+  "valid_from",
+  "valid_to",
+  "min_group_size",
+  "max_group_size",
+  "column_break_av1",
+  "target_audience",
+  "exclusion_criteria",
+  "no_of_days",
+  "no_of_nights",
+  "pricing_section",
+  "currency",
+  "base_cost",
+  "column_break_pr1",
+  "markup_percentage",
+  "daywise_itinerary_section",
+  "itinerary_data",
+  "inclusions_exclusions_section",
+  "package_inclusions",
+  "package_exclusions",
+  "terms_and_conditions",
+  "additional_info_section",
+  "hotel",
+  "notes",
+  "legacy_fields_section",
+  "vendors",
+  "price",
+  "activities",
+  "daywise_plan"
+ ],
+ "fields": [
+  {
+   "fieldname": "package_details_section",
+   "fieldtype": "Section Break",
+   "label": "Package Details"
+  },
+  {
+   "default": "PCK-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "package_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dmc",
+   "fieldtype": "Link",
+   "label": "DMC Provider",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "marketing_section",
+   "fieldtype": "Section Break",
+   "label": "Marketing & Rating"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "City Tours\nBeach & Island\nLuxury\nAdventure\nHoneymoon\nCultural\nHeritage\nWildlife\nMulti-Country"
+  },
+  {
+   "description": "URL to package image",
+   "fieldname": "image_url",
+   "fieldtype": "Data",
+   "label": "Image URL"
+  },
+  {
+   "fieldname": "column_break_mk1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Popularity rating (0-100)",
+   "fieldname": "popularity_score",
+   "fieldtype": "Int",
+   "label": "Popularity Score"
+  },
+  {
+   "description": "Customer rating (1.0-5.0)",
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1"
+  },
+  {
+   "default": "0",
+   "description": "Number of customer reviews",
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count"
+  },
+  {
+   "fieldname": "availability_section",
+   "fieldtype": "Section Break",
+   "label": "Availability"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "Valid To",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "min_group_size",
+   "fieldtype": "Int",
+   "label": "Min Group Size",
+   "non_negative": 1
+  },
+  {
+   "default": "10",
+   "fieldname": "max_group_size",
+   "fieldtype": "Int",
+   "label": "Max Group Size",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_av1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_audience",
+   "fieldtype": "Table MultiSelect",
+   "label": "Target Audience",
+   "options": "Target Audience Child Table"
+  },
+  {
+   "fieldname": "exclusion_criteria",
+   "fieldtype": "Table MultiSelect",
+   "label": "Exclusion Criteria",
+   "options": "Exclusion Criteria Child Table"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "base_cost",
+   "fieldtype": "Currency",
+   "label": "Base Cost (per pax)",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "markup_percentage",
+   "fieldtype": "Percent",
+   "label": "Markup (%)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "daywise_itinerary_section",
+   "fieldtype": "Section Break",
+   "label": "Day-wise Itinerary"
+  },
+  {
+   "fieldname": "itinerary_data",
+   "fieldtype": "JSON",
+   "label": "Day-wise Itinerary"
+  },
+  {
+   "fieldname": "inclusions_exclusions_section",
+   "fieldtype": "Section Break",
+   "label": "Inclusions, Exclusions & Terms"
+  },
+  {
+   "description": "What's included in this package",
+   "fieldname": "package_inclusions",
+   "fieldtype": "Text Editor",
+   "label": "Inclusions"
+  },
+  {
+   "description": "What's not included in this package",
+   "fieldname": "package_exclusions",
+   "fieldtype": "Text Editor",
+   "label": "Exclusions"
+  },
+  {
+   "fieldname": "terms_and_conditions",
+   "fieldtype": "Text Editor",
+   "label": "Terms & Conditions"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Info"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Notes"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "legacy_fields_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Legacy Fields"
+  },
+  {
+   "fieldname": "vendors",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Vendors",
+   "options": "Vendor List Child Table"
+  },
+  {
+   "fieldname": "no_of_days",
+   "fieldtype": "Int",
+   "label": "No. of Days"
+  },
+  {
+   "fieldname": "no_of_nights",
+   "fieldtype": "Int",
+   "label": "No. of Nights"
+  },
+  {
+   "description": "Price per person",
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Price"
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Table MultiSelect",
+   "hidden": 1,
+   "label": "Activities",
+   "options": "Activity Child Table"
+  },
+  {
+   "fieldname": "destinations",
+   "fieldtype": "Table",
+   "label": "Destinations",
+   "options": "Trip Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hotel",
+   "fieldtype": "Select",
+   "label": "Hotel",
+   "options": "5\n4\n3\n2\n1"
+  },
+  {
+   "fieldname": "daywise_plan",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Daywise Plan",
+   "options": "Daywise Plan"
+  },
+  {
+   "fieldname": "itinerary_link",
+   "fieldtype": "Attach",
+   "label": "Itinerary Link"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-21 13:46:22.933471",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Standard Package",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "package_name"
+}

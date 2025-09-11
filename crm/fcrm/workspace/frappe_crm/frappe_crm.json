@@ -38,7 +38,7 @@
    "doc_view": "List",
    "label": "Leads",
    "link_to": "CRM Lead",
-   "stats_filter": "[[\"CRM Lead\",\"converted\",\"=\",0,false]]",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {

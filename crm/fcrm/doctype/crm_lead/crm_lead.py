@@ -20,7 +20,11 @@ class CRMLead(Document):
 		self.set_full_name()
 		self.set_lead_name()
 		self.set_title()
-		self.validate_email()
+
+		if self.is_new():
+			if not self.email and not self.mobile_no:
+				frappe.throw(_("A Lead must have either an Email Address or a Mobile Number."))
+
 		if not self.is_new() and self.has_value_changed("lead_owner") and self.lead_owner:
 			self.share_with_agent(self.lead_owner)
 			self.assign_agent(self.lead_owner)
@@ -31,7 +35,7 @@ class CRMLead(Document):
 		if self.lead_owner:
 			self.assign_agent(self.lead_owner)
 
-		self.create_contact(throw=False)
+		
 
 	def on_update(self):
 		"""Update contact when lead details change"""
@@ -43,7 +47,7 @@ class CRMLead(Document):
 		frappe.logger().info(f"📋 sync_contact_on_lead_update() started for lead {self.name}")
 		
 		# Fields to monitor for changes
-		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram_id"]
+		sync_fields = ["email", "mobile_no", "first_name", "last_name", "gender", "instagram"]
 		
 		# Check if any of the sync fields have changed
 		changed_fields = []
@@ -84,9 +88,9 @@ class CRMLead(Document):
 				contact_doc.gender = self.gender
 			
 			# Update instagram ID if changed (requires custom field in Contact)
-			if "instagram_id" in changed_fields and self.instagram_id:
-				frappe.logger().info(f"📷 Updating instagram_id: {getattr(contact_doc, 'instagram_id', 'N/A')} → {self.instagram_id}")
-				contact_doc.instagram_id = self.instagram_id
+			if "instagram" in changed_fields and self.instagram:
+				frappe.logger().info(f"📷 Updating instagram: {getattr(contact_doc, 'instagram', 'N/A')} → {self.instagram}")
+				contact_doc.instagram = self.instagram
 			
 			# Update email if changed
 			if "email" in changed_fields and self.email:
@@ -129,8 +133,8 @@ class CRMLead(Document):
 				return mobile_contact
 		
 		# Find by Instagram ID (if you add this to Contact later)
-		if self.instagram_id:
-			instagram_contact = frappe.db.get_value("Contact", {"instagram_id": self.instagram_id}, "name")
+		if self.instagram:
+			instagram_contact = frappe.db.get_value("Contact", {"instagram": self.instagram}, "name")
 			frappe.logger().info(f"📷 Instagram search result: {instagram_contact}")
 			if instagram_contact:
 				return instagram_contact
@@ -197,15 +201,41 @@ class CRMLead(Document):
 					],
 				)
 			)
+		# Don't override lead_name if no first_name is provided
+		# This preserves lead_name set directly or from other sources
 
 	def set_lead_name(self):
 		if not self.lead_name:
-			# Check for leads being created through data import
-			if not self.email and not self.flags.ignore_mandatory:
-				frappe.throw(_("A Lead requiresa person's name"))
+			# Try to construct lead_name from available data
+			if self.first_name and self.last_name:
+				self.lead_name = f"{self.first_name} {self.last_name}".strip()
+			elif self.first_name:
+				self.lead_name = self.first_name
+			elif self.last_name:
+				self.lead_name = self.last_name
 			elif self.email:
 				self.lead_name = self.email.split("@")[0]
-			else:
+			elif self.link_to_contact:
+				# Get name from linked contact
+				try:
+					contact = frappe.get_doc("Contact", self.link_to_contact)
+					if contact.full_name:
+						self.lead_name = contact.full_name
+					elif contact.first_name and contact.last_name:
+						self.lead_name = f"{contact.first_name} {contact.last_name}".strip()
+					elif contact.first_name:
+						self.lead_name = contact.first_name
+					elif contact.last_name:
+						self.lead_name = contact.last_name
+					elif contact.email_id:
+						self.lead_name = contact.email_id.split("@")[0]
+				except Exception as e:
+					pass
+			
+			# Final check - if still no lead_name and not ignoring mandatory
+			if not self.lead_name and not self.flags.ignore_mandatory:
+				frappe.throw(_("A Lead requires a person's name"))
+			elif not self.lead_name:
 				self.lead_name = "Unnamed Lead"
 
 	def set_title(self):
@@ -327,14 +357,14 @@ class CRMLead(Document):
 				"last_name": contact.last_name,
 				"email": contact.email_id,
 				"mobile_no": contact.mobile_no,
-				"instagram_id": contact.instagram_id,
+				"instagram": contact.instagram,
 			},
 		)
 
 	def contact_exists(self, throw=True):
 		email_exist = frappe.db.exists("Contact Email", {"email_id": self.email})
 		mobile_exist = frappe.db.exists("Contact Phone", {"phone": self.mobile_no})
-		# Add instagram_id
+		# Add instagram
 
 		doctype = "Contact Email" if email_exist else "Contact Phone"
 		name = email_exist or mobile_exist
@@ -500,6 +530,49 @@ class CRMLead(Document):
 			"title_field": "lead_name",
 			"kanban_fields": '["email", "mobile_no", "_assign", "modified"]',
 		}
+
+	@staticmethod
+	def parse_list_data(data):
+		"""Enhance list data with Trip information for each Lead"""
+		if not data:
+			return data
+		
+		# Get all lead names from the current data
+		lead_names = [row.get("name") for row in data if row.get("name")]
+		
+		if not lead_names:
+			return data
+		
+		# Fetch Trip names for all leads first
+		trip_names = frappe.get_all(
+			"Trip",
+			filters={"lead": ["in", lead_names]},
+			fields=["name", "lead"]
+		)
+		
+		# Create a mapping of lead_name -> trip_data with ALL fields
+		trip_map = {}
+		for trip_info in trip_names:
+			lead_name = trip_info.get("lead")
+			trip_name = trip_info.get("name")
+			
+			# Get complete Trip document with all fields
+			trip_doc = frappe.get_doc("Trip", trip_name)
+			trip_data = trip_doc.as_dict()
+			
+			if lead_name not in trip_map:
+				trip_map[lead_name] = []
+			trip_map[lead_name].append(trip_data)
+		
+		# Add trip data to each lead
+		for row in data:
+			lead_name = row.get("name")
+			if lead_name in trip_map:
+				row["trips"] = trip_map[lead_name]
+			else:
+				row["trips"] = []
+		
+		return data
 
 
 # @frappe.whitelist()

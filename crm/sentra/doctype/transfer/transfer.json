@@ -1,0 +1,770 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-08-13 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "naming_series",
+  "transfer_name",
+  "transfer_type",
+  "column_break_bi1",
+  "transfer_category",
+  "vehicle_type",
+  "status",
+  "pickup_details_section",
+  "pickup_date",
+  "pickup_time",
+  "pickup_location",
+  "pickup_address",
+  "column_break_pd1",
+  "pickup_city",
+  "pickup_landmark",
+  "pickup_latitude",
+  "pickup_longitude",
+  "dropoff_details_section",
+  "dropoff_date",
+  "dropoff_time",
+  "dropoff_location",
+  "dropoff_address",
+  "column_break_dd1",
+  "dropoff_city",
+  "dropoff_landmark",
+  "dropoff_latitude",
+  "dropoff_longitude",
+  "journey_details_section",
+  "estimated_distance",
+  "estimated_duration_hours",
+  "estimated_duration_minutes",
+  "column_break_jd1",
+  "route_description",
+  "stops_enroute",
+  "waiting_time_included",
+  "vehicle_information_section",
+  "vehicle_category",
+  "vehicle_make",
+  "vehicle_model",
+  "vehicle_registration",
+  "column_break_vi1",
+  "seating_capacity",
+  "luggage_capacity",
+  "air_conditioned",
+  "wifi_available",
+  "driver_details_section",
+  "driver_provided",
+  "driver_name",
+  "driver_contact",
+  "column_break_driver1",
+  "driver_language",
+  "driver_assistance",
+  "meet_and_greet",
+  "facilities_section",
+  "vehicle_amenities",
+  "child_seat_available",
+  "wheelchair_accessible",
+  "pet_friendly",
+  "refreshments_provided",
+  "pricing_section",
+  "currency",
+  "pricing_type",
+  "base_price",
+  "price_per_km",
+  "price_per_hour",
+  "column_break_pricing1",
+  "minimum_charge",
+  "waiting_charges_per_hour",
+  "night_charges_applicable",
+  "night_charge_percentage",
+  "additional_charges_section",
+  "toll_charges",
+  "parking_charges",
+  "permit_charges",
+  "column_break_ac1",
+  "driver_allowance",
+  "fuel_charges_included",
+  "total_estimated_cost",
+  "inclusions_exclusions_section",
+  "inclusions",
+  "exclusions",
+  "terms_and_conditions",
+  "booking_policies_section",
+  "advance_booking_required",
+  "advance_booking_hours",
+  "confirmation_required",
+  "column_break_bp1",
+  "cancellation_policy",
+  "modification_allowed",
+  "no_show_charges",
+  "vendor_information_section",
+  "vendor_type",
+  "vendor",
+  "booking_reference",
+  "column_break_vendor1",
+  "commission_percentage",
+  "payment_terms",
+  "emergency_contact",
+  "passenger_information_section",
+  "max_passengers",
+  "passenger_names",
+  "contact_person",
+  "contact_number",
+  "special_requirements",
+  "additional_info_section",
+  "pickup_instructions",
+  "flight_details",
+  "train_details",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "default": "TRF-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "transfer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Transfer Name",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "transfer_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Transfer Type",
+   "options": "\nAirport Transfer\nRailway Station Transfer\nHotel Transfer\nSightseeing Transfer\nInter-City Transfer\nPort Transfer\nPoint to Point\nHourly Rental\nFull Day Disposal\nHalf Day Disposal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_bi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transfer_category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nPrivate\nShared\nShuttle\nGroup Transfer\nVIP Transfer"
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Vehicle Type",
+   "options": "\nSedan\nSUV\nMPV\nMinivan\nVan\nMini Bus\nCoach\nLimousine\nLuxury Car\nTuk Tuk\nRickshaw\nBoat\nHelicopter\nBicycle\nMotorbike\nOther",
+   "reqd": 1
+  },
+  {
+   "default": "Confirmed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Confirmed\nPending\nWaitlisted\nCancelled\nCompleted",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pickup_details_section",
+   "fieldtype": "Section Break",
+   "label": "Pickup Details"
+  },
+  {
+   "fieldname": "pickup_date",
+   "fieldtype": "Date",
+   "label": "Pickup Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pickup_time",
+   "fieldtype": "Time",
+   "label": "Pickup Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pickup_location",
+   "fieldtype": "Select",
+   "label": "Pickup Type",
+   "options": "\nHotel\nAirport\nRailway Station\nBus Station\nPort\nResidence\nOffice\nOther"
+  },
+  {
+   "fieldname": "pickup_address",
+   "fieldtype": "Small Text",
+   "label": "Pickup Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pickup_city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Pickup City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pickup_landmark",
+   "fieldtype": "Data",
+   "label": "Pickup Landmark"
+  },
+  {
+   "fieldname": "pickup_latitude",
+   "fieldtype": "Float",
+   "label": "Pickup Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "pickup_longitude",
+   "fieldtype": "Float",
+   "label": "Pickup Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "dropoff_details_section",
+   "fieldtype": "Section Break",
+   "label": "Drop-off Details"
+  },
+  {
+   "fieldname": "dropoff_date",
+   "fieldtype": "Date",
+   "label": "Drop-off Date"
+  },
+  {
+   "fieldname": "dropoff_time",
+   "fieldtype": "Time",
+   "label": "Estimated Drop-off Time"
+  },
+  {
+   "fieldname": "dropoff_location",
+   "fieldtype": "Select",
+   "label": "Drop-off Type",
+   "options": "\nHotel\nAirport\nRailway Station\nBus Station\nPort\nResidence\nOffice\nOther"
+  },
+  {
+   "fieldname": "dropoff_address",
+   "fieldtype": "Small Text",
+   "label": "Drop-off Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_dd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dropoff_city",
+   "fieldtype": "Link",
+   "label": "Drop-off City",
+   "options": "Destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dropoff_landmark",
+   "fieldtype": "Data",
+   "label": "Drop-off Landmark"
+  },
+  {
+   "fieldname": "dropoff_latitude",
+   "fieldtype": "Float",
+   "label": "Drop-off Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "dropoff_longitude",
+   "fieldtype": "Float",
+   "label": "Drop-off Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "journey_details_section",
+   "fieldtype": "Section Break",
+   "label": "Journey Details"
+  },
+  {
+   "fieldname": "estimated_distance",
+   "fieldtype": "Float",
+   "label": "Estimated Distance (km)"
+  },
+  {
+   "fieldname": "estimated_duration_hours",
+   "fieldtype": "Int",
+   "label": "Est. Duration (Hours)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "estimated_duration_minutes",
+   "fieldtype": "Int",
+   "label": "Est. Duration (Minutes)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_jd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "route_description",
+   "fieldtype": "Small Text",
+   "label": "Route Description"
+  },
+  {
+   "fieldname": "stops_enroute",
+   "fieldtype": "Small Text",
+   "label": "Stops Enroute"
+  },
+  {
+   "fieldname": "waiting_time_included",
+   "fieldtype": "Int",
+   "label": "Waiting Time Included (Minutes)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "vehicle_information_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Information"
+  },
+  {
+   "fieldname": "vehicle_category",
+   "fieldtype": "Select",
+   "label": "Vehicle Category",
+   "options": "\nEconomy\nStandard\nPremium\nLuxury\nSuper Luxury"
+  },
+  {
+   "fieldname": "vehicle_make",
+   "fieldtype": "Data",
+   "label": "Vehicle Make"
+  },
+  {
+   "fieldname": "vehicle_model",
+   "fieldtype": "Data",
+   "label": "Vehicle Model"
+  },
+  {
+   "fieldname": "vehicle_registration",
+   "fieldtype": "Data",
+   "label": "Vehicle Registration"
+  },
+  {
+   "fieldname": "column_break_vi1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "seating_capacity",
+   "fieldtype": "Int",
+   "label": "Seating Capacity",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "luggage_capacity",
+   "fieldtype": "Data",
+   "label": "Luggage Capacity"
+  },
+  {
+   "default": "1",
+   "fieldname": "air_conditioned",
+   "fieldtype": "Check",
+   "label": "Air Conditioned"
+  },
+  {
+   "default": "0",
+   "fieldname": "wifi_available",
+   "fieldtype": "Check",
+   "label": "WiFi Available"
+  },
+  {
+   "fieldname": "driver_details_section",
+   "fieldtype": "Section Break",
+   "label": "Driver Details"
+  },
+  {
+   "default": "1",
+   "fieldname": "driver_provided",
+   "fieldtype": "Check",
+   "label": "Driver Provided"
+  },
+  {
+   "depends_on": "driver_provided",
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name"
+  },
+  {
+   "depends_on": "driver_provided",
+   "fieldname": "driver_contact",
+   "fieldtype": "Data",
+   "label": "Driver Contact"
+  },
+  {
+   "fieldname": "column_break_driver1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "driver_provided",
+   "fieldname": "driver_language",
+   "fieldtype": "Data",
+   "label": "Driver Language(s)"
+  },
+  {
+   "default": "0",
+   "depends_on": "driver_provided",
+   "fieldname": "driver_assistance",
+   "fieldtype": "Check",
+   "label": "Driver Assistance with Luggage"
+  },
+  {
+   "default": "0",
+   "fieldname": "meet_and_greet",
+   "fieldtype": "Check",
+   "label": "Meet & Greet Service"
+  },
+  {
+   "fieldname": "facilities_section",
+   "fieldtype": "Section Break",
+   "label": "Facilities & Amenities"
+  },
+  {
+   "fieldname": "vehicle_amenities",
+   "fieldtype": "Long Text",
+   "label": "Vehicle Amenities"
+  },
+  {
+   "default": "0",
+   "fieldname": "child_seat_available",
+   "fieldtype": "Check",
+   "label": "Child Seat Available"
+  },
+  {
+   "default": "0",
+   "fieldname": "wheelchair_accessible",
+   "fieldtype": "Check",
+   "label": "Wheelchair Accessible"
+  },
+  {
+   "default": "0",
+   "fieldname": "pet_friendly",
+   "fieldtype": "Check",
+   "label": "Pet Friendly"
+  },
+  {
+   "default": "0",
+   "fieldname": "refreshments_provided",
+   "fieldtype": "Check",
+   "label": "Refreshments Provided"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_type",
+   "fieldtype": "Select",
+   "label": "Pricing Type",
+   "options": "\nFixed Price\nPer Kilometer\nPer Hour\nPer Day\nPer Person\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "base_price",
+   "fieldtype": "Currency",
+   "label": "Base Price",
+   "options": "currency"
+  },
+  {
+   "depends_on": "eval:doc.pricing_type=='Per Kilometer'",
+   "fieldname": "price_per_km",
+   "fieldtype": "Currency",
+   "label": "Price per KM",
+   "options": "currency"
+  },
+  {
+   "depends_on": "eval:doc.pricing_type=='Per Hour'",
+   "fieldname": "price_per_hour",
+   "fieldtype": "Currency",
+   "label": "Price per Hour",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_pricing1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "minimum_charge",
+   "fieldtype": "Currency",
+   "label": "Minimum Charge",
+   "options": "currency"
+  },
+  {
+   "fieldname": "waiting_charges_per_hour",
+   "fieldtype": "Currency",
+   "label": "Waiting Charges (per hour)",
+   "options": "currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "night_charges_applicable",
+   "fieldtype": "Check",
+   "label": "Night Charges Applicable"
+  },
+  {
+   "depends_on": "night_charges_applicable",
+   "fieldname": "night_charge_percentage",
+   "fieldtype": "Percent",
+   "label": "Night Charge %"
+  },
+  {
+   "fieldname": "additional_charges_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Charges"
+  },
+  {
+   "fieldname": "toll_charges",
+   "fieldtype": "Select",
+   "label": "Toll Charges",
+   "options": "\nIncluded\nExtra at Actual\nNot Applicable"
+  },
+  {
+   "fieldname": "parking_charges",
+   "fieldtype": "Select",
+   "label": "Parking Charges",
+   "options": "\nIncluded\nExtra at Actual\nNot Applicable"
+  },
+  {
+   "fieldname": "permit_charges",
+   "fieldtype": "Currency",
+   "label": "Permit/Entry Charges",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_ac1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "driver_allowance",
+   "fieldtype": "Currency",
+   "label": "Driver Allowance",
+   "options": "currency"
+  },
+  {
+   "default": "1",
+   "fieldname": "fuel_charges_included",
+   "fieldtype": "Check",
+   "label": "Fuel Charges Included"
+  },
+  {
+   "fieldname": "total_estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Total Estimated Cost",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "inclusions_exclusions_section",
+   "fieldtype": "Section Break",
+   "label": "Inclusions & Exclusions"
+  },
+  {
+   "fieldname": "inclusions",
+   "fieldtype": "Long Text",
+   "label": "Inclusions"
+  },
+  {
+   "fieldname": "exclusions",
+   "fieldtype": "Long Text",
+   "label": "Exclusions"
+  },
+  {
+   "fieldname": "terms_and_conditions",
+   "fieldtype": "Small Text",
+   "label": "Terms and Conditions"
+  },
+  {
+   "fieldname": "booking_policies_section",
+   "fieldtype": "Section Break",
+   "label": "Booking Policies"
+  },
+  {
+   "default": "0",
+   "fieldname": "advance_booking_required",
+   "fieldtype": "Check",
+   "label": "Advance Booking Required"
+  },
+  {
+   "depends_on": "advance_booking_required",
+   "fieldname": "advance_booking_hours",
+   "fieldtype": "Int",
+   "label": "Advance Booking (Hours)",
+   "non_negative": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "confirmation_required",
+   "fieldtype": "Check",
+   "label": "Confirmation Required"
+  },
+  {
+   "fieldname": "column_break_bp1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cancellation_policy",
+   "fieldtype": "Small Text",
+   "label": "Cancellation Policy"
+  },
+  {
+   "default": "1",
+   "fieldname": "modification_allowed",
+   "fieldtype": "Check",
+   "label": "Modification Allowed"
+  },
+  {
+   "fieldname": "no_show_charges",
+   "fieldtype": "Currency",
+   "label": "No Show Charges",
+   "options": "currency"
+  },
+  {
+   "fieldname": "vendor_information_section",
+   "fieldtype": "Section Break",
+   "label": "Vendor Information"
+  },
+  {
+   "fieldname": "vendor_type",
+   "fieldtype": "Select",
+   "label": "Vendor Type",
+   "options": "\nDirect Operator\nTravel Agent\nDMC\nHotel\nCar Rental Company\nOther"
+  },
+  {
+   "fieldname": "vendor",
+   "fieldtype": "Dynamic Link",
+   "label": "Vendor",
+   "options": "vendor_type"
+  },
+  {
+   "fieldname": "booking_reference",
+   "fieldtype": "Data",
+   "label": "Booking Reference"
+  },
+  {
+   "fieldname": "column_break_vendor1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commission_percentage",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nPrepaid\nOn Spot\nNet 30\nNet 60"
+  },
+  {
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "passenger_information_section",
+   "fieldtype": "Section Break",
+   "label": "Passenger Information"
+  },
+  {
+   "fieldname": "max_passengers",
+   "fieldtype": "Int",
+   "label": "Number of Passengers",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "passenger_names",
+   "fieldtype": "Small Text",
+   "label": "Passenger Names"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "special_requirements",
+   "fieldtype": "Small Text",
+   "label": "Special Requirements"
+  },
+  {
+   "fieldname": "additional_info_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "pickup_instructions",
+   "fieldtype": "Small Text",
+   "label": "Pickup Instructions"
+  },
+  {
+   "fieldname": "flight_details",
+   "fieldtype": "Data",
+   "label": "Flight Number/Details"
+  },
+  {
+   "fieldname": "train_details",
+   "fieldtype": "Data",
+   "label": "Train Number/Details"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "Internal Notes"
+  }
+ ],
+ "links": [],
+ "modified": "2025-08-13 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Transfer",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "transfer_name,transfer_type,pickup_city,dropoff_city",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "transfer_name",
+ "track_changes": 1
+}

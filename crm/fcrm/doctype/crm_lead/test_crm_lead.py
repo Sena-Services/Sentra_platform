@@ -1,9 +1,22 @@
-# Copyright (c) 2023, Frappe Technologies Pvt. Ltd. and Contributors
+# Copyright (c) 2025, Frappe Technologies Pvt. Ltd. and Contributors
 # See license.txt
 
 # import frappe
-from frappe.tests import UnitTestCase
+from frappe.tests import IntegrationTestCase
 
 
-class TestCRMLead(UnitTestCase):
+# On IntegrationTestCase, the doctype test records and all
+# link-field test record dependencies are recursively loaded
+# Use these module variables to add/remove to/from that list
+EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+
+
+
+class IntegrationTestCRMLead(IntegrationTestCase):
+	"""
+	Integration tests for CRMLead.
+	Use this class for testing interactions between multiple components.
+	"""
+
 	pass

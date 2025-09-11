@@ -12,99 +12,99 @@ def before_install():
 
 
 def after_install(force=False):
-	add_default_lead_statuses()
-	add_default_deal_statuses()
+	# add_default_lead_statuses()
+	# add_default_deal_statuses()
 	add_default_communication_statuses()
 	add_default_fields_layout(force)
 	add_property_setter()
 	add_email_template_custom_fields()
 	add_default_industries()
-	add_default_lead_sources()
+	# add_default_lead_sources()
 	add_standard_dropdown_items()
 	add_default_scripts()
 	frappe.db.commit()
 
 
-def add_default_lead_statuses():
-	statuses = {
-		"New": {
-			"color": "gray",
-			"position": 1,
-		},
-		"Contacted": {
-			"color": "orange",
-			"position": 2,
-		},
-		"Nurture": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Qualified": {
-			"color": "green",
-			"position": 4,
-		},
-		"Unqualified": {
-			"color": "red",
-			"position": 5,
-		},
-		"Junk": {
-			"color": "purple",
-			"position": 6,
-		},
-	}
+# def add_default_lead_statuses():
+# 	statuses = {
+# 		"New": {
+# 			"color": "gray",
+# 			"position": 1,
+# 		},
+# 		"Contacted": {
+# 			"color": "orange",
+# 			"position": 2,
+# 		},
+# 		"Nurture": {
+# 			"color": "blue",
+# 			"position": 3,
+# 		},
+# 		"Qualified": {
+# 			"color": "green",
+# 			"position": 4,
+# 		},
+# 		"Unqualified": {
+# 			"color": "red",
+# 			"position": 5,
+# 		},
+# 		"Junk": {
+# 			"color": "purple",
+# 			"position": 6,
+# 		},
+# 	}
 
-	for status in statuses:
-		if frappe.db.exists("CRM Lead Status", status):
-			continue
+# 	for status in statuses:
+# 		if frappe.db.exists("CRM Lead Status", status):
+# 			continue
 
-		doc = frappe.new_doc("CRM Lead Status")
-		doc.lead_status = status
-		doc.color = statuses[status]["color"]
-		doc.position = statuses[status]["position"]
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Lead Status")
+# 		doc.lead_status = status
+# 		doc.color = statuses[status]["color"]
+# 		doc.position = statuses[status]["position"]
+# 		doc.insert()
 
 
-def add_default_deal_statuses():
-	statuses = {
-		"Qualification": {
-			"color": "gray",
-			"position": 1,
-		},
-		"Demo/Making": {
-			"color": "orange",
-			"position": 2,
-		},
-		"Proposal/Quotation": {
-			"color": "blue",
-			"position": 3,
-		},
-		"Negotiation": {
-			"color": "yellow",
-			"position": 4,
-		},
-		"Ready to Close": {
-			"color": "purple",
-			"position": 5,
-		},
-		"Won": {
-			"color": "green",
-			"position": 6,
-		},
-		"Lost": {
-			"color": "red",
-			"position": 7,
-		},
-	}
+# def add_default_deal_statuses():
+# 	statuses = {
+# 		"Qualification": {
+# 			"color": "gray",
+# 			"position": 1,
+# 		},
+# 		"Demo/Making": {
+# 			"color": "orange",
+# 			"position": 2,
+# 		},
+# 		"Proposal/Quotation": {
+# 			"color": "blue",
+# 			"position": 3,
+# 		},
+# 		"Negotiation": {
+# 			"color": "yellow",
+# 			"position": 4,
+# 		},
+# 		"Ready to Close": {
+# 			"color": "purple",
+# 			"position": 5,
+# 		},
+# 		"Won": {
+# 			"color": "green",
+# 			"position": 6,
+# 		},
+# 		"Lost": {
+# 			"color": "red",
+# 			"position": 7,
+# 		},
+# 	}
 
-	for status in statuses:
-		if frappe.db.exists("CRM Deal Status", status):
-			continue
+# 	for status in statuses:
+# 		if frappe.db.exists("CRM Deal Status", status):
+# 			continue
 
-		doc = frappe.new_doc("CRM Deal Status")
-		doc.deal_status = status
-		doc.color = statuses[status]["color"]
-		doc.position = statuses[status]["position"]
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Deal Status")
+# 		doc.deal_status = status
+# 		doc.color = statuses[status]["color"]
+# 		doc.position = statuses[status]["position"]
+# 		doc.insert()
 
 
 def add_default_communication_statuses():
@@ -131,7 +131,7 @@ def add_default_fields_layout(force=False):
 		},
 		"Contact-Quick Entry": {
 			"doctype": "Contact",
-			"layout": '[{"name": "salutation_section", "columns": [{"name": "column_eXks", "fields": ["salutation"]}]}, {"name": "full_name_section", "hideBorder": true, "columns": [{"name": "column_cSxf", "fields": ["first_name"]}, {"name": "column_yBc7", "fields": ["last_name"]}]}, {"name": "email_section", "hideBorder": true, "columns": [{"name": "column_tH3L", "fields": ["email_id"]}]}, {"name": "mobile_gender_section", "hideBorder": true, "columns": [{"name": "column_lrfI", "fields": ["mobile_no"]}, {"name": "column_Tx3n", "fields": ["gender"]}]}, {"name": "organization_section", "hideBorder": true, "columns": [{"name": "column_S0J8", "fields": ["company_name"]}]}, {"name": "designation_section", "hideBorder": true, "columns": [{"name": "column_bsO8", "fields": ["designation"]}]}, {"name": "address_section", "hideBorder": true, "columns": [{"name": "column_W3VY", "fields": ["address"]}]}]',
+			"layout": '[{"name": "salutation_section", "columns": [{"name": "column_eXks", "fields": ["salutation"]}]}, {"name": "full_name_section", "hideBorder": true, "columns": [{"name": "column_cSxf", "fields": ["first_name"]}, {"name": "column_yBc7", "fields": ["last_name"]}]}, {"name": "email_section", "hideBorder": true, "columns": [{"name": "column_tH3L", "fields": ["email_id"]}]}, {"name": "mobile_gender_section", "hideBorder": true, "columns": [{"name": "column_lrfI", "fields": ["mobile_no"]}, {"name": "column_Tx3n", "fields": ["gender"]}]}, {"name": "organization_section", "hideBorder": true }, {"name": "designation_section", "hideBorder": true, "columns": [{"name": "column_bsO8", "fields": ["designation"]}]}, {"name": "address_section", "hideBorder": true, "columns": [{"name": "column_W3VY", "fields": ["address"]}]}]',
 		},
 		"CRM Organization-Quick Entry": {
 			"doctype": "CRM Organization",
@@ -158,7 +158,7 @@ def add_default_fields_layout(force=False):
 		},
 		"Contact-Side Panel": {
 			"doctype": "Contact",
-			"layout": '[{"label": "Details", "name": "details_section", "opened": true, "columns": [{"name": "column_eIWl", "fields": ["salutation", "first_name", "last_name", "email_id", "mobile_no", "gender", "company_name", "designation", "address"]}]}]',
+			"layout": '[{"label": "Details", "name": "details_section", "opened": true, "columns": [{"name": "column_eIWl", "fields": ["salutation", "first_name", "last_name", "email_id", "mobile_no", "gender", "designation"]}]}]',
 		},
 		"CRM Organization-Side Panel": {
 			"doctype": "CRM Organization",
@@ -320,27 +320,27 @@ def add_default_industries():
 		doc.insert()
 
 
-def add_default_lead_sources():
-	lead_sources = [
-		"Existing Customer",
-		"Reference",
-		"Advertisement",
-		"Cold Calling",
-		"Exhibition",
-		"Supplier Reference",
-		"Mass Mailing",
-		"Customer's Vendor",
-		"Campaign",
-		"Walk In",
-	]
+# def add_default_lead_sources():
+# 	lead_sources = [
+# 		"Existing Customer",
+# 		"Reference",
+# 		"Advertisement",
+# 		"Cold Calling",
+# 		"Exhibition",
+# 		"Supplier Reference",
+# 		"Mass Mailing",
+# 		"Customer's Vendor",
+# 		"Campaign",
+# 		"Walk In",
+# 	]
 
-	for source in lead_sources:
-		if frappe.db.exists("CRM Lead Source", source):
-			continue
+# 	for source in lead_sources:
+# 		if frappe.db.exists("CRM Lead Source", source):
+# 			continue
 
-		doc = frappe.new_doc("CRM Lead Source")
-		doc.source_name = source
-		doc.insert()
+# 		doc = frappe.new_doc("CRM Lead Source")
+# 		doc.source_name = source
+# 		doc.insert()
 
 
 def add_standard_dropdown_items():

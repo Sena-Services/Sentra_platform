@@ -16,17 +16,18 @@
   "status",
   "source",
   "lead_owner",
-  "converted",
-  "service_type",
+  "service_types",
+  "notes",
   "person_tab",
+  "link_to_contact",
   "image",
   "lead_name",
   "first_name",
   "last_name",
-  "mobile_no",
   "gender",
   "email",
-  "instagram_id",
+  "instagram",
+  "mobile_no",
   "log_tab",
   "status_change_log"
  ],
@@ -35,25 +36,32 @@
    "default": "CRM-LEAD-.YYYY.-",
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "options": "CRM-LEAD-.YYYY.-"
   },
   {
+   "fetch_from": "link_to_contact.first_name",
    "fieldname": "first_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "First Name",
-   "reqd": 1
+   "read_only": 1
   },
   {
+   "fetch_from": "link_to_contact.last_name",
    "fieldname": "last_name",
    "fieldtype": "Data",
-   "label": "Last Name"
+   "hidden": 1,
+   "label": "Last Name",
+   "read_only": 1
   },
   {
+   "fetch_from": "link_to_contact.gender",
    "fieldname": "gender",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Gender",
-   "options": "Gender"
+   "read_only": 1
   },
   {
    "default": "New",
@@ -62,23 +70,16 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "CRM Lead Status",
-   "reqd": 1,
    "search_index": 1
   },
   {
+   "fetch_from": "link_to_contact.email_id",
    "fieldname": "email",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Email",
    "options": "Email",
-   "unique": 1
-  },
-  {
-   "fieldname": "mobile_no",
-   "fieldtype": "Data",
-   "label": "Mobile No",
-   "options": "Phone",
-   "unique": 1
+   "read_only": 1
   },
   {
    "fieldname": "lead_owner",
@@ -91,37 +92,32 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Source",
-   "options": "CRM Lead Source",
-   "reqd": 1
+   "options": "CRM Lead Source"
   },
   {
-   "fieldname": "service_type",
-   "fieldtype": "Link",
-   "label": "Service Type",
-   "options": "Service Type",
-   "reqd": 1
+   "fieldname": "service_types",
+   "fieldtype": "Table",
+   "label": "Service Types",
+   "options": "Trip Service Type"
   },
   {
+   "fetch_from": "link_to_contact.image",
    "fieldname": "image",
    "fieldtype": "Attach Image",
    "hidden": 1,
    "label": "Image",
-   "print_hide": 1
+   "print_hide": 1,
+   "read_only": 1
   },
   {
+   "fetch_from": "link_to_contact.full_name",
    "fieldname": "lead_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Full Name",
+   "read_only": 1,
    "search_index": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "converted",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Converted"
   },
   {
    "fieldname": "person_tab",
@@ -152,17 +148,43 @@
    "options": "High\nMedium\nLow"
   },
   {
-   "fieldname": "instagram_id",
+   "fieldname": "link_to_contact",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Link to contact",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "link_to_contact.mobile_no",
+   "fieldname": "mobile_no",
    "fieldtype": "Data",
+   "label": "Mobile No"
+  },
+  {
+   "fetch_from": "link_to_contact.instagram",
+   "fieldname": "instagram",
+   "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Instagram ID",
-   "unique": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Long Text",
+   "label": "notes"
   }
  ],
  "grid_page_length": 50,
  "image_field": "image",
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-06-21 13:33:40.895315",
+ "links": [
+  {
+   "link_doctype": "Trip",
+   "link_fieldname": "lead"
+  }
+ ],
+ "modified": "2025-08-07 17:43:23.438872",
  "modified_by": "Administrator",
  "module": "FCRM",
  "name": "CRM Lead",

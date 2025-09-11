@@ -1,0 +1,56 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:37:34.175624",
+  "name": "Tour Package",
+  "type": "Tour Package",
+  "icon": "package",
+  "sequence": 1
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:37:44.506628",
+  "name": "Hotels",
+  "type": "Hotels",
+  "icon": "home",
+  "sequence": 3
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:37:50.820863",
+  "name": "Transportation",
+  "type": "Transportation",
+  "icon": "truck",
+  "sequence": 2
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:37:57.787475",
+  "name": "Activities",
+  "type": "Activities",
+  "icon": "star",
+  "sequence": 4
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:38:05.733788",
+  "name": "Transfers",
+  "type": "Transfers",
+  "icon": "shuffle",
+  "sequence": 5
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2025-06-30 14:38:10.528416",
+  "name": "Visa",
+  "type": "Visa",
+  "icon": "file-text",
+  "sequence": 6
+ }
+]

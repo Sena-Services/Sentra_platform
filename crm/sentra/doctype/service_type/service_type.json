@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type"
+  "type",
+  "icon",
+  "sequence"
  ],
  "fields": [
   {
@@ -16,12 +18,26 @@
    "label": "Type",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "description": "Icon name (e.g., package, file-text, shuffle, star, truck, home)",
+   "fieldname": "icon",
+   "fieldtype": "Data",
+   "label": "Icon"
+  },
+  {
+   "description": "Defines the order in which the buttons are displayed in the create modal",
+   "fieldname": "sequence",
+   "fieldtype": "Int",
+   "label": "Sequence",
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-20 14:43:49.051779",
+ "modified": "2025-07-17 21:19:27.432122",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Service Type",
