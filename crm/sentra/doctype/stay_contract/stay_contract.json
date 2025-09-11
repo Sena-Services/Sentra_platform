@@ -1,0 +1,132 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "season_name",
+    "start_date",
+    "end_date",
+    "applicable_unit_types",
+    "rate_plan",
+    "base_rate_currency",
+    "base_rate_prpn",
+    "base_rate_pppn",
+    "tax_included",
+    "min_nights",
+    "max_nights",
+    "blackout_dates",
+    "free_cancel_until_days",
+    "no_show_policy",
+    "meal_plan_inclusions",
+    "commission_percent_override",
+    "payment_terms_override",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "season_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Season Name"
+    },
+    {
+      "fieldname": "start_date",
+      "fieldtype": "Date",
+      "label": "Start Date"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "applicable_unit_types",
+      "fieldtype": "Small Text",
+      "label": "Applicable Unit Types"
+    },
+    {
+      "fieldname": "rate_plan",
+      "fieldtype": "Select",
+      "label": "Rate Plan",
+      "options": "\nBAR\nCorporate\nWholesale\nStatic Contract\nAllotment"
+    },
+    {
+      "fieldname": "base_rate_currency",
+      "fieldtype": "Link",
+      "label": "Base Rate Currency",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "base_rate_prpn",
+      "fieldtype": "Currency",
+      "label": "Base Rate PRPN"
+    },
+    {
+      "fieldname": "base_rate_pppn",
+      "fieldtype": "Currency",
+      "label": "Base Rate PPPN"
+    },
+    {
+      "fieldname": "tax_included",
+      "fieldtype": "Check",
+      "label": "Tax Included"
+    },
+    {
+      "fieldname": "min_nights",
+      "fieldtype": "Int",
+      "label": "Min Nights",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "max_nights",
+      "fieldtype": "Int",
+      "label": "Max Nights",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "blackout_dates",
+      "fieldtype": "Small Text",
+      "label": "Blackout Dates"
+    },
+    {
+      "fieldname": "free_cancel_until_days",
+      "fieldtype": "Int",
+      "label": "Free Cancel Until (days)",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "no_show_policy",
+      "fieldtype": "Small Text",
+      "label": "No Show Policy"
+    },
+    {
+      "fieldname": "meal_plan_inclusions",
+      "fieldtype": "Small Text",
+      "label": "Meal Plan Inclusions"
+    },
+    {
+      "fieldname": "commission_percent_override",
+      "fieldtype": "Percent",
+      "label": "Commission % Override"
+    },
+    {
+      "fieldname": "payment_terms_override",
+      "fieldtype": "Select",
+      "label": "Payment Terms Override",
+      "options": "\nAdvance Payment\nPay at Property\nNet 30\nNet 60\nNet 90\n50% Advance\nOn Arrival"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "module": "Sentra",
+  "name": "Stay Contract",
+  "owner": "Administrator",
+  "permissions": []
+}
+

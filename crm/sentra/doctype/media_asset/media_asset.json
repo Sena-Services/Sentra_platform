@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["file", "caption", "is_hero_candidate"],
+  "fields": [
+    {
+      "fieldname": "file",
+      "fieldtype": "Attach Image",
+      "label": "File"
+    },
+    {
+      "fieldname": "caption",
+      "fieldtype": "Data",
+      "label": "Caption"
+    },
+    {
+      "fieldname": "is_hero_candidate",
+      "fieldtype": "Check",
+      "label": "Is Hero Candidate"
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "module": "Sentra",
+  "name": "Media Asset",
+  "owner": "Administrator",
+  "permissions": []
+}
+

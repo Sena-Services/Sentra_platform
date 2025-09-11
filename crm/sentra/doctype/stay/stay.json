@@ -1,0 +1,452 @@
+{
+  "actions": [],
+  "allow_import": 1,
+  "allow_rename": 1,
+  "autoname": "naming_series:",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "identity_section",
+    "naming_series",
+    "stay_name",
+    "stay_code",
+    "brand",
+    "column_break_identity_1",
+    "stay_type",
+    "star_rating",
+    "category",
+    "status",
+    "location_section",
+    "address_line_1",
+    "address_line_2",
+    "city",
+    "state",
+    "column_break_location_1",
+    "country",
+    "pincode",
+    "latitude",
+    "longitude",
+    "landmark_neighbourhood",
+    "distance_airport_km",
+    "distance_city_center_km",
+    "contacts_section",
+    "primary_contact",
+    "secondary_contact",
+    "reservation_email",
+    "reservation_phone",
+    "website",
+    "property_section",
+    "total_units",
+    "total_suites",
+    "check_in_time",
+    "check_out_time",
+    "column_break_property_1",
+    "year_built",
+    "last_renovation",
+    "description",
+    "unit_types_section",
+    "unit_types",
+    "amenities_section",
+    "amenities_property",
+    "amenities_room",
+    "amenities_accessibility",
+    "amenities_parking_transport",
+    "amenities_sustainability",
+    "amenities_other_notes",
+    "commercials_section",
+    "currency",
+    "reference_rack_rate",
+    "standard_commission",
+    "payment_terms",
+    "cancellation_policy",
+    "contracts_section",
+    "contracts",
+    "media_section",
+    "main_image",
+    "gallery",
+    "documents_section",
+    "documents",
+    "additional_section",
+    "certifications",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "identity_section",
+      "fieldtype": "Section Break",
+      "label": "Basic Information"
+    },
+    {
+      "default": "STAY-.YYYY.-",
+      "fieldname": "naming_series",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Naming Series"
+    },
+    {
+      "fieldname": "stay_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Stay Name",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "stay_code",
+      "fieldtype": "Data",
+      "label": "Stay Code",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "brand",
+      "fieldtype": "Link",
+      "label": "Brand",
+      "options": "Hospitality Brand"
+    },
+    {
+      "fieldname": "column_break_identity_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "stay_type",
+      "fieldtype": "Select",
+      "label": "Stay Type",
+      "options": "\nHotel\nResort\nVilla\nApartment\nServiced Apartment\nHomestay\nHostel\nGuest House\nB&B\nMotel\nHouseboat\nCamp/Glamping\nRyokan\nRiad\nOther",
+      "reqd": 1
+    },
+    {
+      "fieldname": "star_rating",
+      "fieldtype": "Select",
+      "label": "Star Rating",
+      "options": "\n1★\n2★\n3★\n4★\n5★\n5★ Deluxe\n7★"
+    },
+    {
+      "fieldname": "category",
+      "fieldtype": "Select",
+      "label": "Category",
+      "options": "\nBudget\nMid-Range\nLuxury\nBoutique\nBusiness\nAirport\nHeritage\nBeach\nMountain\nUrban\nRural"
+    },
+    {
+      "default": "Active",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Status",
+      "options": "Active\nInactive\nUnder Renovation\nClosed",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location_section",
+      "fieldtype": "Section Break",
+      "label": "Location Details"
+    },
+    {
+      "fieldname": "address_line_1",
+      "fieldtype": "Data",
+      "label": "Address Line 1",
+      "reqd": 1
+    },
+    {
+      "fieldname": "address_line_2",
+      "fieldtype": "Data",
+      "label": "Address Line 2"
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "City",
+      "options": "Destination",
+      "reqd": 1
+    },
+    {
+      "fieldname": "state",
+      "fieldtype": "Data",
+      "label": "State/Province"
+    },
+    {
+      "fieldname": "column_break_location_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "country",
+      "fieldtype": "Link",
+      "label": "Country",
+      "options": "Country",
+      "reqd": 1
+    },
+    {
+      "fieldname": "pincode",
+      "fieldtype": "Data",
+      "label": "Zip/Postal Code"
+    },
+    {
+      "fieldname": "latitude",
+      "fieldtype": "Float",
+      "label": "Latitude",
+      "precision": "6"
+    },
+    {
+      "fieldname": "longitude",
+      "fieldtype": "Float",
+      "label": "Longitude",
+      "precision": "6"
+    },
+    {
+      "fieldname": "landmark_neighbourhood",
+      "fieldtype": "Data",
+      "label": "Landmark/Neighbourhood"
+    },
+    {
+      "fieldname": "distance_airport_km",
+      "fieldtype": "Float",
+      "label": "Distance to Airport (km)"
+    },
+    {
+      "fieldname": "distance_city_center_km",
+      "fieldtype": "Float",
+      "label": "Distance to City Center (km)"
+    },
+    {
+      "fieldname": "contacts_section",
+      "fieldtype": "Section Break",
+      "label": "Contact Information"
+    },
+    {
+      "fieldname": "primary_contact",
+      "fieldtype": "Link",
+      "label": "Primary Contact",
+      "options": "Contact"
+    },
+    {
+      "fieldname": "secondary_contact",
+      "fieldtype": "Link",
+      "label": "Secondary Contact",
+      "options": "Contact"
+    },
+    {
+      "fieldname": "reservation_email",
+      "fieldtype": "Data",
+      "label": "Reservation Email",
+      "options": "Email"
+    },
+    {
+      "fieldname": "reservation_phone",
+      "fieldtype": "Data",
+      "label": "Reservation Phone",
+      "options": "Phone"
+    },
+    {
+      "fieldname": "website",
+      "fieldtype": "Data",
+      "label": "Website",
+      "options": "URL"
+    },
+    {
+      "fieldname": "property_section",
+      "fieldtype": "Section Break",
+      "label": "Property Details"
+    },
+    {
+      "fieldname": "total_units",
+      "fieldtype": "Int",
+      "label": "Total Units",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "total_suites",
+      "fieldtype": "Int",
+      "label": "Total Suites/Premium Units",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "check_in_time",
+      "fieldtype": "Time",
+      "label": "Check-in Time"
+    },
+    {
+      "fieldname": "check_out_time",
+      "fieldtype": "Time",
+      "label": "Check-out Time"
+    },
+    {
+      "fieldname": "column_break_property_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "year_built",
+      "fieldtype": "Int",
+      "label": "Year Built"
+    },
+    {
+      "fieldname": "last_renovation",
+      "fieldtype": "Int",
+      "label": "Last Renovation Year"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text Editor",
+      "label": "Description"
+    },
+    {
+      "fieldname": "unit_types_section",
+      "fieldtype": "Section Break",
+      "label": "Unit Types"
+    },
+    {
+      "fieldname": "unit_types",
+      "fieldtype": "Table",
+      "label": "Unit Types",
+      "options": "Stay Unit Type"
+    },
+    {
+      "fieldname": "amenities_section",
+      "fieldtype": "Section Break",
+      "label": "Amenities & Facilities"
+    },
+    {
+      "fieldname": "amenities_property",
+      "fieldtype": "MultiSelect",
+      "label": "Property Amenities"
+    },
+    {
+      "fieldname": "amenities_room",
+      "fieldtype": "MultiSelect",
+      "label": "Room Amenities"
+    },
+    {
+      "fieldname": "amenities_accessibility",
+      "fieldtype": "MultiSelect",
+      "label": "Accessibility Amenities"
+    },
+    {
+      "fieldname": "amenities_parking_transport",
+      "fieldtype": "MultiSelect",
+      "label": "Parking & Transport Amenities"
+    },
+    {
+      "fieldname": "amenities_sustainability",
+      "fieldtype": "MultiSelect",
+      "label": "Sustainability Amenities"
+    },
+    {
+      "fieldname": "amenities_other_notes",
+      "fieldtype": "Long Text",
+      "label": "Amenities - Other Notes"
+    },
+    {
+      "fieldname": "commercials_section",
+      "fieldtype": "Section Break",
+      "label": "Pricing & Commercials"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "Default Currency",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "reference_rack_rate",
+      "fieldtype": "Currency",
+      "label": "Reference Rack Rate (per night)"
+    },
+    {
+      "fieldname": "standard_commission",
+      "fieldtype": "Percent",
+      "label": "Standard Commission %"
+    },
+    {
+      "fieldname": "payment_terms",
+      "fieldtype": "Select",
+      "label": "Payment Terms",
+      "options": "\nAdvance Payment\nPay at Property\nNet 30\nNet 60\nNet 90\n50% Advance\nOn Arrival"
+    },
+    {
+      "fieldname": "cancellation_policy",
+      "fieldtype": "Text Editor",
+      "label": "Cancellation Policy"
+    },
+    {
+      "fieldname": "contracts_section",
+      "fieldtype": "Section Break",
+      "label": "Contracts (Seasonal)"
+    },
+    {
+      "fieldname": "contracts",
+      "fieldtype": "Table",
+      "label": "Contracts",
+      "options": "Stay Contract"
+    },
+    {
+      "fieldname": "media_section",
+      "fieldtype": "Section Break",
+      "label": "Media"
+    },
+    {
+      "fieldname": "main_image",
+      "fieldtype": "Attach Image",
+      "label": "Main Image"
+    },
+    {
+      "fieldname": "gallery",
+      "fieldtype": "Table",
+      "label": "Gallery",
+      "options": "Media Asset"
+    },
+    {
+      "fieldname": "documents_section",
+      "fieldtype": "Section Break",
+      "label": "Documents"
+    },
+    {
+      "fieldname": "documents",
+      "fieldtype": "Table",
+      "label": "Documents",
+      "options": "Stay Document"
+    },
+    {
+      "fieldname": "additional_section",
+      "fieldtype": "Section Break",
+      "label": "Additional Information"
+    },
+    {
+      "fieldname": "certifications",
+      "fieldtype": "Long Text",
+      "label": "Certifications & Awards"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Long Text",
+      "label": "Notes"
+    }
+  ],
+  "image_field": "main_image",
+  "links": [],
+  "module": "Sentra",
+  "name": "Stay",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "search_fields": "stay_name,city",
+  "show_title_field_in_link": 1,
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "stay_name",
+  "track_changes": 1
+}
+

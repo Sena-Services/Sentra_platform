@@ -1,0 +1,110 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "unit_type_name",
+    "inventory_count",
+    "max_adults",
+    "max_children",
+    "standard_occupancy",
+    "extra_adult_allowed",
+    "extra_child_allowed",
+    "bedding",
+    "view",
+    "room_size_sqm",
+    "smoking_policy",
+    "default_meal_plan",
+    "in_unit_amenities",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "unit_type_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Unit Type Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "inventory_count",
+      "fieldtype": "Int",
+      "label": "Inventory Count",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "max_adults",
+      "fieldtype": "Int",
+      "label": "Max Adults",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "max_children",
+      "fieldtype": "Int",
+      "label": "Max Children",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "standard_occupancy",
+      "fieldtype": "Int",
+      "label": "Standard Occupancy",
+      "non_negative": 1
+    },
+    {
+      "fieldname": "extra_adult_allowed",
+      "fieldtype": "Check",
+      "label": "Extra Adult Allowed"
+    },
+    {
+      "fieldname": "extra_child_allowed",
+      "fieldtype": "Check",
+      "label": "Extra Child Allowed"
+    },
+    {
+      "fieldname": "bedding",
+      "fieldtype": "MultiSelect",
+      "label": "Bedding"
+    },
+    {
+      "fieldname": "view",
+      "fieldtype": "Select",
+      "label": "View",
+      "options": "\nCity\nGarden\nPool\nSea\nMountain\nRiver\nLake\nCourtyard\nForest\nDesert"
+    },
+    {
+      "fieldname": "room_size_sqm",
+      "fieldtype": "Float",
+      "label": "Room Size (sqm)"
+    },
+    {
+      "fieldname": "smoking_policy",
+      "fieldtype": "Select",
+      "label": "Smoking Policy",
+      "options": "\nNon-Smoking\nSmoking\nMixed"
+    },
+    {
+      "fieldname": "default_meal_plan",
+      "fieldtype": "Select",
+      "label": "Default Meal Plan",
+      "options": "\nRO\nBB\nHB\nFB\nAI"
+    },
+    {
+      "fieldname": "in_unit_amenities",
+      "fieldtype": "MultiSelect",
+      "label": "In-Unit Amenities"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "module": "Sentra",
+  "name": "Stay Unit Type",
+  "owner": "Administrator",
+  "permissions": []
+}
+
