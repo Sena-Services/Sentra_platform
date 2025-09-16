@@ -11,6 +11,7 @@
   "package_name",
   "package_code",
   "status",
+  "package_type",
   "itinerary_link",
   "column_break_pd1",
   "dmc",
@@ -19,10 +20,15 @@
   "marketing_section",
   "category",
   "image_url",
+  "hero_image",
+  "hero_description",
   "column_break_mk1",
   "popularity_score",
   "rating",
   "review_count",
+  "highlights_section",
+  "highlights",
+  "gallery_images",
   "availability_section",
   "valid_from",
   "valid_to",
@@ -91,6 +97,12 @@
    "reqd": 1
   },
   {
+   "fieldname": "package_type",
+   "fieldtype": "Select",
+   "label": "Package Type",
+   "options": "City\nLuxury\nBeach\nAdventure\nCultural\nHeritage\nWildlife\nHoneymoon"
+  },
+  {
    "fieldname": "column_break_pd1",
    "fieldtype": "Column Break"
   },
@@ -125,6 +137,18 @@
    "label": "Image URL"
   },
   {
+   "description": "Main hero image URL for the package",
+   "fieldname": "hero_image",
+   "fieldtype": "Data",
+   "label": "Hero Image URL"
+  },
+  {
+   "description": "Short marketing description for hero section",
+   "fieldname": "hero_description",
+   "fieldtype": "Text",
+   "label": "Hero Description"
+  },
+  {
    "fieldname": "column_break_mk1",
    "fieldtype": "Column Break"
   },
@@ -148,6 +172,23 @@
    "fieldname": "review_count",
    "fieldtype": "Int",
    "label": "Review Count"
+  },
+  {
+   "fieldname": "highlights_section",
+   "fieldtype": "Section Break",
+   "label": "Highlights & Gallery"
+  },
+  {
+   "description": "Package highlights (one per line)",
+   "fieldname": "highlights",
+   "fieldtype": "Text",
+   "label": "Package Highlights"
+  },
+  {
+   "description": "Gallery image URLs (one per line)",
+   "fieldname": "gallery_images",
+   "fieldtype": "Text",
+   "label": "Gallery Images"
   },
   {
    "fieldname": "availability_section",
@@ -313,6 +354,12 @@
    "reqd": 1
   },
   {
+   "fieldname": "destinations_text",
+   "fieldtype": "Data",
+   "label": "Destinations Summary",
+   "description": "Comma-separated list of destinations for display"
+  },
+  {
    "fieldname": "hotel",
    "fieldtype": "Select",
    "label": "Hotel",
@@ -334,7 +381,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-21 13:46:22.933471",
+ "modified": "2025-09-16 13:46:22.933471",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",
