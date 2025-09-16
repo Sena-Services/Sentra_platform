@@ -111,7 +111,7 @@
    "fieldtype": "Link",
    "label": "DMC Provider",
    "options": "Contact",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "description",
