@@ -209,6 +209,30 @@
    "options": "Contact",
    "reqd": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "is_test_trip",
+   "fieldtype": "Check",
+   "label": "Is Test Trip",
+   "default": "0",
+   "description": "Mark this if the trip is created for testing purposes"
+  },
+  {
+   "fieldname": "test_session_id",
+   "fieldtype": "Data",
+   "label": "Test Session ID",
+   "description": "ID of the test session that created this trip",
+   "depends_on": "eval:doc.is_test_trip==1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "test_created_by",
+   "fieldtype": "Link",
+   "label": "Test Created By",
+   "options": "User",
+   "description": "User who created this test trip",
+   "depends_on": "eval:doc.is_test_trip==1",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
