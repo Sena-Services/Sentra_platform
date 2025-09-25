@@ -3,7 +3,7 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-08-13 10:00:00.000000",
+ "creation": "2025-08-13 10:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -82,7 +82,35 @@
   "rating",
   "column_break_inv1",
   "short_description",
-  "is_featured"
+  "is_featured",
+  "google_places_section",
+  "google_place_id",
+  "google_maps_url",
+  "website_uri",
+  "international_phone_number",
+  "column_break_gp1",
+  "business_status",
+  "google_rating",
+  "primary_type",
+  "formatted_address",
+  "google_places_restaurant_section",
+  "open_now",
+  "weekday_descriptions",
+  "takeout",
+  "delivery",
+  "dine_in",
+  "reservable",
+  "column_break_gpr1",
+  "serves_breakfast",
+  "serves_lunch",
+  "serves_dinner",
+  "serves_vegetarian_food",
+  "serves_coffee",
+  "serves_dessert",
+  "google_places_additional_section",
+  "payment_options",
+  "parking_options",
+  "accessibility_options"
  ],
  "fields": [
   {
@@ -110,8 +138,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Meal Type",
-   "options": "\nBreakfast\nBrunch\nLunch\nAfternoon Tea\nHigh Tea\nDinner\nSupper\nSnack\nBuffet\nGala Dinner\nBBQ\nPicnic",
-   "reqd": 1
+   "options": "\nBreakfast\nBrunch\nLunch\nAfternoon Tea\nHigh Tea\nDinner\nSupper\nSnack\nBuffet\nGala Dinner\nBBQ\nPicnic\nOther"
   },
   {
    "fieldname": "column_break_bi1",
@@ -196,8 +223,7 @@
    "fieldname": "venue_type",
    "fieldtype": "Select",
    "label": "Venue Type",
-   "options": "\nRestaurant\nHotel Restaurant\nCafe\nBistro\nFood Court\nHawker Centre\nStreet Stall\nCruise\nRooftop\nBeachside\nGarden\nPrivate Venue\nHome\nOther",
-   "reqd": 1
+   "options": "\nRestaurant\nHotel Restaurant\nCafe\nBistro\nFood Court\nHawker Centre\nStreet Stall\nCruise\nRooftop\nBeachside\nGarden\nPrivate Venue\nHome\nOther"
   },
   {
    "fieldname": "venue_name",
@@ -300,15 +326,13 @@
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
-   "options": "Currency",
-   "reqd": 1
+   "options": "Currency"
   },
   {
    "fieldname": "pricing_type",
    "fieldtype": "Select",
    "label": "Pricing Type",
-   "options": "\nPer Person\nPer Table\nA La Carte\nSet Menu\nBuffet\nCustom",
-   "reqd": 1
+   "options": "\nPer Person\nPer Table\nA La Carte\nSet Menu\nBuffet\nCustom"
   },
   {
    "fieldname": "adult_price",
@@ -479,39 +503,242 @@
    "label": "Inventory Display"
   },
   {
+   "description": "Price shown in inventory panels",
    "fieldname": "base_display_price",
    "fieldtype": "Currency",
    "label": "Base Display Price",
-   "description": "Price shown in inventory panels",
    "options": "currency"
   },
   {
+   "description": "Overall rating (0-5 scale)",
    "fieldname": "rating",
    "fieldtype": "Float",
    "label": "Rating",
-   "description": "Overall rating (0-5 scale)",
-   "precision": 1
+   "precision": "1"
   },
   {
    "fieldname": "column_break_inv1",
    "fieldtype": "Column Break"
   },
   {
+   "description": "Brief description for inventory display (max 200 chars)",
    "fieldname": "short_description",
    "fieldtype": "Small Text",
-   "label": "Short Description",
-   "description": "Brief description for inventory display (max 200 chars)"
+   "label": "Short Description"
   },
   {
+   "default": "0",
+   "description": "Highlight this meal in inventory panels",
    "fieldname": "is_featured",
    "fieldtype": "Check",
-   "label": "Featured in Inventory",
-   "description": "Highlight this meal in inventory panels"
+   "label": "Featured in Inventory"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id",
+   "fieldname": "google_places_section",
+   "fieldtype": "Section Break",
+   "label": "Google Places Integration"
+  },
+  {
+   "description": "Unique identifier from Google Places",
+   "fieldname": "google_place_id",
+   "fieldtype": "Data",
+   "label": "Google Place ID",
+   "read_only": 1
+  },
+  {
+   "description": "Direct link to Google Maps",
+   "fieldname": "google_maps_url",
+   "fieldtype": "Data",
+   "label": "Google Maps URL",
+   "read_only": 1
+  },
+  {
+   "description": "Restaurant website from Google Places",
+   "fieldname": "website_uri",
+   "fieldtype": "Data",
+   "label": "Website",
+   "read_only": 1
+  },
+  {
+   "description": "Phone number from Google Places",
+   "fieldname": "international_phone_number",
+   "fieldtype": "Data",
+   "label": "International Phone Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gp1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Operational status from Google",
+   "fieldname": "business_status",
+   "fieldtype": "Data",
+   "label": "Business Status",
+   "read_only": 1
+  },
+  {
+   "description": "Rating from Google Places reviews",
+   "fieldname": "google_rating",
+   "fieldtype": "Float",
+   "label": "Google Rating",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "description": "Primary category from Google Places",
+   "fieldname": "primary_type",
+   "fieldtype": "Data",
+   "label": "Primary Type",
+   "read_only": 1
+  },
+  {
+   "description": "Complete address from Google Places",
+   "fieldname": "formatted_address",
+   "fieldtype": "Small Text",
+   "label": "Formatted Address",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id",
+   "fieldname": "google_places_restaurant_section",
+   "fieldtype": "Section Break",
+   "label": "Restaurant Features"
+  },
+  {
+   "default": "0",
+   "description": "Whether the restaurant is open now",
+   "fieldname": "open_now",
+   "fieldtype": "Check",
+   "label": "Currently Open",
+   "read_only": 1
+  },
+  {
+   "description": "Weekly opening hours from Google",
+   "fieldname": "weekday_descriptions",
+   "fieldtype": "Small Text",
+   "label": "Opening Hours",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant offers takeout",
+   "fieldname": "takeout",
+   "fieldtype": "Check",
+   "label": "Takeout Available",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant offers delivery",
+   "fieldname": "delivery",
+   "fieldtype": "Check",
+   "label": "Delivery Available",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant offers dine-in service",
+   "fieldname": "dine_in",
+   "fieldtype": "Check",
+   "label": "Dine-in Available",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant accepts reservations",
+   "fieldname": "reservable",
+   "fieldtype": "Check",
+   "label": "Reservations Accepted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gpr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Restaurant serves breakfast",
+   "fieldname": "serves_breakfast",
+   "fieldtype": "Check",
+   "label": "Serves Breakfast",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant serves lunch",
+   "fieldname": "serves_lunch",
+   "fieldtype": "Check",
+   "label": "Serves Lunch",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant serves dinner",
+   "fieldname": "serves_dinner",
+   "fieldtype": "Check",
+   "label": "Serves Dinner",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant has vegetarian options",
+   "fieldname": "serves_vegetarian_food",
+   "fieldtype": "Check",
+   "label": "Serves Vegetarian Food",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant serves coffee",
+   "fieldname": "serves_coffee",
+   "fieldtype": "Check",
+   "label": "Serves Coffee",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Restaurant serves dessert",
+   "fieldname": "serves_dessert",
+   "fieldtype": "Check",
+   "label": "Serves Dessert",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id",
+   "fieldname": "google_places_additional_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Google Places Info"
+  },
+  {
+   "description": "Accepted payment methods",
+   "fieldname": "payment_options",
+   "fieldtype": "Small Text",
+   "label": "Payment Options",
+   "read_only": 1
+  },
+  {
+   "description": "Available parking facilities",
+   "fieldname": "parking_options",
+   "fieldtype": "Small Text",
+   "label": "Parking Options",
+   "read_only": 1
+  },
+  {
+   "description": "Accessibility features available",
+   "fieldname": "accessibility_options",
+   "fieldtype": "Small Text",
+   "label": "Accessibility Options",
+   "read_only": 1
   }
  ],
  "image_field": "main_image",
  "links": [],
- "modified": "2025-08-13 10:00:00.000000",
+ "modified": "2025-09-24 15:22:40.110806",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Meal",
@@ -531,6 +758,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "meal_name,meal_type,cuisine_type,city",
  "show_title_field_in_link": 1,
  "sort_field": "creation",

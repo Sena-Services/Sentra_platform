@@ -61,7 +61,24 @@
   "rating",
   "column_break_inv1",
   "short_description",
-  "is_featured"
+  "is_featured",
+  "google_places_section",
+  "google_place_id",
+  "google_maps_url",
+  "website_uri",
+  "international_phone_number",
+  "column_break_gp1",
+  "business_status",
+  "google_rating",
+  "primary_type",
+  "formatted_address",
+  "google_places_features_section",
+  "open_now",
+  "weekday_descriptions",
+  "payment_options",
+  "column_break_gpf1",
+  "parking_options",
+  "accessibility_options"
  ],
  "fields": [
   {
@@ -368,6 +385,120 @@
    "fieldtype": "Check",
    "label": "Featured in Inventory",
    "description": "Highlight this hotel in inventory panels"
+  },
+  {
+   "fieldname": "google_places_section",
+   "fieldtype": "Section Break",
+   "label": "Google Places Integration",
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id"
+  },
+  {
+   "fieldname": "google_place_id",
+   "fieldtype": "Data",
+   "label": "Google Place ID",
+   "read_only": 1,
+   "description": "Unique identifier from Google Places"
+  },
+  {
+   "fieldname": "google_maps_url",
+   "fieldtype": "Data",
+   "label": "Google Maps URL",
+   "read_only": 1,
+   "description": "Direct link to Google Maps"
+  },
+  {
+   "fieldname": "website_uri",
+   "fieldtype": "Data",
+   "label": "Website",
+   "read_only": 1,
+   "description": "Hotel website from Google Places"
+  },
+  {
+   "fieldname": "international_phone_number",
+   "fieldtype": "Data",
+   "label": "International Phone Number",
+   "read_only": 1,
+   "description": "Phone number from Google Places"
+  },
+  {
+   "fieldname": "column_break_gp1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "business_status",
+   "fieldtype": "Data",
+   "label": "Business Status",
+   "read_only": 1,
+   "description": "Operational status from Google"
+  },
+  {
+   "fieldname": "google_rating",
+   "fieldtype": "Float",
+   "label": "Google Rating",
+   "read_only": 1,
+   "precision": "1",
+   "description": "Rating from Google Places reviews"
+  },
+  {
+   "fieldname": "primary_type",
+   "fieldtype": "Data",
+   "label": "Primary Type",
+   "read_only": 1,
+   "description": "Primary category from Google Places"
+  },
+  {
+   "fieldname": "formatted_address",
+   "fieldtype": "Small Text",
+   "label": "Formatted Address",
+   "read_only": 1,
+   "description": "Complete address from Google Places"
+  },
+  {
+   "fieldname": "google_places_features_section",
+   "fieldtype": "Section Break",
+   "label": "Google Places Features",
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id"
+  },
+  {
+   "fieldname": "open_now",
+   "fieldtype": "Check",
+   "label": "Currently Open",
+   "read_only": 1,
+   "description": "Whether the place is open now"
+  },
+  {
+   "fieldname": "weekday_descriptions",
+   "fieldtype": "Small Text",
+   "label": "Opening Hours",
+   "read_only": 1,
+   "description": "Weekly opening hours from Google"
+  },
+  {
+   "fieldname": "payment_options",
+   "fieldtype": "Small Text",
+   "label": "Payment Options",
+   "read_only": 1,
+   "description": "Accepted payment methods"
+  },
+  {
+   "fieldname": "column_break_gpf1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "parking_options",
+   "fieldtype": "Small Text",
+   "label": "Parking Options",
+   "read_only": 1,
+   "description": "Available parking facilities"
+  },
+  {
+   "fieldname": "accessibility_options",
+   "fieldtype": "Small Text",
+   "label": "Accessibility Options",
+   "read_only": 1,
+   "description": "Accessibility features available"
   }
  ],
  "image_field": "main_image",

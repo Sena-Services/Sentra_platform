@@ -27,10 +27,8 @@ class Activity(Document):
 	
 	def validate_pricing(self):
 		"""Validate pricing logic"""
-		if self.pricing_type == "Per Person":
-			if not self.adult_price:
-				frappe.throw("Adult price is required for Per Person pricing type")
-		
+		# Removed validation for adult_price requirement
+
 		if self.group_discount_applicable:
 			if not self.group_size_for_discount:
 				frappe.throw("Group size is required when group discount is applicable")
