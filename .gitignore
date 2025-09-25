@@ -11,4 +11,4 @@ frontend/yarn.lock
 crm/www/crm.html
 build
 *.diff
-package-lock.json
+package-lock.jsonfrontend2/
