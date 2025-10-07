@@ -12,6 +12,7 @@
   "package_code",
   "status",
   "package_type",
+  "package_created_for_type",
   "itinerary_link",
   "column_break_pd1",
   "dmc",
@@ -57,7 +58,8 @@
   "vendors",
   "price",
   "activities",
-  "daywise_plan"
+  "daywise_plan",
+  "destinations_text"
  ],
  "fields": [
   {
@@ -103,6 +105,14 @@
    "options": "City\nLuxury\nBeach\nAdventure\nCultural\nHeritage\nWildlife\nHoneymoon"
   },
   {
+   "default": "User",
+   "description": "Indicates if this package was created by the system automatically or by a user manually",
+   "fieldname": "package_created_for_type",
+   "fieldtype": "Select",
+   "label": "Package Created For Type",
+   "options": "System\nUser"
+  },
+  {
    "fieldname": "column_break_pd1",
    "fieldtype": "Column Break"
   },
@@ -110,8 +120,7 @@
    "fieldname": "dmc",
    "fieldtype": "Link",
    "label": "DMC Provider",
-   "options": "Contact",
-   "reqd": 0
+   "options": "Contact"
   },
   {
    "fieldname": "description",
@@ -350,14 +359,13 @@
    "fieldname": "destinations",
    "fieldtype": "Table",
    "label": "Destinations",
-   "options": "Trip Destination",
-   "reqd": 1
+   "options": "Trip Destination"
   },
   {
+   "description": "Comma-separated list of destinations for display",
    "fieldname": "destinations_text",
    "fieldtype": "Data",
-   "label": "Destinations Summary",
-   "description": "Comma-separated list of destinations for display"
+   "label": "Destinations Summary"
   },
   {
    "fieldname": "hotel",
@@ -381,7 +389,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-16 13:46:22.933471",
+ "modified": "2025-10-06 15:24:01.627625",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Standard Package",

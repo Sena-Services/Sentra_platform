@@ -32,6 +32,10 @@
   "preferred_activity_types",
   "preferred_transport_class",
   "special_requirements",
+  "tickets_section",
+  "tickets",
+  "package_proposals_section",
+  "package_proposals",
   "activities_details_section",
   "activity",
   "trip_owner"
@@ -69,6 +73,29 @@
    "fieldname": "special_requirements",
    "fieldtype": "Small Text",
    "label": "Special Requirements"
+  },
+  {
+   "fieldname": "tickets_section",
+   "fieldtype": "Section Break",
+   "label": "Related Tickets"
+  },
+  {
+   "fieldname": "tickets",
+   "fieldtype": "Table",
+   "label": "Tickets",
+   "options": "Trip Ticket"
+  },
+  {
+   "fieldname": "package_proposals_section",
+   "fieldtype": "Section Break",
+   "label": "Package Proposals"
+  },
+  {
+   "description": "Track all packages sent to customer with confirmation status",
+   "fieldname": "package_proposals",
+   "fieldtype": "Table",
+   "label": "Package Proposals",
+   "options": "Trip Package Proposal"
   },
   {
    "fieldname": "destination_city",

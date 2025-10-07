@@ -15,8 +15,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Passenger Type",
-   "options": "Adult\nChild\nInfant",
-   "reqd": 1
+   "options": "Adult\nChild\nInfant"
   },
   {
    "fieldname": "age",
@@ -28,7 +27,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-18 15:37:45.590080",
+ "modified": "2025-10-03 15:12:01.716789",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Trip Passenger",
