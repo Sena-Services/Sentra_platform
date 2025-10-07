@@ -67,6 +67,11 @@ def create_ticket_from_weblink(contact_id, change_requested, request_type="Inqui
 			ticket_data["trip"] = trip_id
 			print(f"🔗 Linking ticket to trip: {trip_id}")
 
+		# Add package ID if provided
+		if package_id:
+			ticket_data["package_id"] = package_id
+			print(f"📦 Linking ticket to package: {package_id}")
+
 		ticket = frappe.get_doc(ticket_data)
 
 		ticket.insert(ignore_permissions=True)

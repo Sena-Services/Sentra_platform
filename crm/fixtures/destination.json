@@ -1,10 +1,80 @@
 [
   {
     "doctype": "Destination",
-    "name": "London",
-    "city": "London",
-    "state": "England",
-    "country": "United Kingdom"
+    "name": "Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Mumbai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Delhi",
+    "city": "Delhi",
+    "state": "Delhi",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Bangalore",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Goa",
+    "city": "Goa",
+    "state": "Goa",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Kerala",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Dubai",
+    "city": "Dubai",
+    "state": "Dubai",
+    "country": "United Arab Emirates"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Abu Dhabi",
+    "city": "Abu Dhabi",
+    "state": "Abu Dhabi",
+    "country": "United Arab Emirates"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Bangkok",
+    "city": "Bangkok",
+    "state": "Bangkok",
+    "country": "Thailand"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Phuket",
+    "city": "Phuket",
+    "state": "Phuket",
+    "country": "Thailand"
   },
   {
     "doctype": "Destination",
@@ -12,6 +82,27 @@
     "city": "Singapore",
     "state": "Singapore",
     "country": "Singapore"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Bali",
+    "city": "Denpasar",
+    "state": "Bali",
+    "country": "Indonesia"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Maldives",
+    "city": "Malé",
+    "state": "Malé",
+    "country": "Maldives"
+  },
+  {
+    "doctype": "Destination",
+    "name": "London",
+    "city": "London",
+    "state": "England",
+    "country": "United Kingdom"
   },
   {
     "doctype": "Destination",
@@ -29,24 +120,10 @@
   },
   {
     "doctype": "Destination",
-    "name": "Dubai",
-    "city": "Dubai",
-    "state": "Dubai",
-    "country": "United Arab Emirates"
-  },
-  {
-    "doctype": "Destination",
     "name": "Tokyo",
     "city": "Tokyo",
     "state": "Tokyo",
     "country": "Japan"
-  },
-  {
-    "doctype": "Destination",
-    "name": "Bangkok",
-    "city": "Bangkok",
-    "state": "Bangkok",
-    "country": "Thailand"
   },
   {
     "doctype": "Destination",
@@ -68,5 +145,26 @@
     "city": "Amsterdam",
     "state": "North Holland",
     "country": "Netherlands"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Istanbul",
+    "city": "Istanbul",
+    "state": "Istanbul",
+    "country": "Turkey"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Sydney",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "country": "Australia"
+  },
+  {
+    "doctype": "Destination",
+    "name": "Kuala Lumpur",
+    "city": "Kuala Lumpur",
+    "state": "Kuala Lumpur",
+    "country": "Malaysia"
   }
 ]

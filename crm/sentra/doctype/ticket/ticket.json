@@ -11,6 +11,7 @@
   "contact",
   "contact_name",
   "trip",
+  "package_id",
   "column_break_1",
   "request_type",
   "ticket_status",
@@ -48,6 +49,12 @@
    "fieldtype": "Link",
    "label": "Trip",
    "options": "Trip"
+  },
+  {
+   "fieldname": "package_id",
+   "fieldtype": "Link",
+   "label": "Package",
+   "options": "Standard Package"
   },
   {
    "fieldname": "column_break_1",
