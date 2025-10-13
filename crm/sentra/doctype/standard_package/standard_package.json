@@ -13,6 +13,7 @@
   "status",
   "package_type",
   "package_created_for_type",
+  "is_itinerary",
   "itinerary_link",
   "column_break_pd1",
   "dmc",
@@ -111,6 +112,13 @@
    "fieldtype": "Select",
    "label": "Package Created For Type",
    "options": "System\nUser"
+  },
+  {
+   "default": "0",
+   "description": "Indicates if this is a custom itinerary created by AI for a specific customer",
+   "fieldname": "is_itinerary",
+   "fieldtype": "Check",
+   "label": "Is Custom Itinerary"
   },
   {
    "fieldname": "column_break_pd1",

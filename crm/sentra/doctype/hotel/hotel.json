@@ -3,7 +3,7 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-07-19 12:30:00.000000",
+ "creation": "2025-07-19 12:30:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -158,11 +158,10 @@
   },
   {
    "fieldname": "city",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "City",
-   "options": "Destination",
-   "reqd": 1
+   "options": "Destination"
   },
   {
    "fieldname": "state",
@@ -206,8 +205,7 @@
    "fieldname": "primary_contact",
    "fieldtype": "Link",
    "label": "Primary Contact",
-   "options": "Contact",
-   "reqd": 0
+   "options": "Contact"
   },
   {
    "fieldname": "column_break_ci1",
@@ -357,153 +355,155 @@
    "label": "Inventory Display"
   },
   {
+   "description": "Price shown in inventory panels",
    "fieldname": "base_display_price",
    "fieldtype": "Currency",
    "label": "Base Display Price",
-   "description": "Price shown in inventory panels",
    "options": "currency"
   },
   {
+   "description": "Overall rating (0-5 scale)",
    "fieldname": "rating",
    "fieldtype": "Float",
    "label": "Rating",
-   "description": "Overall rating (0-5 scale)",
-   "precision": 1
+   "precision": "1"
   },
   {
    "fieldname": "column_break_inv1",
    "fieldtype": "Column Break"
   },
   {
+   "description": "Brief description for inventory display (max 200 chars)",
    "fieldname": "short_description",
    "fieldtype": "Small Text",
-   "label": "Short Description",
-   "description": "Brief description for inventory display (max 200 chars)"
+   "label": "Short Description"
   },
   {
+   "default": "0",
+   "description": "Highlight this hotel in inventory panels",
    "fieldname": "is_featured",
    "fieldtype": "Check",
-   "label": "Featured in Inventory",
-   "description": "Highlight this hotel in inventory panels"
+   "label": "Featured in Inventory"
   },
   {
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id",
    "fieldname": "google_places_section",
    "fieldtype": "Section Break",
-   "label": "Google Places Integration",
-   "collapsible": 1,
-   "collapsible_depends_on": "google_place_id"
+   "label": "Google Places Integration"
   },
   {
+   "description": "Unique identifier from Google Places",
    "fieldname": "google_place_id",
    "fieldtype": "Data",
    "label": "Google Place ID",
-   "read_only": 1,
-   "description": "Unique identifier from Google Places"
+   "read_only": 1
   },
   {
+   "description": "Direct link to Google Maps",
    "fieldname": "google_maps_url",
    "fieldtype": "Data",
    "label": "Google Maps URL",
-   "read_only": 1,
-   "description": "Direct link to Google Maps"
+   "read_only": 1
   },
   {
+   "description": "Hotel website from Google Places",
    "fieldname": "website_uri",
    "fieldtype": "Data",
    "label": "Website",
-   "read_only": 1,
-   "description": "Hotel website from Google Places"
+   "read_only": 1
   },
   {
+   "description": "Phone number from Google Places",
    "fieldname": "international_phone_number",
    "fieldtype": "Data",
    "label": "International Phone Number",
-   "read_only": 1,
-   "description": "Phone number from Google Places"
+   "read_only": 1
   },
   {
    "fieldname": "column_break_gp1",
    "fieldtype": "Column Break"
   },
   {
+   "description": "Operational status from Google",
    "fieldname": "business_status",
    "fieldtype": "Data",
    "label": "Business Status",
-   "read_only": 1,
-   "description": "Operational status from Google"
+   "read_only": 1
   },
   {
+   "description": "Rating from Google Places reviews",
    "fieldname": "google_rating",
    "fieldtype": "Float",
    "label": "Google Rating",
-   "read_only": 1,
    "precision": "1",
-   "description": "Rating from Google Places reviews"
+   "read_only": 1
   },
   {
+   "description": "Primary category from Google Places",
    "fieldname": "primary_type",
    "fieldtype": "Data",
    "label": "Primary Type",
-   "read_only": 1,
-   "description": "Primary category from Google Places"
+   "read_only": 1
   },
   {
+   "description": "Complete address from Google Places",
    "fieldname": "formatted_address",
    "fieldtype": "Small Text",
    "label": "Formatted Address",
-   "read_only": 1,
-   "description": "Complete address from Google Places"
+   "read_only": 1
   },
   {
+   "collapsible": 1,
+   "collapsible_depends_on": "google_place_id",
    "fieldname": "google_places_features_section",
    "fieldtype": "Section Break",
-   "label": "Google Places Features",
-   "collapsible": 1,
-   "collapsible_depends_on": "google_place_id"
+   "label": "Google Places Features"
   },
   {
+   "default": "0",
+   "description": "Whether the place is open now",
    "fieldname": "open_now",
    "fieldtype": "Check",
    "label": "Currently Open",
-   "read_only": 1,
-   "description": "Whether the place is open now"
+   "read_only": 1
   },
   {
+   "description": "Weekly opening hours from Google",
    "fieldname": "weekday_descriptions",
    "fieldtype": "Small Text",
    "label": "Opening Hours",
-   "read_only": 1,
-   "description": "Weekly opening hours from Google"
+   "read_only": 1
   },
   {
+   "description": "Accepted payment methods",
    "fieldname": "payment_options",
    "fieldtype": "Small Text",
    "label": "Payment Options",
-   "read_only": 1,
-   "description": "Accepted payment methods"
+   "read_only": 1
   },
   {
    "fieldname": "column_break_gpf1",
    "fieldtype": "Column Break"
   },
   {
+   "description": "Available parking facilities",
    "fieldname": "parking_options",
    "fieldtype": "Small Text",
    "label": "Parking Options",
-   "read_only": 1,
-   "description": "Available parking facilities"
+   "read_only": 1
   },
   {
+   "description": "Accessibility features available",
    "fieldname": "accessibility_options",
    "fieldtype": "Small Text",
    "label": "Accessibility Options",
-   "read_only": 1,
-   "description": "Accessibility features available"
+   "read_only": 1
   }
  ],
  "image_field": "main_image",
  "links": [],
- "modified": "2025-07-19 12:30:00.000000",
+ "modified": "2025-10-13 11:44:00.397011",
  "modified_by": "Administrator",
  "module": "Sentra",
  "name": "Hotel",
@@ -523,6 +523,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "hotel_name,city",
  "show_title_field_in_link": 1,
  "sort_field": "creation",
