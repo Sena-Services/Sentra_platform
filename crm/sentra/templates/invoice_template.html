@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Invoice - {{ doc.invoice_number }}</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Helvetica', 'Arial', sans-serif;
+			font-size: 12px;
+			line-height: 1.6;
+			color: #333;
+			padding: 40px;
+		}
+
+		.invoice-container {
+			max-width: 800px;
+			margin: 0 auto;
+			background: white;
+		}
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			margin-bottom: 40px;
+			padding-bottom: 20px;
+			border-bottom: 3px solid #f97316;
+		}
+
+		.company-info {
+			flex: 1;
+		}
+
+		.company-name {
+			font-size: 28px;
+			font-weight: bold;
+			color: #f97316;
+			margin-bottom: 5px;
+		}
+
+		.company-tagline {
+			font-size: 12px;
+			color: #666;
+			margin-bottom: 10px;
+		}
+
+		.invoice-title {
+			text-align: right;
+		}
+
+		.invoice-title h1 {
+			font-size: 36px;
+			color: #333;
+			font-weight: bold;
+		}
+
+		.invoice-meta {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 30px;
+		}
+
+		.invoice-details, .customer-details {
+			flex: 1;
+		}
+
+		.section-title {
+			font-weight: bold;
+			font-size: 14px;
+			color: #333;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+		}
+
+		.detail-row {
+			margin-bottom: 5px;
+		}
+
+		.detail-label {
+			display: inline-block;
+			width: 120px;
+			color: #666;
+			font-size: 11px;
+		}
+
+		.detail-value {
+			font-weight: 500;
+			color: #333;
+		}
+
+		.package-section {
+			background: #f8f9fa;
+			padding: 20px;
+			border-radius: 8px;
+			margin-bottom: 30px;
+		}
+
+		.package-title {
+			font-size: 18px;
+			font-weight: bold;
+			color: #f97316;
+			margin-bottom: 15px;
+		}
+
+		.package-details {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 10px;
+		}
+
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 30px;
+		}
+
+		.table thead {
+			background: #f97316;
+			color: white;
+		}
+
+		.table th {
+			padding: 12px;
+			text-align: left;
+			font-weight: 600;
+			font-size: 12px;
+		}
+
+		.table td {
+			padding: 12px;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.table tbody tr:last-child td {
+			border-bottom: 2px solid #f97316;
+		}
+
+		.amount-section {
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: 30px;
+		}
+
+		.amount-table {
+			width: 300px;
+		}
+
+		.amount-row {
+			display: flex;
+			justify-content: space-between;
+			padding: 8px 0;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.amount-label {
+			font-size: 12px;
+			color: #666;
+		}
+
+		.amount-value {
+			font-weight: 600;
+			color: #333;
+		}
+
+		.total-row {
+			background: #f97316;
+			color: white;
+			padding: 12px;
+			margin-top: 10px;
+			border-radius: 4px;
+		}
+
+		.total-row .amount-label,
+		.total-row .amount-value {
+			color: white;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.payment-info {
+			background: #ecfdf5;
+			border: 1px solid #10b981;
+			border-radius: 8px;
+			padding: 15px;
+			margin-bottom: 30px;
+		}
+
+		.payment-status {
+			color: #10b981;
+			font-weight: bold;
+			font-size: 14px;
+			margin-bottom: 10px;
+		}
+
+		.footer {
+			border-top: 2px solid #e5e7eb;
+			padding-top: 20px;
+			text-align: center;
+			color: #666;
+			font-size: 11px;
+		}
+
+		.thank-you {
+			font-size: 16px;
+			font-weight: bold;
+			color: #f97316;
+			margin-bottom: 10px;
+		}
+
+		@media print {
+			body {
+				padding: 20px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="invoice-container">
+		<!-- Header -->
+		<div class="header">
+			<div class="company-info">
+				<div class="company-name">Sentra Travel</div>
+				<div class="company-tagline">Premium Travel Experiences</div>
+				<div style="margin-top: 10px; font-size: 11px; color: #666;">
+					Email: travel@sentra.com<br>
+					Phone: +1-555-0100
+				</div>
+			</div>
+			<div class="invoice-title">
+				<h1>INVOICE</h1>
+				<div style="margin-top: 10px; font-size: 14px; color: #666;">
+					{{ doc.invoice_number }}
+				</div>
+			</div>
+		</div>
+
+		<!-- Invoice & Customer Details -->
+		<div class="invoice-meta">
+			<div class="invoice-details">
+				<div class="section-title">Invoice Details</div>
+				<div class="detail-row">
+					<span class="detail-label">Invoice Date:</span>
+					<span class="detail-value">{{ frappe.utils.formatdate(doc.invoice_date, "dd MMM yyyy") }}</span>
+				</div>
+				<div class="detail-row">
+					<span class="detail-label">Order ID:</span>
+					<span class="detail-value">{{ doc.order_id }}</span>
+				</div>
+				{% if doc.razorpay_payment_id %}
+				<div class="detail-row">
+					<span class="detail-label">Payment ID:</span>
+					<span class="detail-value">{{ doc.razorpay_payment_id }}</span>
+				</div>
+				{% endif %}
+			</div>
+
+			<div class="customer-details">
+				<div class="section-title">Bill To</div>
+				<div class="detail-row">
+					<strong style="font-size: 14px;">{{ doc.customer_name }}</strong>
+				</div>
+				{% if doc.customer_email %}
+				<div class="detail-row">
+					<span class="detail-value">{{ doc.customer_email }}</span>
+				</div>
+				{% endif %}
+				{% if doc.customer_phone %}
+				<div class="detail-row">
+					<span class="detail-value">{{ doc.customer_phone }}</span>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- Package Details -->
+		<div class="package-section">
+			<div class="package-title">{{ doc.package_name }}</div>
+			<div class="package-details">
+				{% if doc.travel_dates %}
+				<div class="detail-row">
+					<span class="detail-label">Travel Dates:</span>
+					<span class="detail-value">{{ doc.travel_dates }}</span>
+				</div>
+				{% endif %}
+				<div class="detail-row">
+					<span class="detail-label">Passengers:</span>
+					<span class="detail-value">{{ doc.number_of_passengers }}</span>
+				</div>
+				{% if doc.passenger_names %}
+				<div class="detail-row" style="grid-column: 1 / -1;">
+					<span class="detail-label">Names:</span>
+					<span class="detail-value">{{ doc.passenger_names }}</span>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- Package Items Table -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th style="width: 60%;">Description</th>
+					<th style="width: 20%; text-align: center;">Quantity</th>
+					<th style="width: 20%; text-align: right;">Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<strong>{{ doc.package_name }}</strong>
+						{% if doc.package_description %}
+						<br><span style="color: #666; font-size: 11px;">{{ doc.package_description }}</span>
+						{% endif %}
+					</td>
+					<td style="text-align: center;">{{ doc.number_of_passengers }}</td>
+					<td style="text-align: right; font-weight: 600;">{{ doc.currency }} {{ "%.2f"|format(doc.subtotal) }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Amount Breakdown -->
+		<div class="amount-section">
+			<div class="amount-table">
+				<div class="amount-row">
+					<span class="amount-label">Subtotal:</span>
+					<span class="amount-value">{{ doc.currency }} {{ "%.2f"|format(doc.subtotal) }}</span>
+				</div>
+				{% if doc.tax_amount > 0 %}
+				<div class="amount-row">
+					<span class="amount-label">Tax:</span>
+					<span class="amount-value">{{ doc.currency }} {{ "%.2f"|format(doc.tax_amount) }}</span>
+				</div>
+				{% endif %}
+				{% if doc.discount_amount > 0 %}
+				<div class="amount-row">
+					<span class="amount-label">Discount:</span>
+					<span class="amount-value">-{{ doc.currency }} {{ "%.2f"|format(doc.discount_amount) }}</span>
+				</div>
+				{% endif %}
+				<div class="total-row">
+					<div class="amount-row" style="border: none; padding: 0;">
+						<span class="amount-label">Total Amount:</span>
+						<span class="amount-value">{{ doc.currency }} {{ "%.2f"|format(doc.total_amount) }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Payment Information -->
+		<div class="payment-info">
+			<div class="payment-status">✓ PAYMENT RECEIVED</div>
+			<div class="detail-row">
+				<span class="detail-label">Payment Method:</span>
+				<span class="detail-value">{{ doc.payment_method or 'Online Payment' }}</span>
+			</div>
+			<div class="detail-row">
+				<span class="detail-label">Payment Date:</span>
+				<span class="detail-value">{{ frappe.utils.formatdate(doc.paid_date, "dd MMM yyyy HH:mm") if doc.paid_date else 'N/A' }}</span>
+			</div>
+			{% if doc.razorpay_payment_id %}
+			<div class="detail-row">
+				<span class="detail-label">Transaction ID:</span>
+				<span class="detail-value">{{ doc.razorpay_payment_id }}</span>
+			</div>
+			{% endif %}
+		</div>
+
+		<!-- Footer -->
+		<div class="footer">
+			<div class="thank-you">Thank You for Choosing Sentra Travel!</div>
+			<p>We look forward to providing you with an unforgettable travel experience.</p>
+			<p style="margin-top: 15px;">
+				For any queries, please contact us at travel@sentra.com or call +1-555-0100
+			</p>
+			<p style="margin-top: 10px; font-size: 10px; color: #999;">
+				This is a computer-generated invoice and does not require a signature.
+			</p>
+		</div>
+	</div>
+</body>
+</html>

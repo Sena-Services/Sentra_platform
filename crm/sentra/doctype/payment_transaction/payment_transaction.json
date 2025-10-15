@@ -1,0 +1,266 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-10-14 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_details_section",
+  "naming_series",
+  "transaction_id",
+  "transaction_status",
+  "transaction_date",
+  "column_break_td1",
+  "order_id",
+  "contact_id",
+  "amount",
+  "currency",
+  "razorpay_details_section",
+  "razorpay_order_id",
+  "razorpay_payment_id",
+  "razorpay_signature",
+  "column_break_rp1",
+  "payment_method",
+  "payment_card_id",
+  "payment_bank",
+  "payment_wallet",
+  "payment_details_section",
+  "payment_captured",
+  "payment_error_code",
+  "payment_error_description",
+  "column_break_pd1",
+  "payment_email",
+  "payment_contact",
+  "payment_fee",
+  "payment_tax",
+  "verification_section",
+  "signature_verified",
+  "verified_at",
+  "column_break_vr1",
+  "verification_attempts",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details"
+  },
+  {
+   "default": "TXN-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "transaction_id",
+   "fieldtype": "Data",
+   "label": "Transaction ID",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "default": "Initiated",
+   "fieldname": "transaction_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Transaction Status",
+   "options": "Initiated\nAuthorized\nCaptured\nFailed\nRefunded",
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "transaction_date",
+   "fieldtype": "Datetime",
+   "label": "Transaction Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_td1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Order",
+   "options": "Package Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_id",
+   "fieldtype": "Link",
+   "label": "Contact",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "razorpay_details_section",
+   "fieldtype": "Section Break",
+   "label": "Razorpay Details"
+  },
+  {
+   "fieldname": "razorpay_order_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Order ID",
+   "unique": 1
+  },
+  {
+   "fieldname": "razorpay_payment_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Payment ID",
+   "unique": 1
+  },
+  {
+   "fieldname": "razorpay_signature",
+   "fieldtype": "Data",
+   "label": "Razorpay Signature"
+  },
+  {
+   "fieldname": "column_break_rp1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Data",
+   "label": "Payment Method"
+  },
+  {
+   "fieldname": "payment_card_id",
+   "fieldtype": "Data",
+   "label": "Card ID"
+  },
+  {
+   "fieldname": "payment_bank",
+   "fieldtype": "Data",
+   "label": "Bank"
+  },
+  {
+   "fieldname": "payment_wallet",
+   "fieldtype": "Data",
+   "label": "Wallet"
+  },
+  {
+   "fieldname": "payment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_captured",
+   "fieldtype": "Check",
+   "label": "Payment Captured"
+  },
+  {
+   "fieldname": "payment_error_code",
+   "fieldtype": "Data",
+   "label": "Error Code"
+  },
+  {
+   "fieldname": "payment_error_description",
+   "fieldtype": "Text",
+   "label": "Error Description"
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_email",
+   "fieldtype": "Data",
+   "label": "Payment Email"
+  },
+  {
+   "fieldname": "payment_contact",
+   "fieldtype": "Data",
+   "label": "Payment Contact"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_fee",
+   "fieldtype": "Currency",
+   "label": "Payment Fee",
+   "options": "currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_tax",
+   "fieldtype": "Currency",
+   "label": "Payment Tax",
+   "options": "currency"
+  },
+  {
+   "fieldname": "verification_section",
+   "fieldtype": "Section Break",
+   "label": "Verification"
+  },
+  {
+   "default": "0",
+   "fieldname": "signature_verified",
+   "fieldtype": "Check",
+   "label": "Signature Verified"
+  },
+  {
+   "fieldname": "verified_at",
+   "fieldtype": "Datetime",
+   "label": "Verified At"
+  },
+  {
+   "fieldname": "column_break_vr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "verification_attempts",
+   "fieldtype": "Int",
+   "label": "Verification Attempts"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-14 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Payment Transaction",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,336 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-10-14 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_details_section",
+  "naming_series",
+  "invoice_id",
+  "invoice_number",
+  "invoice_date",
+  "column_break_id1",
+  "invoice_status",
+  "order_id",
+  "contact_id",
+  "customer_information_section",
+  "customer_name",
+  "customer_email",
+  "column_break_ci1",
+  "customer_phone",
+  "customer_address",
+  "package_details_section",
+  "package_id",
+  "package_name",
+  "package_description",
+  "column_break_pd1",
+  "trip_id",
+  "travel_dates",
+  "number_of_passengers",
+  "passenger_names",
+  "pricing_section",
+  "currency",
+  "subtotal",
+  "tax_amount",
+  "column_break_pr1",
+  "discount_amount",
+  "total_amount",
+  "payment_details_section",
+  "payment_method",
+  "payment_id",
+  "razorpay_payment_id",
+  "column_break_pay1",
+  "paid_date",
+  "transaction_id",
+  "invoice_items_section",
+  "invoice_items",
+  "document_section",
+  "pdf_file",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_details_section",
+   "fieldtype": "Section Break",
+   "label": "Invoice Details"
+  },
+  {
+   "default": "INV-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "invoice_id",
+   "fieldtype": "Data",
+   "label": "Invoice ID",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Data",
+   "label": "Invoice Number",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Invoice Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_id1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "invoice_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Invoice Status",
+   "options": "Draft\nGenerated\nSent\nPaid",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Order",
+   "options": "Package Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_id",
+   "fieldtype": "Link",
+   "label": "Contact",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_information_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Information"
+  },
+  {
+   "fetch_from": "contact_id.full_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fetch_from": "contact_id.email_id",
+   "fieldname": "customer_email",
+   "fieldtype": "Data",
+   "label": "Customer Email"
+  },
+  {
+   "fieldname": "column_break_ci1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "contact_id.mobile_no",
+   "fieldname": "customer_phone",
+   "fieldtype": "Data",
+   "label": "Customer Phone"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Text",
+   "label": "Customer Address"
+  },
+  {
+   "fieldname": "package_details_section",
+   "fieldtype": "Section Break",
+   "label": "Package Details"
+  },
+  {
+   "fieldname": "package_id",
+   "fieldtype": "Link",
+   "label": "Package",
+   "options": "Standard Package"
+  },
+  {
+   "fetch_from": "package_id.package_name",
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "label": "Package Name"
+  },
+  {
+   "fieldname": "package_description",
+   "fieldtype": "Text",
+   "label": "Package Description"
+  },
+  {
+   "fieldname": "column_break_pd1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "trip_id",
+   "fieldtype": "Link",
+   "label": "Trip",
+   "options": "Trip"
+  },
+  {
+   "fieldname": "travel_dates",
+   "fieldtype": "Data",
+   "label": "Travel Dates"
+  },
+  {
+   "default": "1",
+   "fieldname": "number_of_passengers",
+   "fieldtype": "Int",
+   "label": "Number of Passengers"
+  },
+  {
+   "description": "Comma-separated passenger names",
+   "fieldname": "passenger_names",
+   "fieldtype": "Text",
+   "label": "Passenger Names"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_pr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "options": "currency",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Data",
+   "label": "Payment Method"
+  },
+  {
+   "fieldname": "payment_id",
+   "fieldtype": "Data",
+   "label": "Payment ID"
+  },
+  {
+   "fieldname": "razorpay_payment_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Payment ID"
+  },
+  {
+   "fieldname": "column_break_pay1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "paid_date",
+   "fieldtype": "Datetime",
+   "label": "Paid Date"
+  },
+  {
+   "fieldname": "transaction_id",
+   "fieldtype": "Link",
+   "label": "Transaction",
+   "options": "Payment Transaction"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "invoice_items_section",
+   "fieldtype": "Section Break",
+   "label": "Invoice Items"
+  },
+  {
+   "description": "JSON array of invoice line items",
+   "fieldname": "invoice_items",
+   "fieldtype": "JSON",
+   "label": "Invoice Items"
+  },
+  {
+   "fieldname": "document_section",
+   "fieldtype": "Section Break",
+   "label": "Document"
+  },
+  {
+   "fieldname": "pdf_file",
+   "fieldtype": "Attach",
+   "label": "PDF File"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-14 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sentra",
+ "name": "Package Invoice",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
