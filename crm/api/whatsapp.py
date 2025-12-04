@@ -20,6 +20,16 @@ def on_update(doc, method):
 		{
 			"reference_doctype": doc.reference_doctype,
 			"reference_name": doc.reference_name,
+			# Include message details for real-time updates
+			"message_id": doc.name,
+			"message": doc.message,
+			"content_type": doc.content_type,
+			"type": doc.type,  # Incoming or Outgoing
+			"from": doc.get("from"),
+			"to": doc.to,
+			"attach": doc.attach,
+			"creation": str(doc.creation) if doc.creation else None,
+			"status": doc.status,
 		},
 	)
 
